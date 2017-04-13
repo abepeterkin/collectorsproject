@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="styles/home.css">
+<link rel="stylesheet" href="styles/responsive-full-background-image.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="js/home.js"></script>
+<title>The Collector's Project</title>
+</head>
+<body id="backgroundImageID">
+
+<!-- Navigation content -->
+<div id="header">
+  <div id="nav_bar">
+    <ul>
+      <li id="menu_item"><a href="#">About</a></li>
+      <li id="menu_item"><a id="signIn" href="#">Sign in</a></li>
+      <li id="menu_item"><a id="signUp" href="#">Sign up</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Modal content for signing up -->
+<div id="signUpModal" class="modal">
+  <div class="signUpModalContent">
+    <div id="signUpBody">
+      <div id="right_column">
+        <table style="width:100%">
+          <tr>
+            <td>Last name</td>
+            <td><input class="searchbar" type="text"></td>
+          </tr>
+          <tr>
+            <td>First name</td>
+            <td><input class="searchbar" type="text"></td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td><input class="searchbar" type="email"></td>
+          </tr>
+          <tr>
+            <td>Verify email</td>
+            <td><input class="searchbar" type="text"></td>
+          </tr>
+          <tr>
+            <td>Affiliation</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="indent">Institution</td>
+            <td><input class="searchbar" type="text"></td>
+          </tr>
+          <tr>
+            <td class="indent">Degree</td>
+            <td><input class="searchbar" type="text"></td>
+          </tr>
+        </table>
+      </div>
+      <div id="left_column">
+        <table style="width:100%">
+          <tr>
+            <td id="floatright">I am a</td>
+            <td><p class="smaller">
+                <input class="check" type="checkbox">
+                Curator<br>
+              
+              <p class="smaller">
+                <input class="check" type="checkbox">
+                Other</td>
+          </tr>
+          <tr>
+            <td id="center"><button class="butt" type="button">CaptCHA</button></td>
+          </tr>
+          <tr>
+            <td id="center"><a href="../search/search.html">
+              <button class="butt" type="button">Create account</button>
+              </a></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal content for signing in -->
+<div id="signInModal" class="modal">
+  <div class="signInModalContent">
+    <div id="signInBody">
+      <div id="right_column">
+        <table style="width:100%">
+          <tr>
+            <td>Username:</td>
+            <td><input type="email"></td>
+          </tr>
+          <tr>
+            <td>Password:</td>
+            <td><input type="password"></td>
+          </tr>
+          <tr>
+            <td><button class="butt">Login</button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main content -->
+<div id="page_body">
+  <div id="body_text">
+    <p id="top">What are you</p>
+    <p id="bottom">Looking for...</p>
+  </div>
+  <input type="text" id="search" placeholder="search">
+</div>
+<div id="news_container">
+  <div id="news_header">News</div>
+  <div id="news_item_container">
+    <div id="news_item"></div>
+    <div id="news_item"></div>
+    <div id="news_item"></div>
+    <div id="news_item"></div>
+        <div id="news_item"></div>
+            <div id="news_item"></div>
+  </div>
+</div>
+
+<div id="footer_container">
+<div id="footer">Please read our privacy policy before using this application</div>
+</div>
+</body>
+</html>
