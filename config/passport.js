@@ -40,18 +40,13 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, email, password, done) {
-        console.log('THIS GETS CALLED');
-        console.log(email);
-        console.log(password);
         // asynchronous
         // User.findOne wont fire unless data is sent back
         process.nextTick(function() {
-        console.log('THIS GETS CALLED 2');
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
         User.findOne({ 'local.email' :  email }, function(err, user) {
 
-            console.log('THIS GETS CALLED 3');
             // if there are any errors, return the error
             if (err)
                 return done(err);
