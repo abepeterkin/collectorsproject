@@ -87,6 +87,53 @@ var insertDocument = function(db, callback) {
   });
 };
 
+var addObjectFromCSV = function(db, artifact, callback) {
+  db.collection('object').insertOne( {
+    "userId": artifact.userId,
+    "museumId" : artifact.museumId,
+    "name" : artifact.name,
+    "Provenace" : artifact.provenance,
+    "Persons" : [],
+      "Locations" : []
+  }, function(err, result) {
+    assert.equal(err, null);
+    console.log("Inserted " + artifact.name + " into the object collection.");
+    callback();
+  });
+};
+
+var addLocationToObject = function(db, artifact, locationId, callback) {
+  db.collection('object').update(
+    { _id: artifact._id },
+   { $push: { Locations: {locationId: locationId} } }, 
+   function(err, result) {
+    assert.equal(err, null);
+    console.log("Updated " + artifact._id + " with new location id " + locationId);
+    callback();
+  });
+}
+//do the same for location
+var createPersonHelper = function(person) {
+  var createdPerson = {
+    "name" : person.name,
+    "Objects": [],
+    "Locations" : []
+  }
+  return createdPerson;
+}
+
+//have person be 
+var createPerson = function(db, person, callback) {
+  var createdPerson = createPersonHelper(person);
+  db.collection('person').insert( createdPerson,
+   function(err, result) {
+    assert.equal(err, null);
+    console.log(createdPerson._id);
+    console.log("Inserted " + person.name + " into the person collection.");
+    callback(createdPesron._id); //callback returns the id for object and location
+  } );
+}
+
 var findObjects = function(db, callback) {
    var cursor =db.collection('object').find( );
    cursor.each(function(err, doc) {
