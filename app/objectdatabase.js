@@ -96,7 +96,7 @@ var createLocationHelper = function(location) {
   return createdLocation;
 }
 
-//have person be 
+//have person be
 var createLocation = function(db, location, callback) {
   var createdLocation = createLocationHelper(location);
   db.collection('location').insert( createdLocation,
@@ -111,7 +111,7 @@ var createLocation = function(db, location, callback) {
 var addObjectToLocation = function(db, location, objectId, callback) {
   db.collection('location').update(
     { _id: location._id },
-   { $push: { Objects: {objectId: objectId} } }, 
+   { $push: { Objects: {objectId: objectId} } },
    function(err, result) {
     assert.equal(err, null);
     console.log("Updated " + location._id + " with new object id " + objectId);
@@ -122,7 +122,7 @@ var addObjectToLocation = function(db, location, objectId, callback) {
 var addPersonToLocation = function(db, location, personId, callback) {
   db.collection('location').update(
     { _id: location._id },
-   { $push: { Persons: {personId: personId} } }, 
+   { $push: { Persons: {personId: personId} } },
    function(err, result) {
     assert.equal(err, null);
     console.log("Updated " + location._id + " with new person id " + personId);
@@ -133,7 +133,7 @@ var addPersonToLocation = function(db, location, personId, callback) {
 var addPersonToObject = function(db, object, personId, callback) {
   db.collection('object').update(
     { _id: object._id },
-   { $push: { Persons: {personId: personId} } }, 
+   { $push: { Persons: {personId: personId} } },
    function(err, result) {
     assert.equal(err, null);
     console.log("Updated " + object._id + " with new person id " + personId);
@@ -144,7 +144,7 @@ var addPersonToObject = function(db, object, personId, callback) {
 var addObjectToPerson = function(db, person, objectId, callback) {
   db.collection('person').update(
     { _id: person._id },
-   { $push: { Objects: {objectId: objectId} } }, 
+   { $push: { Objects: {objectId: objectId} } },
    function(err, result) {
     assert.equal(err, null);
     console.log("Updated " + person._id + " with new object id " + objectId);
@@ -155,7 +155,7 @@ var addObjectToPerson = function(db, person, objectId, callback) {
 var addLocationToPerson = function(db, person, locationId, callback) {
   db.collection('person').update(
     { _id: person._id },
-   { $push: { Locations: {locationId: locationId} } }, 
+   { $push: { Locations: {locationId: locationId} } },
    function(err, result) {
     assert.equal(err, null);
     console.log("Updated " + person._id + " with new location id " + locationId);
@@ -166,6 +166,11 @@ var addLocationToPerson = function(db, person, locationId, callback) {
 module.exports.insertDocument = insertDocument;
 module.exports.addObjectFromCSV = addObjectFromCSV;
 module.exports.addLocationToObject = addLocationToObject;
-module.exports.createPersonHelper = createPersonHelper;
 module.exports.createPerson = createPerson;
 module.exports.findObjects = findObjects;
+module.exports.createLocation = createLocation;
+module.exports.addObjectToLocation = addObjectToLocation;
+module.exports.addPersonToLocation = addPersonToLocation;
+module.exports.addPersonToObject = addPersonToObject;
+module.exports.addObjectToPerson = addObjectToPerson;
+module.exports.addLocationToPerson = addLocationToPerson;
