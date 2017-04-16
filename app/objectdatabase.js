@@ -86,6 +86,83 @@ var findObjects = function(db, callback) {
    });
 };
 
+//do the same for location
+var createLocationHelper = function(location) {
+  var createdLocation = {
+    "name" : location.name,
+    "Objects": [],
+    "Persons" : []
+  }
+  return createdLocation;
+}
+
+//have person be 
+var createLocation = function(db, location, callback) {
+  var createdLocation = createLocationHelper(location);
+  db.collection('location').insert( createdLocation,
+   function(err, result) {
+    assert.equal(err, null);
+    console.log(createdLocation._id);
+    console.log("Inserted " + location.name + " into the location collection.");
+    callback(createdLocation._id); //callback returns the id for object and location
+  } );
+}
+
+var addObjectToLocation = function(db, location, objectId, callback) {
+  db.collection('location').update(
+    { _id: location._id },
+   { $push: { Objects: {objectId: objectId} } }, 
+   function(err, result) {
+    assert.equal(err, null);
+    console.log("Updated " + location._id + " with new object id " + objectId);
+    callback();
+  });
+}
+
+var addPersonToLocation = function(db, location, personId, callback) {
+  db.collection('location').update(
+    { _id: location._id },
+   { $push: { Persons: {personId: personId} } }, 
+   function(err, result) {
+    assert.equal(err, null);
+    console.log("Updated " + location._id + " with new person id " + personId);
+    callback();
+  });
+}
+
+var addPersonToObject = function(db, object, personId, callback) {
+  db.collection('object').update(
+    { _id: object._id },
+   { $push: { Persons: {personId: personId} } }, 
+   function(err, result) {
+    assert.equal(err, null);
+    console.log("Updated " + object._id + " with new person id " + personId);
+    callback();
+  });
+}
+
+var addObjectToPerson = function(db, person, objectId, callback) {
+  db.collection('person').update(
+    { _id: person._id },
+   { $push: { Objects: {objectId: objectId} } }, 
+   function(err, result) {
+    assert.equal(err, null);
+    console.log("Updated " + person._id + " with new object id " + objectId);
+    callback();
+  });
+}
+
+var addLocationToPerson = function(db, person, locationId, callback) {
+  db.collection('person').update(
+    { _id: person._id },
+   { $push: { Locations: {locationId: locationId} } }, 
+   function(err, result) {
+    assert.equal(err, null);
+    console.log("Updated " + person._id + " with new location id " + locationId);
+    callback();
+  });
+}
+
 module.exports.insertDocument = insertDocument;
 module.exports.addObjectFromCSV = addObjectFromCSV;
 module.exports.addLocationToObject = addLocationToObject;
