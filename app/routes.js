@@ -1,6 +1,7 @@
+var uploader = require("./uploader.js");
+
 // app/routes.js
 module.exports = function(app, passport) {
-
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
@@ -69,6 +70,16 @@ module.exports = function(app, passport) {
 
     app.get('/search', function(req, res) {
         res.render('search.ejs');
+    });
+
+    app.get('/upload', isLoggedIn, function(req, res) {
+        res.render('upload.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
+    app.post('/upload', isLoggedIn, function(req, res) {
+      uploader.uploadObjects(res);
     });
 };
 
