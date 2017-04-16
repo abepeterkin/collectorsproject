@@ -1,4 +1,4 @@
-var uploader = require("./uploader.js");
+var objectDB = require("./objectdatabase.js");
 
 // app/routes.js
 module.exports = function(app, passport) {
@@ -79,7 +79,7 @@ module.exports = function(app, passport) {
     });
 
     app.post('/upload', isLoggedIn, function(req, res) {
-      uploader.uploadObjects(res);
+      //TODO
     });
 };
 
