@@ -32,4 +32,19 @@ $(document).ready(function(){
 			$("#signInModal")[0].style.display = "none";
 		}
 	});
+
+	$("#search").keyup(function(event){
+	    if(event.keyCode == 13){
+	        document.getElementById("body_text").remove();
+		    document.getElementById("search").style.top="100px"; 
+
+		    document.getElementById("nav_bar_title").style.fontSize = "20px";
+		    document.getElementById("news").style.fontSize = "15px";
+		    document.getElementById("about").style.fontSize = "15px";
+
+		    
+		    document.getElementById("search_results").style.visibility="visible"; 
+	    }
+	});
+
 });

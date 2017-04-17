@@ -3,19 +3,34 @@
 <head>
 <link rel="stylesheet" type="text/css" href="styles/home.css">
 <link rel="stylesheet" href="styles/responsive-full-background-image.css">
+<script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="js/home.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/signin.js"></script>
+<script src="js/search_results.js"></script>
+
 <title>The Collector's Project</title>
 </head>
 <body id="backgroundImageID">
 
 <!-- Navigation content -->
 <div id="header">
+  <div id="title">
+    <h1 id="nav_bar_title">the collector's project</h1>
+  </div>
   <div id="nav_bar">
     <ul>
-      <li id="menu_item"><a href="#">About</a></li>
+      <li id="menu_item"><a id="news" href="#">News</a></li>
+      <li id="menu_item"><a id="about" href="#">About</a></li>
       <li id="menu_item"><a id="signIn" href="#">Sign in</a></li>
       <li id="menu_item"><a id="signUp" href="#">Sign up</a></li>
+
+      <li id="menu_item"><a id="signOut" href="#">Sign out</a></li>
+
     </ul>
   </div>
 </div>
@@ -96,20 +111,19 @@
         <table style="width:100%">
           <tr>
             <td>Username:</td>
-            <td><input type="email"></td>
+            <td><input type="email" id="username_login"></td>
           </tr>
           <tr>
             <td>Password:</td>
-            <td><input type="password"></td>
-          </tr>
-          <tr>
-            <td><button class="butt">Login</button></td>
+            <td><input type="password" id="username_login"></td>
           </tr>
         </table>
       </div>
+      <button class="butt" id="login_button">Login</button>
     </div>
   </div>
 </div>
+
 
 <!-- Main content -->
 <div id="page_body">
@@ -130,6 +144,29 @@
             <div id="news_item"></div>
   </div>
 </div>
+
+
+<!-- Search content -->
+<div id="search_results">
+      <div class="artifact">
+        <div class="box"><img src="images/2000.30.jpg" width="100px" height="100px"></div>
+          <h4><a id="urn" href="#">egyptian urn</a></h4>
+      </div>
+      <div class="artifact">
+        <div class="box"><img src="images/blue.jpg" width="100px" height="100px"></div>
+        <h4>object name is very very long</h4>
+      </div>
+      <div class="artifact">
+        <div class="box"> </div>
+        <h4>object name</h4>
+      </div>
+      <div class="artifact">
+        <div class="box"> </div>
+        <h4>object name</h4>
+      </div>
+
+</div>
+
 
 <div id="footer_container">
 <div id="footer">Please read our privacy policy before using this application</div>
