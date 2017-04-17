@@ -23,40 +23,36 @@
 <!-- Modal content for signing up -->
 <div id="signUpModal" class="modal">
   <div class="signUpModalContent">
+    <form action="/signup" method="post">
     <div id="signUpBody">
       <div id="right_column">
         <table style="width:100%">
           <tr>
             <td>First name</td>
-            <td><input class="searchbar" id="firstname" type="text"></td>
+            <td><input class="searchbar" name="firstname" type="text"></td>
           </tr>
           <tr>
             <td>Last name</td>
-            <td><input class="searchbar" id="lastname"  type="text"></td>
+            <td><input class="searchbar" name="lastname"  type="text"></td>
           </tr>
           <tr>
             <td>Email</td>
-            <td><input class="searchbar" id="email" type="email"></td>
+            <td><input class="searchbar" name="email" type="email"></td>
           </tr>
           <tr>
             <td>Affiliation</td>
-            <td><input class="searchbar" id="affiliation" type="text"></td>
+            <td><input class="searchbar" name="affiliation" type="text"></td>
           </tr>
           <tr>
             <td>City</td>
-            <td><input class="searchbar" id="city" type="text"></td>
+            <td><input class="searchbar" name="city" type="text"></td>
           </tr>
           <tr>
             <td>Country</td>
-            <td><input class="searchbar" id="country" type="text"></td>
+            <td><input class="searchbar" name="country" type="text"></td>
           </tr>
-          <tr>
-            <td>Username</td>
-            <td><input class="searchbar" id="username" type="text"></td>
-          </tr>
-          <tr>
             <td>Password</td>
-            <td><input class="searchbar" id="password" type="text"></td>
+            <td><input class="searchbar" name="password" type="text"></td>
           </tr>
           <tr>
         </table>
@@ -69,7 +65,7 @@
               <p class="smaller">
                 <input class="check" type="checkbox">
                 Curator<br>
-              
+
               <p class="smaller">
                 <input class="check" type="checkbox">
                 Other</td>
@@ -79,35 +75,38 @@
           </tr>
           <tr>
             <td id="center">
-              <button class="butt" type="button" id="createAccount">Create account</button>
+              <button class="butt" type="submit" id="createAccount">Create account</button>
             </td>
           </tr>
         </table>
       </div>
     </div>
+    </form>
   </div>
 </div>
 
 <!-- Modal content for signing in -->
 <div id="signInModal" class="modal">
   <div class="signInModalContent">
+    <form action="/login" method="post">
     <div id="signInBody">
       <div id="right_column">
         <table style="width:100%">
           <tr>
             <td>Username:</td>
-            <td><input type="email"></td>
+            <td><input name="email" type="email"></td>
           </tr>
           <tr>
             <td>Password:</td>
-            <td><input type="password"></td>
+            <td><input name="password" type="password"></td>
           </tr>
           <tr>
-            <td><button class="butt">Login</button></td>
+            <td><button class="butt" type="submit">Login</button></td>
           </tr>
         </table>
       </div>
     </div>
+  </form>
   </div>
 </div>
 
