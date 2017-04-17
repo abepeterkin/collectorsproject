@@ -12,6 +12,54 @@ MongoClient.connect(url, function(err, db) {
   db.close();
 });
 
+var objectIndexing = function(db) {
+  db.collection('object').createIndex({
+    "userId": "text",
+    "museumId" : "text",
+    "name": "text",
+    "Provenance": "text",
+    "Persons.name" : "text",
+    "Locations.name" : "text",
+  }, { weights: {
+    "name" : 200,
+    "Provenance" : 20,
+    "Person.name" : 2,
+    "Locations.name" : 2
+  }, name: "Object Index"
+  }, function(err, indexname) {
+    assert.equal(null, err);
+    console.log(indexname);
+  });
+}
+
+var personIndexing = function(db) {
+  db.collection('person').createIndex({
+    "name" : "text",
+    "Object.name" : "text",
+    "Locations.name" : "text",
+  }, { weights: {
+    "name" : 25,
+  }, name: "Person Index"
+  }, function(err, indexname) {
+    assert.equal(null, err);
+    console.log(indexname);
+  });
+}
+
+var locationIndexing = function(db) {
+  db.collection('location').createIndex({
+    "name" : "text",
+    "Persons.name" : "text",
+    "Locations.name" : "text",
+  }, { weights: {
+    "name" : 25,
+  }, name: "Location Index"
+  }, function(err, indexname) {
+    assert.equal(null, err);
+    console.log(indexname);
+  });
+}
+
 var insertDocument = function(db, callback) {
    db.collection('object').insertOne( {
    	"userId": 10,
@@ -139,6 +187,27 @@ var addPersonToObject = function(db, object, personId, callback) {
     console.log("Updated " + object._id + " with new person id " + personId);
     callback();
   });
+}
+
+var searchOnObject = function(db, query) {
+  var results = db.collection('object').find({$text : {$search : query}}, {
+    score : {$meta : "textScore"}}).sort(
+    {score: {$meta : "textScore"}});
+    return results;
+}
+
+var searchOnPerson = function(db, query) {
+  var results = db.collection('person').find({$text : {$search : query}}, {
+    score : {$meta : "textScore"}}).sort(
+    {score: {$meta : "textScore"}});
+    return results;
+}
+
+var searchOnLocation = function(db, query) {
+  var results = db.collection('location').find({$text : {$search : query}}, {
+    score : {$meta : "textScore"}}).sort(
+    {score: {$meta : "textScore"}});
+    return results;
 }
 
 var addObjectToPerson = function(db, person, objectId, callback) {
