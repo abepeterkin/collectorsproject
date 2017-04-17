@@ -90,6 +90,12 @@ module.exports = function(app, passport) {
     app.post('/upload', isLoggedIn, function(req, res) {
       //TODO
     });
+
+    app.get('/userprofile', isLoggedIn, function(req, res) {
+        res.render('userprofile.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });    
 };
 
 // route middleware to make sure a user is logged in
