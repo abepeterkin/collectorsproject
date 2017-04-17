@@ -1,0 +1,310 @@
+/************************************/
+/*				MAIN BODY			*/
+/************************************/
+
+body {
+	margin:0;
+	padding:0;
+}
+
+#header {
+	display: flex;
+	flex-direction:row;
+	font-family:"akzidenz-bold";
+	margin:0;
+	padding:0;justify-content:space-between;
+	align-items: center;
+	background: hsla(0,0%,0%,0.5)
+}
+
+#title h1 {
+	padding-left:30px;
+	font-size: 20pt;
+	color: white;
+}
+
+/************************************/
+/*			NAVIGATION MENU			*/
+/************************************/
+#nav_bar {
+	font-family:"akzidenz-regular";
+	float:right;
+}
+
+#nav_bar ul {
+	list-style-type:none;
+	padding-right:20px;
+}
+
+#nav_bar li {
+	display:inline;
+}
+
+#nav_bar a {
+	text-decoration:none;
+	color: white;
+	padding:15px;
+	font-size: 15px;
+}
+
+#menu_item a:hover {
+	background-color: hsla(48,100%,50%,0.5);
+	border-radius: 15px;
+}
+
+#menu_item a {
+	color: white;
+	font-family:"akzidenz-medium";
+}
+
+/************************************/
+/*				MODALS				*/
+/************************************/
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.signInModalContent {
+    background-color: white;
+    margin: 20% auto;
+    padding: 20px;
+    border: 1px solid #888;
+	  height: 30%;
+    width: 35%;
+	  border-radius: 25px;
+}
+
+
+
+/************************************/
+/*			USER INFO MODAL			*/
+/************************************/
+#signInBody {
+	position: absolute;
+  	margin: auto;
+  	top: 0;
+  	right: 0;
+  	bottom: 0;
+  	left: 0;
+  	width: 40%;
+  	height: 400px;
+  	overflow-y: auto;
+   	border-radius: 25px;
+   	display: flex;
+   	justify-content: center;
+   	align-items: center;
+  	color: black;
+    background-color: white;
+}
+
+#signInBody h4 {
+    font-family: "akzidenz-bold";
+    text-align: center;
+}
+
+#save_button {
+    margin-top: 30px;
+}
+
+.searchbar {
+    margin-left: 30px;
+}
+
+/************************************/
+/*				USER INFO				*/
+/************************************/
+#user_info {
+	position: absolute;
+  bottom: 0;
+  width: 25%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  text-align: center;
+
+  border-right: solid grey 1px;
+}
+
+#user_info h4 {
+  font-family:"akzidenz-light";
+}
+
+#name {
+	color: black;
+	font-family:"akzidenz-regular";
+	font-size: 60px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+#edit_profile {
+  color: grey;
+  font-family:"akzidenz-regular";
+  text-decoration: none;
+}
+
+
+
+/************************************/
+/*        USER UPLOADS       */
+/************************************/
+#user_uploads {
+  position: absolute;
+  width: 50%;
+  height: 70%;
+  left: 30%;
+  top: 20%;
+
+  text-align: center;
+}
+
+
+
+/************************************/
+/*        TABS       */
+/************************************/
+
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+  }
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-family: "akzidenz-regular";
+    font-size: 30px;
+    color: lightgrey;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    color: grey;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    text-decoration: underline;
+    color: black;
+}
+
+/* Style the tab content */
+.tabcontent {
+    
+    /*padding: 6px 12px;*/
+    display: flex;
+    justify-content: center;
+
+    padding: 30px 48px;
+
+    font-family: "akzidenz-regular";
+
+}
+
+th {
+    font-family: "akzidenz-regular";
+    padding-bottom: 15px;
+}
+
+td {
+    font-family: "akzidenz-light";
+}
+
+
+/************************************/
+/*        DROPDOWN       */
+/************************************/
+/* Dropdown Button */
+.dropbtn {
+    border: none;
+    cursor: pointer;
+    font-family: "akzidenz-regular";
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+
+}
+
+/* Dropdown Content (Hidden by Default) */
+#dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: lightgrey;
+    width: 100px;
+    z-index: 1;
+    color: black;
+    margin-top: 10px;
+
+}
+
+/* Links inside the dropdown */
+#dropdown-content a {
+    color: black;/*
+    padding: 12px 16px;*/
+    text-decoration: none;
+    display: block;
+
+    font-family: "akzidenz-light";
+    font-size: 10px;
+
+}
+
+#dropdown-content a:hover {
+  background-color: lightgrey;
+  color: grey;
+
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover #dropdown-content {
+    display: block;
+}
+
+
+/************************************/
+/*				FONTS				*/
+/************************************/
+
+@font-face {
+	font-family:"akzidenz-bold";
+	src:url("akzidenz/akzidenz_bold.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"akzidenz-regular";
+	src:url("akzidenz/akzidenz_regular.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"akzidenz-medium";
+	src:url("akzidenz/akzidenz_medium.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"akzidenz-light";
+	src:url("akzidenz/akzidenz_light.otf") format("opentype");
+}
+
