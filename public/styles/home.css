@@ -228,64 +228,6 @@ input[type=checkbox] {
     font-size: 20px;
 }
 
-/************************************/
-/*				NEWS				*/
-/************************************/
-#news_container {
-	display: flex;
-	flex-direction: column;
-	background-color: hsla(0,0%,0%,0.2);
-    padding: 0px;
-    border: 1px solid #888;
-	border-radius: 25px;
-	position: absolute;
-	float: right;
-  	margin: auto;
-  	top: 70px;
-  	right: 20px;
-  	height: 250px;
-	width: 250px;
-  	overflow-y: auto;
-	color:hsla(0,0%,100%,1);
-}
-
-#news_header {
-	order: 1;
-	padding: 10px;
-	text-align:center;
-	background-color: hsla(0,0%,0%,0.5);
-}
-
-#news_item_container {
-	order: 2;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
-}
-
-#news_item {
- 	align-items: center;
-	border: 1px solid hsla(0,0%,0%,0.3);
-	background-color: hsla(0,0%,0%,0.3);
-	border-radius: 25px;
-	height: 100px;
-	width: 100px;
-	margin: 2px;
-}
-
-#news_item:hover {
-	border: 1px solid hsla(60,100%,80%,1);
-}
-
-#footer_box {
-	bottom: 20px;
-	order: 5;
-}
-
-#footer {
-	color:hsla(0,0%,100%,1);
-}
 
 
 /************************************/
