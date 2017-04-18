@@ -14,9 +14,13 @@ $(document).ready(function(){
 	var span = document.getElementsByClassName("close")[0];
 
 	if (username === "") {
-		$("#nav_bar_signed_in").hide();
+		$("#username").hide();
+		$("#profile").hide();
+		$("#signOut").hide();
 	} else {
-		$("#nav_bar").hide();
+		$("#profile").html(username + "'s profile");
+		$("#signIn").hide();
+		$("#signUp").hide();
 	}
 
 	$("#menu_item #signUp").click(function() {
