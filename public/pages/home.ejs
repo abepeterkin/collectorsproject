@@ -14,95 +14,76 @@
 <script src="js/home.js"></script>
 <script src="js/signup.js"></script>
 <script src="js/signin.js"></script>
-
 <title>The Collector's Project</title>
 </head>
 <body id="backgroundImageID">
 
 <!-- Navigation content -->
-<div id="header">
-  <div id="title">
-    <h1 id="nav_bar_title">the collector's project</h1>
-  </div>
-  <div id="nav_bar">
-    <ul>
-      <li id="menu_item"><a id="news" href="#">News</a></li>
-      <li id="menu_item"><a id="about" href="#">About</a></li>
-      <li id="menu_item"><a id="signIn" href="#">Sign in</a></li>
-      <li id="menu_item"><a id="signUp" href="#">Sign up</a></li>
-    </ul>
-  </div>
-  <div id="nav_bar_signed_in">
-    <ul>
-      <li id="menu_item"><a id="news" href="#">News</a></li>
-      <li id="menu_item"><a id="about" href="#">About</a></li>
-      <li id="menu_item"><a href="/profile" id="profile">Profile</a></li>
-      <li id="menu_item"><a href="/logout" id="signOut">Sign out</a></li>
-    </ul>
-  </div>
+<div id="nav_bar">
+  <div id="menu_item"><a id="signIn" href="#">Sign in</a></div>
+</div>
+<div id="nav_bar_signed_in">
+  <a id="options" href="#">
+</div>
+<div id="nav_bar_logout">
+  <a id="logout" href="#">Logout</a>
 </div>
 
 <!-- Modal content for signing up -->
 <div id="signUpModal" class="modal">
   <div class="signUpModalContent">
     <form action="/signup" method="post">
-    <div id="signUpBody">
-      <div id="right_column">
-        <table style="width:100%">
-          <tr>
-            <td>First name</td>
-            <td><input class="searchbar" name="firstname" type="text"></td>
-          </tr>
-          <tr>
-            <td>Last name</td>
-            <td><input class="searchbar" name="lastname"  type="text"></td>
-          </tr>
-          <tr>
-            <td>Email</td>
-            <td><input class="searchbar" name="email" type="email"></td>
-          </tr>
-          <tr>
-            <td>Affiliation</td>
-            <td><input class="searchbar" name="affiliation" type="text"></td>
-          </tr>
-          <tr>
-            <td>City</td>
-            <td><input class="searchbar" name="city" type="text"></td>
-          </tr>
-          <tr>
-            <td>Country</td>
-            <td><input class="searchbar" name="country" type="text"></td>
-          </tr>
-            <td>Password</td>
-            <td><input class="searchbar" name="password" type="text"></td>
-          </tr>
-          <tr>
-        </table>
+      <div id="signUpBody">
+        <div id="right_column">
+          <table style="width:100%">
+            <tr>
+              <td colspan="2">Information</td>
+              <td colspan="2">Affiliation</td>
+            </tr>
+            <tr>
+              <td>Last name*</td>
+              <td><input class="searchbar" name="lastname"  type="text"></td>
+              <td>Institution*</td>
+              <td><input class="searchbar" name="institution"  type="text"></td>
+            </tr>
+            <tr>
+              <td>First name*</td>
+              <td><input class="searchbar" name="firstname" type="text"></td>
+              <td>Position*</td>
+              <td><input class="searchbar" name="position"  type="text"></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td><input class="searchbar" name="email" type="email"></td>
+              <td>Occupation*</td>
+              <td><input class="searchbar" name="occupation"  type="text"></td>
+            </tr>
+            <tr>
+              <td>Verify email</td>
+              <td><input class="searchbar" name="email" type="email"></td>
+              <td colspan="2">Create password</td>
+            </tr>
+            <tr>
+              <td>Country</td>
+              <td><input class="searchbar" name="country" type="text"></td>
+              <td>Password*</td>
+              <td><input class="searchbar" name="password" type="password"></td>
+            </tr>
+            <tr>
+              <td>City</td>
+              <td><input class="searchbar" name="city" type="text"></td>
+              <td>Verify password*</td>
+              <td><input class="searchbar" name="password_verify" type="password"></td>
+            </tr>
+            <tr>
+              <td>Zipcode</td>
+              <td><input class="searchbar" name="zipcode" type="text"></td>
+              <td id="center"><button class="butt" type="button">CaptCHA</button></td>
+              <td id="center"><button class="butt" type="submit" id="createAccount">Create account</button>
+            </tr>
+          </table>
+        </div>
       </div>
-      <div id="left_column">
-        <table style="width:100%">
-          <tr>
-            <td id="floatright">I am a</td>
-            <td>
-              <p class="smaller">
-                <input class="check" type="checkbox">
-                Curator<br>
-
-              <p class="smaller">
-                <input class="check" type="checkbox">
-                Other</td>
-          </tr>
-          <tr>
-            <td id="center"><button class="butt" type="button">CaptCHA</button></td>
-          </tr>
-          <tr>
-            <td id="center">
-              <button class="butt" type="submit" id="createAccount">Create account</button>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
     </form>
   </div>
 </div>
@@ -111,27 +92,59 @@
 <div id="signInModal" class="modal">
   <div class="signInModalContent">
     <form action="/login" method="post">
-    <div id="signInBody">
-      <div id="right_column">
-        <table style="width:100%">
-          <tr>
-            <td>Username:</td>
-            <td><input name="email" id="username_login" type="email"></td>
-          </tr>
-          <tr>
-            <td>Password:</td>
-            <td><input name="password" id="username_login" type="password"></td>
-          </tr>
-
-        </table>
-
-          <button class="butt" id="login_button">Login</button>
+      <div id="signInBody">
+        <div id="right_column">
+          <table style="width:100%" border="1px">
+            <tr>
+              <td>Username:</td>
+              <td><input name="email" id="username_login" type="email"></td>
+            </tr>
+            <tr>
+              <td>Password:</td>
+              <td><input name="password" id="username_login" type="password"></td>
+            </tr>
+			<tr>
+			<td colspan="2"><button class="butt" id="login_button">Login</button></td>
+			</tr>
+            <tr>
+              <td colspan="2">Not registered? Click <a id="signUp" href="#">here</a> to sign up</td>
+            </tr>
+          </table>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
   </div>
 </div>
 
+<!-- Main content -->
+<div id="page_body">
+  <div id="body_text">
+    <p id="top">What are you</p>
+    <p id="bottom">Looking for...</p>
+  </div>
+  <input type="text" id="search" placeholder="search">
+</div>
+<div id="news_container">
+  <div id="news_header">Announcements</div>
+  <div id="news_item_container">
+    <div id="news_item"></div>
+    <div id="news_item"></div>
+    <div id="news_item"></div>
+    <div id="news_item"></div>
+    <div id="news_item"></div>
+    <div id="news_item"></div>
+  </div>
+</div>
+<div id="about_container">
+  <div id="about_header">About</div>
+  <div id="about_item_container">
+    <div id="news_item"></div>
+    <div id="news_item"></div>
+  </div>
+</div>
+<div id="footer_container">
+  <div id="footer">Please read our privacy policy before using this application</div>
+</div>
 
 <!-- Main content -->
 <div id="page_body">
@@ -142,28 +155,24 @@
   <input type="text" id="search" placeholder="search">
 </div>
 
-
 <!-- Search content -->
 <div id="search_results">
-      <div class="artifact">
-        <div class="box"><img src="images/2000.30.jpg" width="100px" height="100px"></div>
-          <h4><a id="urn" href="#">egyptian urn</a></h4>
-      </div>
-      <div class="artifact">
-        <div class="box"> </div>
-        <h4>object name is very very very long</h4>
-      </div>
-      <div class="artifact">
-        <div class="box"> </div>
-        <h4>object name</h4>
-      </div>
-      <div class="artifact">
-        <div class="box"> </div>
-        <h4>object name</h4>
-      </div>
-
+  <div class="artifact">
+    <div class="box"><img src="images/2000.30.jpg" width="100px" height="100px"></div>
+    <h4><a id="urn" href="#">egyptian urn</a></h4>
+  </div>
+  <div class="artifact">
+    <div class="box"> </div>
+    <h4>object name is very very very long</h4>
+  </div>
+  <div class="artifact">
+    <div class="box"> </div>
+    <h4>object name</h4>
+  </div>
+  <div class="artifact">
+    <div class="box"> </div>
+    <h4>object name</h4>
+  </div>
 </div>
-
-
 </body>
 </html>

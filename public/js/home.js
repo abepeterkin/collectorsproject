@@ -15,18 +15,33 @@ $(document).ready(function(){
 
 	if (username === "") {
 		$("#nav_bar_signed_in").hide();
+		$("#nav_bar_logout").hide();
 	} else {
 		$("#nav_bar").hide();
+		$("#options").html(username);
 	}
-
-	$("#menu_item #signUp").click(function() {
-	    $("#signUpModal")[0].style.display = "flex";
-		$("#signUpModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+	
+	$("#createAccount").click(function() {
+		console.log("User: " + username);
 	});
 
-	$("#menu_item #signIn").click(function() {
+	$("#nav_bar").click(function() {
 	    $("#signInModal")[0].style.display = "flex";
 		$("#signInModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+	});
+	
+	$("#nav_bar_signed_in").hover(function() {
+	    $("#nav_bar_logout").show();
+	});
+	
+	$("#logout").click(function() {
+//		$(location).attr.('href', '/logout');
+	});
+	
+	$("#signUp").click(function() {
+		$("#signInModal")[0].style.display = "none";
+	    $("#signUpModal")[0].style.display = "flex";
+		$("#signUpModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
 
 	$("#menu_item #profile").click(function() {
