@@ -15,6 +15,8 @@ var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
 var configDB = require('./config/database.js');
+var file_upload = require('express-fileupload');
+
 
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
@@ -33,6 +35,8 @@ app.use(session({ secret: 'thisisusedtohashthesession5235378' })); // session se
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
+
+app.use(file_upload());
 
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
