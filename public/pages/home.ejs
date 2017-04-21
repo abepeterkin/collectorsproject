@@ -8,6 +8,9 @@
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
     crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+  var username = "<%= username %>";
+</script>
 <script src="js/home.js"></script>
 <script src="js/signup.js"></script>
 <script src="js/signin.js"></script>
@@ -26,6 +29,9 @@
       <a id="about" href="#">About</a>
       <a id="signIn" href="#">Sign in</a>
       <a id="signUp" href="#">Sign up</a>
+      <a href="/profile" id="profile">Profile</a>
+      <a href="/logout" id="signOut">Sign out</a>
+
   </div>
 </div>
 
@@ -126,16 +132,6 @@
   </form>
   </div>
 </div>
-
-
-<!-- Main content 
-
-<div id="body_text">
-    <div id="body_words"><p id="top">Your search begins here. </p></div>
-    <div id="body_search"><input type="text" id="search" placeholder="Enter an artifact, place, or person"></div>
-</div>-->
-  
-
 
 
 <!-- Search content -->
