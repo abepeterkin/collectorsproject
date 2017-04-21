@@ -138,17 +138,18 @@ function insertObjects(req) {
   var columns = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], {header:1});
   console.log(columns);
 
+  var objectArray = []
   for (var i = 0; i < columns.length; i++) {
     if (i === 0 && ignoreheader === "true") continue;
     var rows = columns[i];
     var name;
     var provenance;
     for (var j = 0; j < rows.length; j++) {
-      if (j == nameColumn) {
+      if (j === nameColumn) {
         name = rows[j];
       }
-      if (i == provenanceColumn) {
-        column = rows[j];
+      if (j === provenanceColumn) {
+        provenance = rows[j];
       }
     }
     var object = {
@@ -159,6 +160,7 @@ function insertObjects(req) {
       Persons : [],
       Locations : []
     }
-    //objectDB.addObjectFromCSV(object, function() {});
+    objectArray.push(object);
   }
+  objectDB.insertMany(objectArray);
 }
