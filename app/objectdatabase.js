@@ -25,9 +25,9 @@ function insertMany(objects) {
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
     console.log("Connected to DB");
-  db.collection('object').insertMany(objects, function(err) {
+  db.collection('object').insertMany(objects, function(err, records) {
     assert.equal(err, null);
-    console.log("Inserted many into the object collection.");
+    console.log("Inserted " + records.insertedCount() + " into the object collection.");
   });
   console.log("Closing");
   db.close();
