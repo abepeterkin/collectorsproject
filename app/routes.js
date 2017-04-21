@@ -1,5 +1,7 @@
 var objectDB = require("./objectdatabase.js");
 
+var XLSX = require('xlsx');
+
 // app/routes.js
 module.exports = function(app, passport) {
     // =====================================
@@ -81,21 +83,48 @@ module.exports = function(app, passport) {
         res.render('search.ejs');
     });
 
-    app.get('/upload', isLoggedIn, function(req, res) {
+    app.get('/upload', /*isLoggedIn, */function(req, res) {
         res.render('upload.ejs', {
-            user : req.user // get the user out of session and pass to template
+            /*user : req.user // get the user out of session and pass to template*/
         });
     });
 
-    app.post('/upload', isLoggedIn, function(req, res) {
-      //TODO
+    app.post('/upload', /*isLoggedIn,*/ function(req, res) {
+
+      if (!req.body.provenancecolumn || !req.body.namecolumn || (!req.files)) {
+        res.render('uploadresult.ejs', {
+            result : "Invalid request",
+            error : "Not all fields were entered"
+        });
+        return;
+      }
+      var nameColumn = parseInt(req.body.namecolumn);
+      var provenanceColumn = parseInt(req.body.provenancecolumn);
+      var spreadsheet = req.files.spreadsheet;
+      console.log('- Recieved file submission: ' + spreadsheet.name);
+      var workbook = XLSX.read(spreadsheet.data);
+      var json = XLSX.utils.sheet_to_csv(workbook.Sheets[workbook.SheetNames[0]], {header:1});
+      console.log(json);
+      var columns = JSON.parse(json);
+      for (int i = 0; i < columns.length; i++) {
+        var rows = columns[i];
+        var name;
+        var provenance;
+        for (int j = 0; j < rows.length; j++) {
+
+        }
+      }
+      res.render('uploadresult.ejs', {
+          result : "Upload Successful",
+          error : "The objects were uploaded successfully"
+      });
     });
 
     app.get('/userprofile', isLoggedIn, function(req, res) {
         res.render('userprofile.ejs', {
             user : req.user // get the user out of session and pass to template
         });
-    });    
+    });
 };
 
 // route middleware to make sure a user is logged in
