@@ -166,8 +166,8 @@ function insertObjects(req) {
   objectDB.insertMany(objectArray);
 
 
-  objectDB.searchOnObject("Paint", function(res) {
+  /*objectDB.searchOnObject("Paint", function(res) {
     console.log("SEARCH RESULTS:");
     console.log(res);
-  });
+  });*/
 }
