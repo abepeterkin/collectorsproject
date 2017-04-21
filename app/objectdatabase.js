@@ -9,8 +9,38 @@ var url = 'mongodb://abepeterkin:0[2*13F!npw~@ds155490.mlab.com:55490/db1';
 MongoClient.connect(url, function(err, db) {
   assert.equal(null, err);
   console.log("Connected correctly to server.");
+  dropAll(db);
+  objectIndexing(db);
+  console.log("Indexed objects");
+  personIndexing(db);
+  console.log("Indexed persons");
+  locationIndexing(db);
+  console.log("Indexed locations");
+  var artifact = {
+    userId: "ID123",
+    museumId: "MuseumID4444",
+    name: "Egyptian Jar", 
+    Provenance: "John Adams to Thomas Jefferson, 1801"};
+  var artId = addObjectFromCSV(db, artifact, function(objId) {
+    console.log("In here?");
+    return objId;
+  });
+  console.log("Here");
+  console.log(artId);
+  console.log("After artid");
+  // addLocationToObject(db, artId, "Location0000", function () {
+    // console.log("Inserted Successfully");
+  // })
   db.close();
 });
+
+var dropAll = function(db) {
+  db.collection('object').remove({});
+  db.collection('person').remove({});
+  db.collection('location').remove({});
+  console.log("Dropped all");
+}
+
 
 var objectIndexing = function(db) {
   db.collection('object').createIndex({
@@ -76,27 +106,30 @@ var insertDocument = function(db, callback) {
 };
 
 var addObjectFromCSV = function(db, artifact, callback) {
-  db.collection('object').insertOne( {
+  var objectToInsert = {
     "userId": artifact.userId,
     "museumId" : artifact.museumId,
     "name" : artifact.name,
     "Provenace" : artifact.provenance,
     "Persons" : [],
       "Locations" : []
-  }, function(err, result) {
+  };
+  db.collection('object').insert( objectToInsert, function(err) {
     assert.equal(err, null);
     console.log("Inserted " + artifact.name + " into the object collection.");
-    callback();
+    console.log(objectToInsert._id);
+    callback(objectToInsert._id);
   });
 };
 
-var addLocationToObject = function(db, artifact, locationId, callback) {
-  db.collection('object').update(
-    { _id: artifact._id },
+var addLocationToObject = function(db, artifactId, locationId, callback) {
+  db.collection('object').findAndModify(
+    { _id: artifactId },
    { $push: { Locations: {locationId: locationId} } },
-   function(err, result) {
+   function(err, object) {
     assert.equal(err, null);
-    console.log("Updated " + artifact._id + " with new location id " + locationId);
+    console.log("Updated " + artifactId + " with new location id " + locationId);
+    console.log(object);
     callback();
   });
 }
