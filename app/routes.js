@@ -112,7 +112,8 @@ module.exports = function(app, passport) {
     });
 
     app.post('/search/object', function(req, res) {
-
+      var query = req.body.query;
+        //TODO
     });
 };
 
@@ -163,4 +164,10 @@ function insertObjects(req) {
     objectArray.push(object);
   }
   objectDB.insertMany(objectArray);
+
+
+  /*objectDB.searchOnObject("Paint", function(res) {
+    console.log("SEARCH RESULTS:");
+    console.log(res);
+  });*/
 }
