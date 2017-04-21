@@ -8,8 +8,9 @@
 
 <h1>Object Uploader</h1>
 <form action="/upload" method="POST" encType="multipart/form-data">
-  <p>Column containing the object name </p> <input type="number" name="namecolumn" min="1" required> <br>
-  <p>Column containing the object provenance </p> <input type="number" name="provenancecolumn" min="1" required> <br>
+  <p>Column containing the object name: </p> <input type="number" name="namecolumn" min="1" required> <br>
+  <p>Column containing the object provenance: </p> <input type="number" name="provenancecolumn" min="1" required> <br>
+  <p>Ignore header row? <input name="ignoreheader" type="radio" value="true" checked> Yes <input name="ignoreheader" type="radio" value="false"> No</p>
   <input type="file" name="spreadsheet" required> <br>
   <input type="submit">
 </form>

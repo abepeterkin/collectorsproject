@@ -83,36 +83,52 @@ module.exports = function(app, passport) {
         res.render('search.ejs');
     });
 
-    app.get('/upload', /*isLoggedIn, */function(req, res) {
+    app.get('/upload', isLoggedIn, function(req, res) {
         res.render('upload.ejs', {
-            /*user : req.user // get the user out of session and pass to template*/
+            user : req.user // get the user out of session and pass to template*/
         });
     });
 
-    app.post('/upload', /*isLoggedIn,*/ function(req, res) {
+    app.post('/upload', isLoggedIn, function(req, res) {
 
-      if (!req.body.provenancecolumn || !req.body.namecolumn || (!req.files)) {
+      if (!req.body.provenancecolumn || !req.body.namecolumn || !req.files || !req.body.ignoreheader) {
         res.render('uploadresult.ejs', {
             result : "Invalid request",
             error : "Not all fields were entered"
         });
         return;
       }
-      var nameColumn = parseInt(req.body.namecolumn);
-      var provenanceColumn = parseInt(req.body.provenancecolumn);
+      var nameColumn = parseInt(req.body.namecolumn) - 1;
+      var provenanceColumn = parseInt(req.body.provenancecolumn) - 1;
       var spreadsheet = req.files.spreadsheet;
+      var ignoreheader = req.body.ignoreheader;
       console.log('- Recieved file submission: ' + spreadsheet.name);
       var workbook = XLSX.read(spreadsheet.data);
-      var json = XLSX.utils.sheet_to_csv(workbook.Sheets[workbook.SheetNames[0]], {header:1});
-      console.log(json);
-      var columns = JSON.parse(json);
-      for (int i = 0; i < columns.length; i++) {
+      var columns = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], {header:1});
+      console.log(columns);
+
+      for (var i = 0; i < columns.length; i++) {
+        if (i === 0 && ignoreheader === "true") continue;
         var rows = columns[i];
         var name;
         var provenance;
-        for (int j = 0; j < rows.length; j++) {
-
+        for (var j = 0; j < rows.length; j++) {
+          if (j == nameColumn) {
+            name = rows[j];
+          }
+          if (i == provenanceColumn) {
+            column = rows[j];
+          }
         }
+        var object = {
+          userId: req.user._id,
+          museumId : req.user.affiliation,
+          name : name,
+          provenace : provenance,
+          Persons : [],
+          Locations : []
+        }
+        //objectDB.addObjectFromCSV(object, function() {});
       }
       res.render('uploadresult.ejs', {
           result : "Upload Successful",
