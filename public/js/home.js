@@ -14,6 +14,7 @@ $(document).ready(function(){
 		$("#username").hide();
 		$("#profile").hide();
 		$("#signOut").hide();
+		$("#upload").hide();
 	} else {
 		$("#profile").html(username + "'s profile");
 		$("#signIn").hide();
@@ -61,6 +62,9 @@ $(document).ready(function(){
 		    document.getElementById("signIn").style.fontSize = "15px";
 		    document.getElementById("signUp").style.fontSize = "15px";
 
+		    document.getElementById("upload").style.fontSize = "15px";
+		    document.getElementById("profile").style.fontSize = "15px";
+		    document.getElementById("signOut").style.fontSize = "15px";
 
 		    document.getElementById("search_results").style.visibility="visible";
 	    }

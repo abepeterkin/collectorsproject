@@ -344,7 +344,7 @@ table {
 /************************************/
 
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1500px) {
    	#top { 
    		font-size: 50px;
    	}
@@ -386,9 +386,16 @@ table {
 	}
 }
 
-@media only screen and (max-width: 475px) {
+@media only screen and (max-width: 600px) {
    	#nav_bar a {
    		font-size: 12px;
+   	}
+}
+
+
+@media only screen and (max-width: 500px) {
+   	#nav_bar a {
+   		font-size: 8px;
    	}
 }
 
