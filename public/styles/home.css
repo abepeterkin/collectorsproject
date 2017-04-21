@@ -78,7 +78,7 @@ body {
     margin: 20% auto;
     padding: 20px;
     border: 1px solid #888;
-	 height: 30%;
+	height: 30%;
     width: 35%;
 	border-radius: 25px;
 }
@@ -165,12 +165,51 @@ input[type=checkbox] {
   	overflow-y: auto;
  	border-radius: 25px;
  	display: flex;
+ 	flex-direction: column;
  	justify-content: center;
  	align-items: center;
 	color:hsla(0,0%,100%,1);
-
+	background-color: white;
 }
 
+#signInBody td {
+	color: black;
+	background-color: blue;
+}
+
+#signInBody h2 {
+	color: black;
+	font-family: "akzidenz-bold";
+}
+
+#username_login {
+	height: 35px;
+	width: 50%;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-family: "akzidenz-light";
+	font-size: 20px;
+}
+
+#username_password {
+	height: 35px;
+	width: 50%;
+	margin-top: 10px;
+	margin-bottom: 40px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-family: "akzidenz-light";
+	font-size: 20px;
+}
+
+#login_button {
+	color: white;
+	font-family: "akzidenz-medium";
+	background-color: #4f65d3;
+	border-style: none;
+}
 /************************************/
 /*				BODY				*/
 /************************************/
