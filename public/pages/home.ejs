@@ -48,9 +48,18 @@
   <div class="signUpModalContent">
     <form action="/signup" method="post">
     <div id="signUpBody">
+      <h2 id="signUpTitle">Sign Up</h2>
       <div id="right_column">
         <table style="width:100%">
           <tr>
+            <td>Email</td>
+            <td><input class="searchbar" name="email" type="email"></td>
+          </tr>
+          <tr>
+            <td>Password</td>
+            <td><input class="searchbar" name="password" type="text"></td>
+          </tr>
+
             <td>First name</td>
             <td><input class="searchbar" name="firstname" type="text"></td>
           </tr>
@@ -59,9 +68,7 @@
             <td><input class="searchbar" name="lastname"  type="text"></td>
           </tr>
           <tr>
-            <td>Email</td>
-            <td><input class="searchbar" name="email" type="email"></td>
-          </tr>
+
           <tr>
             <td>Affiliation</td>
             <td><input class="searchbar" name="affiliation" type="text"></td>
@@ -74,35 +81,13 @@
             <td>Country</td>
             <td><input class="searchbar" name="country" type="text"></td>
           </tr>
-            <td>Password</td>
-            <td><input class="searchbar" name="password" type="text"></td>
-          </tr>
-          <tr>
         </table>
       </div>
-      <div id="left_column">
-        <table style="width:100%">
-          <tr>
-            <td id="floatright">I am a</td>
-            <td>
-              <p class="smaller">
-                <input class="check" type="checkbox">
-                Curator<br>
 
-              <p class="smaller">
-                <input class="check" type="checkbox">
-                Other</td>
-          </tr>
-          <tr>
-            <td id="center"><button class="butt" type="button">CaptCHA</button></td>
-          </tr>
-          <tr>
-            <td id="center">
-              <button class="butt" type="submit" id="createAccount">Create account</button>
-            </td>
-          </tr>
-        </table>
-      </div>
+
+      <button class="butt" type="submit" id="createAccount">create account</button>
+
+
     </div>
     </form>
   </div>
