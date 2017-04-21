@@ -12,8 +12,11 @@ body {
 	flex-direction:row;
 	font-family:"akzidenz-bold";
 	margin:0;
-	padding:0;justify-content:space-between;
+	padding:0;
+  justify-content:space-between;
 	align-items: center;
+
+  height: 100px;
 	background: hsla(0,0%,0%,0.5)
 }
 
@@ -29,32 +32,20 @@ body {
 #nav_bar {
 	font-family:"akzidenz-regular";
 	float:right;
-}
-
-#nav_bar ul {
-	list-style-type:none;
-	padding-right:20px;
-}
-
-#nav_bar li {
-	display:inline;
+  margin-right: 40px;
 }
 
 #nav_bar a {
 	text-decoration:none;
 	color: white;
 	padding:15px;
-	font-size: 15px;
+	font-size: 20px;
+  font-family:"akzidenz-medium";
 }
 
-#menu_item a:hover {
-	background-color: hsla(48,100%,50%,0.5);
-	border-radius: 15px;
-}
-
-#menu_item a {
-	color: white;
-	font-family:"akzidenz-medium";
+#nav_bar a:hover {
+  background-color: hsla(48,100%,50%,0.5);
+  border-radius: 15px;
 }
 
 /************************************/
@@ -124,9 +115,13 @@ body {
 /************************************/
 #user_info {
 	position: absolute;
+  top: 100px;
   bottom: 0;
   width: 25%;
-  height: 100%;
+  /*height: 100%;*/
+
+  margin-top: 0;
+  padding-top: 0;
 
   display: flex;
   flex-direction: column;
@@ -140,6 +135,7 @@ body {
 #user_info h4 {
   font-family:"akzidenz-light";
 }
+
 
 #name {
 	color: black;
@@ -155,7 +151,20 @@ body {
   text-decoration: none;
 }
 
+#contact {
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
 
+#contact h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#institution {
+  padding-top: 0;
+  margin-top: 0;
+}
 
 /************************************/
 /*        USER UPLOADS       */
@@ -180,7 +189,7 @@ body {
 div.tab {
     overflow: hidden;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
   }
 
 /* Style the buttons inside the tab */
@@ -195,6 +204,9 @@ div.tab button {
     font-family: "akzidenz-regular";
     font-size: 30px;
     color: lightgrey;
+
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 /* Change background color of buttons on hover */
@@ -283,6 +295,55 @@ td {
     display: block;
 }
 
+/************************************/
+/*      RESPONSIVE        */
+/************************************/
+
+
+@media only screen and (max-width: 900px) {
+    #top { 
+      font-size: 50px;
+    }
+    
+    #header {
+      height: 50px;
+    }
+
+    #title h1 {
+      font-size: 20px;
+    }
+
+    #nav_bar a {
+      font-size: 15px;
+    }
+
+    #user_info {
+      top: 50px;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    #search::-webkit-input-placeholder  {
+      visibility: hidden;
+    }
+
+    #search {
+      width: 80%
+    }
+
+    #nav_bar_title {
+      visibility: hidden;
+    }
+
+    #nav_bar {
+    float:left;
+    margin-right: 70px;
+  }
+
+  #title {
+    width: 1px
+  }
+}
 
 /************************************/
 /*				FONTS				*/

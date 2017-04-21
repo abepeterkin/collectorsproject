@@ -5,18 +5,15 @@ window.onload = function() {
 }
 
 $(document).ready(function(){
-/*	$("#menu_item a").click(function() {
-		PopupCenter('/pages/signup.html','xtf','900','500');  
-    });*/
 	
 	var span = document.getElementsByClassName("close")[0];
 
-	$("#menu_item #signUp").click(function() {
+	$("#signUp").click(function() {
 	    $("#signUpModal")[0].style.display = "flex";
 		$("#signUpModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
 	
-	$("#menu_item #signIn").click(function() {
+	$("#signIn").click(function() {
 	    $("#signInModal")[0].style.display = "flex";
 		$("#signInModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
@@ -35,8 +32,15 @@ $(document).ready(function(){
 
 	$("#search").keyup(function(event){
 	    if(event.keyCode == 13){
-	        document.getElementById("body_text").remove();
-		    document.getElementById("search").style.top="100px"; 
+	        document.getElementById("body_words").remove();
+	        //document.getElementById("body_words").style.visibility="hidden"; 
+	    /*    document.getElementById("body_text").style.position="fixed"; */
+	    	document.getElementById("body_text").display="block";
+		    document.getElementById("body_text").style.top="75px"; 
+		/*	document.getElementById("body_text").style.height="100px"; */
+
+
+		    document.getElementById("header").style.height = "50px";
 
 		    document.getElementById("nav_bar_title").style.fontSize = "20px";
 		    document.getElementById("news").style.fontSize = "15px";

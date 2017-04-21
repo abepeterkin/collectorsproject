@@ -20,21 +20,18 @@
     <h1 id="nav_bar_title">the collector's project</h1>
   </div>
   <div id="nav_bar">
-    <ul>
-      <li id="menu_item"><a id="news" href="#">News</a></li>
-      <li id="menu_item"><a id="about" href="#">About</a></li>
+    <a id="news" href="#">News</a>
+    <a id="about" href="#">About</a>
       <div class="dropdown">
-      <li id="menu_item"><a id="signIn" class="dropbtn" href="#">John Doe ⌄</a>
+        <a id="signIn" class="dropbtn" href="#">John Doe ⌄</a>
 
             <div id="dropdown-content">
-              <a href="profile.html">My profile</a>
-              <a href="upload.ejs">Upload file</a>
+              <a href="userprofile">My profile</a>
+              <a href="upload">Upload file</a>
               <a href="#">Sign out</a>
             </div>
           
-      </li>
       </div>
-    </ul>
   </div>
 </div>
 
@@ -79,9 +76,6 @@
           <tr>
             
           </tr>
-       <!--   <tr>
-            <td><button id="save_button">Save</button></td>
-          </tr>-->
         </table>
         <center><button id="save_button">Save</button></center>
       </div>
@@ -93,9 +87,13 @@
 <!-- Main content -->
 <div id="user_info">
     <h2 id="name">John Doe</h2>
-    <h4>MoMA, San Francisco</h4>
-    <h4>jdoe@moma.org</h4> 
-    <h4>(401) 326-5610</h4>
+    <div id="institution">
+      <h4>MoMA, San Francisco</h4>
+    </div>
+    <div id="contact">
+      <h4>jdoe@moma.org</h4> 
+      <h4>(401) 326-5610</h4>
+    </div>
     <a href="#" id="edit_profile">edit profile</a>
 </div>
 

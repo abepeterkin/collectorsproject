@@ -12,9 +12,12 @@ body {
 	flex-direction:row;
 	font-family:"akzidenz-bold";
 	margin:0;
-	padding:0;justify-content:space-between;
+	padding:0;
+	justify-content:space-between;
 	align-items: center;
-	background: hsla(0,0%,0%,0.5)
+
+	height: 100px;
+	background-color: hsla(0,0%,0%,0.5);
 }
 
 #title h1 {
@@ -29,15 +32,7 @@ body {
 #nav_bar {
 	font-family:"akzidenz-regular";
 	float:right;
-}
-
-#nav_bar ul {
-	list-style-type:none;
-	padding-right:20px;
-}
-
-#nav_bar li {
-	display:inline;
+	margin-right: 40px;
 }
 
 #nav_bar a {
@@ -45,23 +40,13 @@ body {
 	color: white;
 	padding:15px;
 	font-size: 20px;
-}
-
-#menu_item a:hover {
-	background-color: hsla(48,100%,50%,0.5);
-	border-radius: 15px;
-}
-
-#menu_item a {
-	color: white;
 	font-family:"akzidenz-medium";
 }
 
-
-#signOut {
-	visibility: hidden;
+#nav_bar a:hover {
+	background-color: hsla(48,100%,50%,0.5);
+	border-radius: 15px;
 }
-
 /************************************/
 /*				MODALS				*/
 /************************************/
@@ -188,49 +173,41 @@ input[type=checkbox] {
 /************************************/
 /*				BODY				*/
 /************************************/
+
 #body_text {
-	position: absolute;
+	position: fixed;
   	margin: auto;
-  	top: 0;
+
+  	top: 40%;
   	right: 0;
-  	bottom: 0;
+  	bottom: 20%;
   	left: 0;
+
   	width: 75%;
-  	height: 600px;
-  	overflow-y: auto;
+
+  	text-align: center;
+
+
 }
+
 
 #top {
 	color: white;
 	font-family:"akzidenz-light";
-	font-size: 60px;
-	margin-bottom: 0px;
-	padding-bottom: 0px;
+	font-size: 80px;
+	margin: 25px;
 }
 
-#bottom {
-	margin: 0px;
-	padding: 0px;
-	color: white;
-	font-family:"akzidenz-regular";
-	font-size: 120px;
-
-}
 
 #search {
-    width: 190px;
-    height: 30px;
-    width: 40%;
-    border-radius: 15px;
+    height: 50px;
+    width: 50%;
+    border-radius: 25px;
     padding: 5px 5px 5px 25px;
-    position: absolute;
-	top: 60%;
-  	right: 0;
-  	bottom: 0;
-  	left: 28%;
     z-index: 1;
     text-align: center;
     font-size: 20px;
+    font-family: "akzidenz-light"
 }
 
 
@@ -244,18 +221,16 @@ input[type=checkbox] {
 	overflow: scroll;
 	position: absolute;
   	margin: auto;
-  	padding-bottom: 20px;
+  	margin-top: 50px;
   	top: 150px;
   	right: 0;
   	bottom: 0;
   	left: 0;
-  	width: 75%;
-  	height: 650px;
+  	width: 80%;
+  	height: 70%;
   	padding-left: 50px;
   	padding-right: 50px;
-  	padding-top: 20px;
 
-  	display: -webkit-flex;
   	display: flex;
   	flex-direction: row;
   	flex-wrap: wrap;
@@ -281,6 +256,69 @@ input[type=checkbox] {
 	border-radius:5px;
 	border-width: 1px;	
 	margin:0 auto; 
+}
+
+.object_label {
+	width: 100px;
+}
+
+
+
+
+/************************************/
+/*			RESPONSIVE				*/
+/************************************/
+
+
+@media only screen and (max-width: 900px) {
+   	#top { 
+   		font-size: 50px;
+   	}
+   	
+   	#header {
+   		height: 50px;
+   	}
+
+   	#title h1 {
+   		font-size: 20px;
+   	}
+
+   	#nav_bar a {
+   		font-size: 15px;
+   	}
+
+}
+
+@media only screen and (max-width: 750px) {
+   	#search::-webkit-input-placeholder  {
+   		visibility: hidden;
+   	}
+
+   	#search {
+   		width: 80%
+   	}
+
+   	#nav_bar_title {
+   		visibility: hidden;
+   	}
+
+   	#nav_bar {
+		float:left;
+		margin-right: 50px;
+	}
+
+	#title {
+		width: 1px
+	}
+}
+
+@media only screen and (max-height: 500px) {
+
+   	#body_words {
+   		visibility: hidden;
+   		height: 1px;
+   	}
+
 }
 
 /************************************/
