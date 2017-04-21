@@ -27,7 +27,7 @@ function insertMany(objects) {
     console.log("Connected to DB");
   db.collection('object').insertMany(objects, function(err, records) {
     assert.equal(err, null);
-    console.log("Inserted " + records.insertedCount() + " into the object collection.");
+    console.log("Inserted " + records.insertedCount + " into the object collection.");
   });
   console.log("Closing");
   db.close();
@@ -127,7 +127,7 @@ var createPerson = function(person, callback) {
       console.log("Inserted " + person.name + " into the person collection.");
       } );
     db.close();
-  }); 
+  });
   callback(createdPerson);
 }
 
@@ -252,7 +252,7 @@ var addObjectToPerson = function(person, object) {
       assert.equal(err, null);
       console.log("Updated " + person._id + " with new object id " + objectId);
     });
-   db.close(); 
+   db.close();
   });
 }
 
