@@ -93,21 +93,6 @@ var locationIndexing = function(db) {
   });
 }
 
-var insertDocument = function(callback) {
-  db.collection('object').insertOne( {
-   	"userId": 10,
-      "museumId" : 100,
-      "name" : "Object Name",
-      "Provenace" : "John to James 1844, James to RISD 2016",
-      "Persons" : [ {personId: 1234}],
-      "Locations" : [{locationId: "Egypt"}]
-   }, function(err, result) {
-    assert.equal(err, null);
-    console.log("Inserted a document into the object collection.");
-    callback();
-  });
-};
-
 var addLocationToObject = function(artifactId, location) {
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
@@ -284,14 +269,16 @@ var addLocationToPerson = function(person, location) {
   });
 }
 
-module.exports.insertDocument = insertDocument;
-module.exports.addObjectFromCSV = addObjectFromCSV;
+module.exports.insertMany = insertMany;
 module.exports.addLocationToObject = addLocationToObject;
 module.exports.createPerson = createPerson;
-module.exports.findObjects = findObjects;
+// module.exports.findObjects = findObjects;
 module.exports.createLocation = createLocation;
 module.exports.addObjectToLocation = addObjectToLocation;
 module.exports.addPersonToLocation = addPersonToLocation;
 module.exports.addPersonToObject = addPersonToObject;
+module.exports.searchOnObject = searchOnObject;
+module.exports.searchOnPerson = searchOnPerson;
+module.exports.searchOnLocation = searchOnLocation;
 module.exports.addObjectToPerson = addObjectToPerson;
 module.exports.addLocationToPerson = addLocationToPerson;
