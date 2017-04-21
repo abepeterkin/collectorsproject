@@ -98,38 +98,7 @@ module.exports = function(app, passport) {
         });
         return;
       }
-      var nameColumn = parseInt(req.body.namecolumn) - 1;
-      var provenanceColumn = parseInt(req.body.provenancecolumn) - 1;
-      var spreadsheet = req.files.spreadsheet;
-      var ignoreheader = req.body.ignoreheader;
-      console.log('- Recieved file submission: ' + spreadsheet.name);
-      var workbook = XLSX.read(spreadsheet.data);
-      var columns = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], {header:1});
-      console.log(columns);
-
-      for (var i = 0; i < columns.length; i++) {
-        if (i === 0 && ignoreheader === "true") continue;
-        var rows = columns[i];
-        var name;
-        var provenance;
-        for (var j = 0; j < rows.length; j++) {
-          if (j == nameColumn) {
-            name = rows[j];
-          }
-          if (i == provenanceColumn) {
-            column = rows[j];
-          }
-        }
-        var object = {
-          userId: req.user._id,
-          museumId : req.user.affiliation,
-          name : name,
-          provenace : provenance,
-          Persons : [],
-          Locations : []
-        }
-        //objectDB.addObjectFromCSV(object, function() {});
-      }
+      insertObjects(req);
       res.render('uploadresult.ejs', {
           result : "Upload Successful",
           error : "The objects were uploaded successfully"
@@ -140,6 +109,10 @@ module.exports = function(app, passport) {
         res.render('userprofile.ejs', {
             user : req.user // get the user out of session and pass to template
         });
+    });
+
+    app.post('/search/object', function(req, res) {
+
     });
 };
 
@@ -152,4 +125,40 @@ function isLoggedIn(req, res, next) {
 
     // if they aren't redirect them to the home page
     res.redirect('/');
+}
+
+function insertObjects(req) {
+
+  var nameColumn = parseInt(req.body.namecolumn) - 1;
+  var provenanceColumn = parseInt(req.body.provenancecolumn) - 1;
+  var spreadsheet = req.files.spreadsheet;
+  var ignoreheader = req.body.ignoreheader;
+  console.log('- Recieved file submission: ' + spreadsheet.name);
+  var workbook = XLSX.read(spreadsheet.data);
+  var columns = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], {header:1});
+  console.log(columns);
+
+  for (var i = 0; i < columns.length; i++) {
+    if (i === 0 && ignoreheader === "true") continue;
+    var rows = columns[i];
+    var name;
+    var provenance;
+    for (var j = 0; j < rows.length; j++) {
+      if (j == nameColumn) {
+        name = rows[j];
+      }
+      if (i == provenanceColumn) {
+        column = rows[j];
+      }
+    }
+    var object = {
+      userId: req.user._id,
+      museumId : req.user.affiliation,
+      name : name,
+      provenace : provenance,
+      Persons : [],
+      Locations : []
+    }
+    //objectDB.addObjectFromCSV(object, function() {});
+  }
 }
