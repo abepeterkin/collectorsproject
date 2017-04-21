@@ -31,6 +31,11 @@ $(document).ready(function(){
 		$("#signInModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
 
+	$("#upload").click(function() {
+	    $("#uploadModal")[0].style.display = "flex";
+		$("#uploadModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+	});
+
 	$("#menu_item #profile").click(function() {
 
 	});
@@ -44,6 +49,12 @@ $(document).ready(function(){
 	$(document).click(function(event) {
     	if (event.target == $("#signInModal")[0]) {
 			$("#signInModal")[0].style.display = "none";
+		}
+	});
+
+	$(document).click(function(event) {
+    	if (event.target == $("#uploadModal")[0]) {
+			$("#uploadModal")[0].style.display = "none";
 		}
 	});
 

@@ -84,7 +84,15 @@ body {
 	border-radius: 25px;
 }
 
-
+.uploadModalContent {
+/*    background-color: hsla(0,0%,0%,0.7);*/
+    margin: 20% auto;
+    padding: 20px;
+    border: 1px solid #888;
+	height: 10%;
+    width: 10%;
+	border-radius: 25px;
+}
 
 /************************************/
 /*			SIGN UP MODAL			*/
@@ -244,6 +252,63 @@ table {
 	font-size: 20px;
 	width: 200px;
 }
+
+
+/************************************/
+/*			UPLOAD MODAL 			*/
+/************************************/
+
+#upload_body {
+ 	position: absolute;
+  	margin: auto;
+  	top: 0;
+  	right: 0;
+  	bottom: 0;
+  	left: 0;
+  	width: 500px;
+  	height: 500px;
+
+ 	border-radius: 20px;
+ 	display: flex;
+ 	flex-direction: column;
+ 	justify-content: center;
+ 	align-items: center;
+	color: black;
+	background-color: white;
+	font-family: "akzidenz-light";
+}
+
+#upload_body h1 {
+	color: black;
+	font-family: "akzidenz-bold";
+}
+
+#submit_button {
+	color: white;
+	font-family: "akzidenz-medium";
+	background-color: #4f65d3;
+	border-style: none;
+	font-size: 20px;
+	width: 150px;
+	height: 50px;
+	margin-top: 40px;
+}
+
+#upload_form {
+	display: flex;
+  	flex-direction: column;
+ 	justify-content: center;
+ 	align-items: center;
+}
+
+#upload_file_button {
+	padding-left: 80px;
+}
+
+
+
+
+
 /************************************/
 /*				BODY				*/
 /************************************/
