@@ -214,8 +214,10 @@ var searchOnObject = function(query, callback) {
     assert.equal(null, err);
     var results = db.collection('object').find({$text : {$search : query}}, {
       score : {$meta : "textScore"}}).sort(
-      {score: {$meta : "textScore"}});
-    callback(results);
+      {score: {$meta : "textScore"}}).toArray(function(err, documents) {
+        assert.equal(err, null);
+        callback(documents);
+      });
     db.close();
   });
 }
