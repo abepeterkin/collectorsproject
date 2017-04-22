@@ -1,0 +1,20 @@
+IMPLEMENTED: User accounts, Object uploading
+
+PARTIALLY IMPLEMENTED: User profile page
+
+NOT IMPLEMENTED: Searching through objects, a better explanation for how object uploading works
+
+Code Structure:
+We use Node.js, and server.js is the main file you should run to start the server.
+
+The public folder contains all of our ejs templates, CSS, images, and front-end Javascript.
+
+The app and config folders contain some important back-end javascript files, such as routes.js (our ajax routes), passport.js (passport user authentication helper functions), and objectdatabase.js (helper functions for querying and inserting objects into the database)
+
+Routes:
+GET request to / will load the home page
+GET request to /upload will load the object uploading page
+POST request to /upload will upload a file containing object data
+POST request to /login will log the user in
+POST request to /signup will create a user account
+GET request to /userprofile will load a user’s profile page (profile pages still in progress)
