@@ -37,7 +37,9 @@ $(document).ready(function(){
 	});
 
 	$("#menu_item #profile").click(function() {
-
+		$.post("profile.ejs", function(data){
+			$("#modal").html(data).zoomin();
+		});
 	});
 
 	$(document).click(function(event) {
