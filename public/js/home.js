@@ -6,45 +6,37 @@ var username = "";
 
 background();
 checkUser();
-buttonFunctions();
 
-	function buttonFunctions() {
-		if (modal == false) {
-			
+	if (modal == false) {
 		/************************************/
 		/*			Signup button			*/
 		/************************************/
-			$("#signUp").click(function() {
-				modal = true;
-				$.post("signup", function(data){
+		$("#signUp").click(function(){
+			modal = true;
+			$.ajax({
+				type: "POST",
+				url: "signup",
+				success: function(data){
 					$("#modalBox").html(data);
 					$("#modal").fadeIn();
-				});
-			}); 
-		
+				}
+			});
+		});
+
 		/************************************/
 		/*	Redirect to signup from login	*/
 		/************************************/
-			$("#signUpHere").click(function() {
-				modal = true;
-				$("#modal").fadeOut(function(){
-					$.post("signup", function(data){
-						$("#modalBox").html(data);
-						$("#modal").fadeIn();
-					});
-				});
-			});
-	
-		/************************************/
-		/*	Redirect to signup from login	*/
-		/************************************/
-			$("#signIn").click(function() {
-				modal = true;
-				$.post("login", function(data){
+		$("#signIn").click(function() {
+			modal = true;
+			$.ajax({
+				type: "GET",
+				url: "login",
+				success: function(data){
 					$("#modalBox").html(data);
 					$("#modal").fadeIn();
-				});
+				}
 			});
+		});
 	
 		/************************************/
 		/*				Upload 				*/
@@ -64,7 +56,6 @@ buttonFunctions();
 				modal = true;
 				$.post("profile", function(data){
 					$("#modal").html(data).fadeIn();
-					modal = false;
 				});
 			});
 		
@@ -96,10 +87,11 @@ buttonFunctions();
 						$("#body_words").show();
 					}
 					$("#modal").fadeOut();
+					modal = false;
+					console.log(modal);
 				}
 			});
-			modal = false;
-		}
+		console.log(modal);
 	}
 
 	function checkUser() {

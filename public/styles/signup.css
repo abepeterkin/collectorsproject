@@ -1,16 +1,12 @@
+/****************************************/
+/*	CSS Styling for login/signup modals */
+/****************************************/
+
+/****************************/
+/*			Generic			*/
+/****************************/
 body {
 	margin:0;;
-}
-
-#signin_table {
-	background: hsla(0,0%,0%,0.8);
-	border: solid white 1px;
-	border-radius: 25px;
-	padding: 50px;
-}
-
-#signin_table td {
-	padding: 5px;
 }
 
 h1 {
@@ -22,8 +18,11 @@ h1 {
 	font-family:"akzidenz-regular";
 }
 
-label {
-	color: hsla(0,0%,100%,1);
+h2 {
+	padding-left:40px;
+	margin: 0;
+	font-size: 20pt;
+	color: #5D5D5D;
 	font-family:"akzidenz-regular";
 }
 
@@ -31,12 +30,37 @@ p {
 	color: hsla(0,0%,100%,1);
 }
 
-h2 {
-	padding-left:40px;
-	margin: 0;
-	font-size: 20pt;
-	color: #5D5D5D;
+label {
+	color: hsla(0,0%,100%,1);
 	font-family:"akzidenz-regular";
+}
+
+/****************************/
+/*			Sign Up			*/
+/****************************/
+#signup_table {
+	background: hsla(0,0%,0%,0.8);
+	border: solid white 1px;
+	border-radius: 15px;
+	padding: 50px;
+}
+
+#signup_table td {
+	padding: 5px;
+}
+
+/****************************/
+/*			Sign In			*/
+/****************************/
+#signin_table {
+	background: hsla(0,0%,0%,0.8);
+	border: solid white 1px;
+	border-radius: 25px;
+	padding: 50px;
+}
+
+#signin_table td {
+	padding: 5px;
 }
 
 
@@ -75,8 +99,9 @@ input[type=checkbox] {
   transform: scale(1.5);
 }
 
-/*FONTS*/
-
+/****************************/
+/*			Fonts			*/
+/****************************/
 @font-face {
 	font-family:"akzidenz-bold";
 	src:url("akzidenz/akzidenz_bold.otf") format("opentype");

@@ -2,38 +2,27 @@
 <!doctype html>
 <html>
 <head>
-
 <link rel="stylesheet" href="styles/upload.css">
-
-<script src="js/home.js"></script>
-
-    <title>Object Uploader</title>
+<script src="js/upload.js"></script>
+<title>Object Uploader</title>
 </head>
 <body>
-
-<!-- Navigation content -->
-<div id="header">
-  <div id="title">
-    <h1 id="nav_bar_title">the collector's project</h1>
-  </div>
-  <div id="nav_bar">
-      <a id="news" href="#">News</a>
-      <a id="about" href="#">About</a>
-      <a href="/upload" id="upload">Upload File</a>
-      <a href="/profile" id="profile">Profile</a>
-      <a href="/logout" id="signOut">Sign out</a>
-  </div>
-</div>
-
 <div id="upload_body">
-	<h1>Object Uploader</h1>
-	<form action="/upload" method="POST" encType="multipart/form-data" id="upload_form">
-	  <p>Column containing the object name: </p> <input type="number" name="namecolumn" min="1" required>
-	  <p>Column containing the object provenance: </p> <input type="number" name="provenancecolumn" min="1" required>
-	  <p>Ignore header row? <input name="ignoreheader" type="radio" value="true" checked> Yes <input name="ignoreheader" type="radio" value="false"> No</p>
-	  <p>Spreadsheet containing object data (.xlsx files only): </p> <input type="file" name="spreadsheet" required id="upload_file_button">
-	  <input type="submit" id="submit_button">
-	</form>
+  <h1>Object Uploader</h1>
+  <form encType="multipart/form-data" id="upload_form">
+    <p>Column containing the object name: </p>
+    <input type="number" name="namecolumn" min="1" required>
+    <p>Column containing the object provenance: </p>
+    <input type="number" name="provenancecolumn" min="1" required>
+    <p>Ignore header row?
+      <input name="ignoreheader" type="radio" value="true" checked>
+      Yes
+      <input name="ignoreheader" type="radio" value="false">
+      No</p>
+    <p>Spreadsheet containing object data (.xlsx files only): </p>
+    <input type="file" name="spreadsheet" required id="upload_file_button">
+    <input type="submit" id="submit_button">
+  </form>
 </div>
 </body>
 </html>

@@ -3,25 +3,34 @@
 <html>
 <head>
 <title>Node Authentication</title>
+<link rel="stylesheet" href="styles/signup.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 </head>
 <body>
 <table id="signup_table">
-    <tr>
-      <td colspan="2"><% if (message.length > 0) { %>
-        </h1>
-        <div class="alert alert-danger"><%= message %></div>
-        <% } %></td>
-    </tr>
-  <form action="/signup" method="post">
+  <tr>
+    <td colspan="2"><% if (message.length > 0) { %>
+      </h1>
+      <div class="alert alert-danger"><%= message %></div>
+      <% } %></td>
+  </tr>
+  <form id="signUp">
     <tr>
       <td><label>Email</label></td>
       <td><input type="text" class="form-control" name="email"></td>
     </tr>
     <tr>
+      <td><label>Verify email</label></td>
+      <td><input type="text" class="form-control" name="email"></td>
+    </tr>
+    <tr>
       <td><label>Password</label></td>
       <td><input type="password" class="form-control" name="password"></td>
+    </tr>
+    <tr>
+      <td><label>Verify password</label></td>
+      <td><input type="password" class="form-control" name="verifyPassword"</td>
     </tr>
     <tr>
       <td colspan="2"><button type="submit" class="btn btn-warning btn-lg">Signup</button></td>
@@ -30,45 +39,3 @@
 </table>
 </body>
 </html>
-
-    <div id="signUpBody">
-      <h2 id="signUpTitle">Sign Up</h2>
-      <div id="right_column">
-        <table style="width:100%">
-          <tr>
-            <td>Email</td>
-            <td><input class="searchbar" name="email" type="email"></td>
-          </tr>
-          <tr>
-            <td>Password</td>
-            <td><input class="searchbar" name="password" type="text"></td>
-          </tr>
-
-            <td>First name</td>
-            <td><input class="searchbar" name="firstname" type="text"></td>
-          </tr>
-          <tr>
-            <td>Last name</td>
-            <td><input class="searchbar" name="lastname"  type="text"></td>
-          </tr>
-          <tr>
-
-          <tr>
-            <td>Affiliation</td>
-            <td><input class="searchbar" name="affiliation" type="text"></td>
-          </tr>
-          <tr>
-            <td>City</td>
-            <td><input class="searchbar" name="city" type="text"></td>
-          </tr>
-          <tr>
-            <td>Country</td>
-            <td><input class="searchbar" name="country" type="text"></td>
-          </tr>
-        </table>
-      </div>
-      <button class="butt" type="submit" id="createAccount">create account</button>
-    </div>
-    </form>
-  </div>
-</div>

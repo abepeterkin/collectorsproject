@@ -1,92 +1,95 @@
 var objectDB = require("./objectdatabase.js");
-
 var XLSX = require('xlsx');
 
-// app/routes.js
 module.exports = function(app, passport) {
-    // =====================================
-    // HOME PAGE (with login links) ========
-    // =====================================
-    app.get('/', function(req, res) {
-      console.log("USER" + req.user);
-      if (req.isAuthenticated()) {
-          res.render('home.ejs',  {
-              username : req.user.firstname
-          });
-      } else {
-        res.render('home.ejs',  {
-            username : ""
-        });
-      }
-    });
 
-    // =====================================
-    // LOGIN ===============================
-    // =====================================
-    // show the login form
-    app.get('/login', function(req, res) {
+/************************/
+/*	Home page with menu	*/
+/************************/
+app.get('/', function(req, res) {
+	if (req.isAuthenticated()) {
+		res.render('home.ejs', {
+			username: req.user.firstname
+		});
+		console.log("User " + req.user + " logged in")
+	} else {
+		res.render('home.ejs', {
+			username: ""
+		});
+		console.log("No user logged in")
+	}
+});
 
-        // render the page and pass in any flash data if it exists
-        res.render('login.ejs', { message: req.flash('loginMessage') });
-    });
+/************************/
+/*		Signup process	*/
+/************************/
+app.get('/signup', function(req, res) {
+	res.render('signup.ejs', { 
+		message: req.flash('signupMessage')
+	});
+});
 
-    // process the login form
-    // app.post('/login', do all our passport stuff here);
+app.post('/signup', passport.authenticate('local-signup', {
+	successRedirect : '/', // redirect to the secure profile section
+	failureRedirect : '/signup', // redirect back to the signup page if there is an error
+	failureFlash : true // allow flash messages
+}));
 
-    // =====================================
-    // SIGNUP ==============================
-    // =====================================
-    // show the signup form
-    app.get('/signup', function(req, res) {
+/************************/
+/*		Login process	*/
+/************************/
+app.get('/login', function(req, res) {
+	res.render('login.ejs', { 
+		message: req.flash('loginMessage')
+	});
+});
 
-        // render the page and pass in any flash data if it exists
-        res.render('signup.ejs', { message: req.flash('signupMessage') });
-    });
+app.post('/login', passport.authenticate('local-login', function(req, res) {
+	console.log(req);
+}));
 
-    // process the signup form
-    // app.post('/signup', do all our passport stuff here);
-
-    // =====================================
-    // PROFILE SECTION =====================
-    // =====================================
-    // we will want this protected so you have to be logged in to visit
-    // we will use route middleware to verify this (the isLoggedIn function)
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
+/************************/
+/*		User profiles	*/
+/************************/
+app.get('/profile', isLoggedIn, function(req, res) {
+	res.render('profile.ejs', {
+		user : req.user // get the user out of session and pass to template
+	});
+});
+/*
+    app.get('/userprofile', isLoggedIn, function(req, res) {
+        res.render('userprofile.ejs', {
             user : req.user // get the user out of session and pass to template
         });
-    });
+    });*/
 
-    // =====================================
-    // LOGOUT ==============================
-    // =====================================
-    app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
-    });
+/************************/
+/*		Logout process	*/
+/************************/
+app.get('/logout', function(req, res) {
+	req.logout();
+	res.redirect('/');
+});
 
-    // process the signup form
-     app.post('/signup', passport.authenticate('local-signup', {
-         successRedirect : '/', // redirect to the secure profile section
-         failureRedirect : '/signup', // redirect back to the signup page if there is an error
-         failureFlash : true // allow flash messages
-     }));
+/************************/
+/*		Search process	*/
+/************************/
+app.get('/search', function(req, res) {
+	res.render('search.ejs');
+});
 
-     // process the login form
-    app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
+app.post('/search/:query', function(req, res) {
+	var query = req.params.query;
+	res.send(objectDB.searchQuery(query));
+});
 	
-	app.post('/search/:query', function(req, res) {
-		var query = req.params.query;
-		res.send(objectDB.searchOnObject(query));
-    });
-
-    app.get('/search', function(req, res) {
-        res.render('search.ejs');
-    });
+	app.post('/uploadfile', function(req, res) {
+		var spreadsheet = req.files.spreadsheet;
+		console.log('- Received file submission: ' + spreadsheet.name);
+		workbook = XLSX.read(spreadsheet.data);
+		xlsx = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+		res.send(objectDB.insertArtifact(xlsx));
+	});
 
     app.get('/upload', isLoggedIn, function(req, res) {
         res.render('upload.ejs', {
@@ -108,12 +111,6 @@ module.exports = function(app, passport) {
           result : "Upload Successful",
           error : "The objects were uploaded successfully"
       });
-    });
-
-    app.get('/userprofile', isLoggedIn, function(req, res) {
-        res.render('userprofile.ejs', {
-            user : req.user // get the user out of session and pass to template
-        });
     });
 };
 

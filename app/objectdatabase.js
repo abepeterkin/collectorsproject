@@ -271,6 +271,32 @@ var addLocationToPerson = function(person, location) {
   });
 }
 
+function searchQuery(query, callback){
+	MongoClient.connect(url, function(err, data) {
+		if (err) {
+			callback(err);
+		} else {
+			db.collection('artifacts').find(query, function(err, data) {
+				if (err) {
+					callback(err);
+				} else {
+					callback(data);
+				}
+			})
+		}
+	});
+}
+
+function insertArtifact(artifact, callback){
+	db.collection('artifacts').insert(artifact, function(err, data) {
+		if (err) {
+			callback(err);
+		} else {
+			callback(data);
+		}
+	})
+}
+
 module.exports.insertMany = insertMany;
 module.exports.addLocationToObject = addLocationToObject;
 module.exports.createPerson = createPerson;
@@ -284,3 +310,5 @@ module.exports.searchOnPerson = searchOnPerson;
 module.exports.searchOnLocation = searchOnLocation;
 module.exports.addObjectToPerson = addObjectToPerson;
 module.exports.addLocationToPerson = addLocationToPerson;
+module.exports.searchQuery = searchQuery;
+module.exports.insertArtifact = insertArtifact;

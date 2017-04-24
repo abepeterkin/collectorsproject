@@ -16,9 +16,9 @@ body {
 	padding:0;
 	justify-content:space-between;
 	align-items: center;
-
 	height: 100px;
 	background-color: hsla(0,0%,0%,0.5);
+	z-index: 0;
 }
 
 #title h1 {
@@ -32,15 +32,16 @@ body {
 /*			NAVIGATION MENU			*/
 /************************************/
 #nav_bar {
-	font-family:"akzidenz-regular";
-	float:right;
+	font-family: "akzidenz-regular";
+	float: right;
 	margin-right: 40px;
+	z-index: 1;
 }
 
 #nav_bar a {
-	text-decoration:none;
+	text-decoration: none;
 	color: white;
-	padding:15px;
+	padding: 15px;
 	font-size: 20px;
 	font-family:"akzidenz-medium";
 }
@@ -126,7 +127,6 @@ body {
   	left: 0;
   	width: 40%;
   	height: 450px;
-/*  	overflow-y: auto;*/
  	border-radius: 25px;
  	display: flex;
  	flex-direction: column;
@@ -279,7 +279,6 @@ table {
   	left: 0;
   	width: 500px;
   	height: 500px;
-
  	border-radius: 20px;
  	display: flex;
  	flex-direction: column;
