@@ -78,6 +78,11 @@ module.exports = function(app, passport) {
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
+	
+	app.post('/search/:query', function(req, res) {
+		var query = req.params.query;
+		res.send(objectDB.searchOnObject(query));
+    });
 
     app.get('/search', function(req, res) {
         res.render('search.ejs');
@@ -109,11 +114,6 @@ module.exports = function(app, passport) {
         res.render('userprofile.ejs', {
             user : req.user // get the user out of session and pass to template
         });
-    });
-
-    app.post('/search/object', function(req, res) {
-      var query = req.body.query;
-        //TODO
     });
 };
 

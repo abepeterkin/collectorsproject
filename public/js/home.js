@@ -1,86 +1,123 @@
-window.onload = function() {
-	var numImages = 2;
-    var randomNumber = Math.floor(Math.random() * numImages) + 1;
-	$("#backgroundImageID").css("background-image", "url(images/background_" + randomNumber + ".jpg");
-}
-
 $(document).ready(function(){
 
-	console.log("USER: " + username);
+var modal = false;
+var results = false;
+var username = "";
 
-	var span = document.getElementsByClassName("close")[0];
+background();
+checkUser();
+buttonFunctions();
 
-	if (username === "") {
-		$("#username").hide();
-		$("#profile").hide();
-		$("#signOut").hide();
-		$("#upload").hide();
-	} else {
-		$("#profile").html(username + "'s profile");
-		$("#signIn").hide();
-		$("#signUp").hide();
+	function buttonFunctions() {
+		if (modal == false) {
+			
+		/************************************/
+		/*			Signup button			*/
+		/************************************/
+			$("#signUp").click(function() {
+				modal = true;
+				$.post("signup", function(data){
+					$("#modalBox").html(data);
+					$("#modal").fadeIn();
+				});
+			}); 
+		
+		/************************************/
+		/*	Redirect to signup from login	*/
+		/************************************/
+			$("#signUpHere").click(function() {
+				modal = true;
+				$("#modal").fadeOut(function(){
+					$.post("signup", function(data){
+						$("#modalBox").html(data);
+						$("#modal").fadeIn();
+					});
+				});
+			});
+	
+		/************************************/
+		/*	Redirect to signup from login	*/
+		/************************************/
+			$("#signIn").click(function() {
+				modal = true;
+				$.post("login", function(data){
+					$("#modalBox").html(data);
+					$("#modal").fadeIn();
+				});
+			});
+	
+		/************************************/
+		/*				Upload 				*/
+		/************************************/
+			$("#upload").click(function() {
+				modal = true;
+				$.post("upload", function(data){
+					console.log(data);
+				});
+			});
+	
+		
+		/************************************/
+		/*			Profile Modal			*/
+		/************************************/
+			$("#menu_item #profile").click(function() {
+				modal = true;
+				$.post("profile", function(data){
+					$("#modal").html(data).fadeIn();
+					modal = false;
+				});
+			});
+		
+		/************************************/
+		/*			Search Modal			*/
+		/************************************/
+			$("#search").keyup(function(event){
+				modal = true;
+				results = true;
+				if(event.keyCode == 13){
+					query = $("#search").val();
+					$("#body_words").hide();
+					$("#body_text").display = "block";
+					console.log($("#body_text"));
+//					$("#body_text").style.top = "75px";
+//					$("#header").style.height = "50px";
+					$.post("search/" + query, function(data){
+						$("#modal").html(data).fadeIn();
+					});
+				}
+			});
+			
+		/************************************/
+		/*			Exit modal boxes		*/
+		/************************************/			
+			$(document).click(function(event) {
+				if (event.target == $("#modal")[0]) {
+					if (results == true) {
+						$("#body_words").show();
+					}
+					$("#modal").fadeOut();
+				}
+			});
+			modal = false;
+		}
 	}
 
-	$("#signUp").click(function() {
-	    $("#signUpModal")[0].style.display = "flex";
-		$("#signUpModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
-	});
-
-	$("#signIn").click(function() {
-	    $("#signInModal")[0].style.display = "flex";
-		$("#signInModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
-	});
-
-	$("#upload").click(function() {
-	    $("#uploadModal")[0].style.display = "flex";
-		$("#uploadModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
-	});
-
-	$("#menu_item #profile").click(function() {
-		$.post("profile.ejs", function(data){
-			$("#modal").html(data).zoomin();
-		});
-	});
-
-	$(document).click(function(event) {
-    	if (event.target == $("#signUpModal")[0]) {
-			$("#signUpModal")[0].style.display = "none";
+	function checkUser() {
+		if (username === "") {
+			$("#username").hide();
+			$("#profile").hide();
+			$("#signOut").hide();
+			$("#upload").hide();
+		} else {
+			$("#profile").html(username + "'s profile");
+			$("#signIn").hide();
+			$("#signUp").hide();
 		}
-	});
+	}
 
-	$(document).click(function(event) {
-    	if (event.target == $("#signInModal")[0]) {
-			$("#signInModal")[0].style.display = "none";
-		}
-	});
-
-	$(document).click(function(event) {
-    	if (event.target == $("#uploadModal")[0]) {
-			$("#uploadModal")[0].style.display = "none";
-		}
-	});
-
-	$("#search").keyup(function(event){
-	    if(event.keyCode == 13){
-	        document.getElementById("body_words").remove();
-	    	document.getElementById("body_text").display="block";
-		    document.getElementById("body_text").style.top="75px"; 
-
-		    document.getElementById("header").style.height = "50px";
-
-
-		    document.getElementById("nav_bar_title").style.fontSize = "20px";
-		    document.getElementById("news").style.fontSize = "15px";
-		    document.getElementById("about").style.fontSize = "15px";
-		    document.getElementById("signIn").style.fontSize = "15px";
-		    document.getElementById("signUp").style.fontSize = "15px";
-
-		    document.getElementById("upload").style.fontSize = "15px";
-		    document.getElementById("profile").style.fontSize = "15px";
-		    document.getElementById("signOut").style.fontSize = "15px";
-
-		    document.getElementById("search_results").style.visibility="visible";
-	    }
-	});
-
+	function background() {
+		var numImages = 2;
+		var randomNumber = Math.floor(Math.random() * numImages) + 1;
+		$("#backgroundImageID").css("background-image", "url(images/background_" + randomNumber + ".jpg");
+	}
 });

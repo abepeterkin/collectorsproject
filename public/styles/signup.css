@@ -1,24 +1,37 @@
 body {
-	margin:0;
-	padding:0;
-}
-#header {
-	display: flex;
-	flex-direction:row;
-	font-family:"akzidenz-bold";
-	margin:0;
-	padding:0;justify-content:space-between;
-	align-items: center;
-}
-#title h1 {
-	padding-left:30px;
-	font-size: 30pt;
-	color: black;
-	padding-bottom: 0px;
-	margin-bottom: 0px;
+	margin:0;;
 }
 
-#title h2 {
+#signin_table {
+	background: hsla(0,0%,0%,0.8);
+	border: solid white 1px;
+	border-radius: 25px;
+	padding: 50px;
+}
+
+#signin_table td {
+	padding: 5px;
+}
+
+h1 {
+	padding-left:30px;
+	font-size: 30pt;
+	color: hsla(0,0%,100%,1);
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+	font-family:"akzidenz-regular";
+}
+
+label {
+	color: hsla(0,0%,100%,1);
+	font-family:"akzidenz-regular";
+}
+
+p {
+	color: hsla(0,0%,100%,1);
+}
+
+h2 {
 	padding-left:40px;
 	margin: 0;
 	font-size: 20pt;
@@ -26,18 +39,6 @@ body {
 	font-family:"akzidenz-regular";
 }
 
-
-
-
-.searchbar {
-	height: 30px;
-	width:300px;
-}
-
-td {
-	font-size: 40px;
-	font-family: "akzidenz-regular";
-}
 
 .indent {
 	text-indent: 20px;
@@ -55,9 +56,10 @@ td {
 	margin-right: 10px;
 }
 
-.butt {
-	height:60px;
-    width:100px;
+.btn {
+	height: 30px;
+    width: 200px;
+	border-radius: 25px;
     font-size: 20px;
 }
 

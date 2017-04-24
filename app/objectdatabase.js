@@ -132,7 +132,7 @@ var createPerson = function(person, callback) {
 }
 
 var findObjects = function(db, callback) {
-   var cursor =db.collection('object').find( );
+   var cursor = db.collection('object').find( );
    cursor.each(function(err, doc) {
       assert.equal(err, null);
       if (doc != null) {
@@ -274,7 +274,7 @@ var addLocationToPerson = function(person, location) {
 module.exports.insertMany = insertMany;
 module.exports.addLocationToObject = addLocationToObject;
 module.exports.createPerson = createPerson;
-// module.exports.findObjects = findObjects;
+module.exports.findObjects = findObjects;
 module.exports.createLocation = createLocation;
 module.exports.addObjectToLocation = addObjectToLocation;
 module.exports.addPersonToLocation = addPersonToLocation;
