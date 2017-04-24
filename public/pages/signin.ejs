@@ -1,15 +1,14 @@
-<!-- views/login.ejs -->
 <!doctype html>
 <html>
 <head>
-<title>Node Authentication</title>
-<link rel="stylesheet" href="styles/signup.css">
+<title>Sign in</title>
+<link rel="stylesheet" href="styles/home.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="js/login.js"></script>
+<script src="js/signin.js"></script>
 </head>
 <body>
-<form id="login">
-<table id="signin_table">
+<form id="signIn_frm">
+<table id="signIn_tbl">
     <tr>
       <td colspan="2"><% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
@@ -27,7 +26,7 @@
       <td colspan="2"><button type="submit" class="btn">Login</button></td>
     </tr>
     <tr>
-    <td colspan="2"><p>Need an account? <a id="signUpHere" href="#">Signup</a></p></td></tr>
+    <td colspan="2"><p>Need an account? <a id="signUp_lnk" href="#">Signup</a></p></td></tr>
       </div>
       </div>
 </table>

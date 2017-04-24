@@ -1,6 +1,5 @@
 $(document).ready(function() {
-	
-	$("#upload_form").submit(function(e){
+	$("#upload_frm").submit(function(e){
 		e.preventDefault();
 		$.ajax({
 			type: "POST",

@@ -2,10 +2,17 @@ $(document).ready(function(){
 
 var modal = false;
 var results = false;
-var username = "";
+var username = "<%= username %>";
+var loggedIn = "<%= loggedIn %>";
 
 background();
 checkUser();
+
+if (loggedIn == true) {
+	$("#profile").html(username + "'s profile");
+	$("#signIn").hide();
+	$("#signUp").hide();
+}
 
 	if (modal == false) {
 		/************************************/
@@ -100,10 +107,6 @@ checkUser();
 			$("#profile").hide();
 			$("#signOut").hide();
 			$("#upload").hide();
-		} else {
-			$("#profile").html(username + "'s profile");
-			$("#signIn").hide();
-			$("#signUp").hide();
 		}
 	}
 
