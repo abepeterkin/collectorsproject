@@ -21,8 +21,8 @@ if (loggedIn == true) {
 		$("#signUp").click(function(){
 			modal = true;
 			$.ajax({
-				type: "POST",
-				url: "signup",
+				type: "GET",
+				url: "/signup",
 				success: function(data){
 					$("#modalBox").html(data);
 					$("#modal").fadeIn();
@@ -37,14 +37,14 @@ if (loggedIn == true) {
 			modal = true;
 			$.ajax({
 				type: "GET",
-				url: "login",
+				url: "/signin",
 				success: function(data){
 					$("#modalBox").html(data);
 					$("#modal").fadeIn();
 				}
 			});
 		});
-	
+
 		/************************************/
 		/*				Upload 				*/
 		/************************************/
@@ -54,8 +54,8 @@ if (loggedIn == true) {
 					console.log(data);
 				});
 			});
-	
-		
+
+
 		/************************************/
 		/*			Profile Modal			*/
 		/************************************/
@@ -65,7 +65,7 @@ if (loggedIn == true) {
 					$("#modal").html(data).fadeIn();
 				});
 			});
-		
+
 		/************************************/
 		/*			Search Modal			*/
 		/************************************/
@@ -84,10 +84,10 @@ if (loggedIn == true) {
 					});
 				}
 			});
-			
+
 		/************************************/
 		/*			Exit modal boxes		*/
-		/************************************/			
+		/************************************/
 			$(document).click(function(event) {
 				if (event.target == $("#modal")[0]) {
 					if (results == true) {

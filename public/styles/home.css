@@ -97,6 +97,7 @@ label {
 	border: solid white 1px;
 	border-radius: 15px;
 	padding: 50px;
+	color: white;
 }
 
 #signup_tbl td {
@@ -425,10 +426,10 @@ table {
 /*			RESPONSIVE				*/
 /************************************/
 @media only screen and (max-width: 1500px) {
-   	#top { 
+   	#top {
    		font-size: 50px;
    	}
-   	
+
    	#header {
    		height: 50px;
    	}

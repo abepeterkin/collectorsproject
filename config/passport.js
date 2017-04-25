@@ -54,7 +54,11 @@ module.exports = function(passport) {
             // check to see if theres already a user with that email
             if (user) {
                 return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-            } else {
+            } /*else if (req.body.password !== req.body.verifypassword){
+                return done(null, false, req.flash('signupMessage', 'Passwords do not match.'));
+            } else if (req.body.email !== req.body.verifyemail) {
+                return done(null, false, req.flash('signupMessage', 'Emails do not match.'));
+            }*/ else {
 
                 // if there is no user with that email
                 // create the user

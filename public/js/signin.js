@@ -3,7 +3,7 @@ $(document).ready(function(){
 	/************************************/
 	/*			Process sign in			*/
 	/************************************/
-	$("#login_frm").submit(function() {
+	/*$("#login_frm").submit(function() {
 		modal = true;
 		$("#modal").fadeOut(function(){
 			$.ajax({
@@ -16,8 +16,8 @@ $(document).ready(function(){
 				}
 			});
 		});
-	});
-	
+	});*/
+
 	/************************************/
 	/*	Redirect to signup from sign in	*/
 	/************************************/
