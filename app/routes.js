@@ -39,7 +39,7 @@ app.post('/signup', passport.authenticate('local-signup', {
 /*		Signin process	*/
 /************************/
 app.get('/signin', function(req, res) {
-	res.render('signin.ejs', { 
+	res.render('signin.ejs', {
 		message: req.flash('loginMessage')
 	});
 });
@@ -156,4 +156,5 @@ function insertObjects(req) {
     objectArray.push(object);
   }
   objectDB.insertMany(objectArray);
+}
 }
