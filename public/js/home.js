@@ -59,7 +59,7 @@ if (username != "") {
 		/************************************/
 		/*			Profile Modal			*/
 		/************************************/
-			$("#menu_item #profile").click(function() {
+			$("#profile").click(function() {
 				modal = true;
 				$.post("profile", function(data){
 					$("#modal").html(data).fadeIn();
