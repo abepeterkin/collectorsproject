@@ -110,7 +110,11 @@ app.post('/search/:query', function(req, res) {
 	var query = req.params.query;
 	console.log("QUERY: [" + [query] + "]");
 	if (query !== "") {
-		res.send(objectDB.searchOnObject(query, function() {}));
+		objectDB.searchOnObject(query, function(result) {
+			var resultJSON = JSON.stringify(result);
+			res.send(resultJSON);
+			console.log(resultJSON);
+		});
 	}
 });
 

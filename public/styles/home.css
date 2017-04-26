@@ -376,8 +376,40 @@ table {
 /************************************/
 /*				SEARCH				*/
 /************************************/
+
 #search_results {
-    visibility: hidden;
+	position: absolute;
+	margin: auto;
+	margin-top: 50px;
+	top: 150px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 80%;
+	height: 70%;
+	padding-left: 50px;
+	padding-right: 50px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.search_result {
+	color: black;
+	font-size: 12px;
+	display:inline-block;
+	margin:20px;
+	background-color: white;
+	width:100px;
+	height:100px;
+	border-style:solid;
+	border-radius:5px;
+	border-width: 1px;
+}
+
+/**COMMENTING THIS OUT BECAUSE I COULDN'T FIND THE HTML IT ORIGINALLY APPLIED TO - Abe
+
+#search_results {
     background-color: white;
 	overflow: scroll;
 	position: absolute;
@@ -421,6 +453,8 @@ table {
 .object_label {
 	width: 100px;
 }
+
+************************************************/
 
 /************************************/
 /*			RESPONSIVE				*/

@@ -72,9 +72,18 @@ if (loggedIn == true) {
 		/*			Search Modal			*/
 		/************************************/
 			searchbar.keyup(function(event){
+				$("#search_results").html("");
 				if (searchbar.val() !== "") {
-					$.post("search/" + searchbar.val(), function(data){
-						console.log(data);
+					$.post("search/" + searchbar.val(), function(result){
+						var resultObjects = JSON.parse(result);
+						for (var key in resultObjects) {
+							if (resultObjects.hasOwnProperty(key)) {
+      					var obj = resultObjects[key];
+								console.log(JSON.stringify(obj));
+								var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
+								$("#search_results").append(resultHTML);
+							}
+						}
 					});
 				}
 				/*modal = true;
