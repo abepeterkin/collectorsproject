@@ -156,7 +156,7 @@ function insertObjects(req) {
       userId: req.user._id,
       museumId : req.user.affiliation,
       name : name,
-      provenace : provenance,
+      Provenance : provenance,
       Persons : [],
       Locations : []
     }

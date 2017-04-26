@@ -2,16 +2,14 @@ $(document).ready(function(){
 
 var modal = false;
 var results = false;
-var username = "<%= username %>";
-var loggedIn = "<%= loggedIn %>";
 
 background();
 checkUser();
 
 var searchbar = $("#search");
 
-if (loggedIn == true) {
-	$("#profile").html(username + "'s profile");
+if (username != "") {
+	$("#profile").html(username);
 	$("#signIn").hide();
 	$("#signUp").hide();
 }
