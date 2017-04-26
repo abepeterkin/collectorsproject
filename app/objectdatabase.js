@@ -10,14 +10,14 @@ var datab = [];
 MongoClient.connect(url, function(err, db) {
   assert.equal(null, err);
   console.log("Connected correctly to server.");
-  dropAll(db);
+  /*dropAll(db);
   objectIndexing(db);
   console.log("Indexed objects");
   personIndexing(db);
   console.log("Indexed persons");
   locationIndexing(db);
   console.log("Indexed locations");
-  db.close();
+  db.close();*/
 });
 
 function insertMany(objects) {
@@ -272,10 +272,11 @@ var addLocationToPerson = function(person, location) {
 }
 
 function searchQuery(query, callback){
-	MongoClient.connect(url, function(err, data) {
+	MongoClient.connect(url, function(err, db) {
 		if (err) {
 			callback(err);
 		} else {
+      console.log(query);
 			db.collection('artifacts').find(query, function(err, data) {
 				if (err) {
 					callback(err);

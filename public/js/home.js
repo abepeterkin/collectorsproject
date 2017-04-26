@@ -8,6 +8,8 @@ var loggedIn = "<%= loggedIn %>";
 background();
 checkUser();
 
+var searchbar = $("#search");
+
 if (loggedIn == true) {
 	$("#profile").html(username + "'s profile");
 	$("#signIn").hide();
@@ -69,8 +71,13 @@ if (loggedIn == true) {
 		/************************************/
 		/*			Search Modal			*/
 		/************************************/
-			$("#search").keyup(function(event){
-				modal = true;
+			searchbar.keyup(function(event){
+				if (searchbar.val() !== "") {
+					$.post("search/" + searchbar.val(), function(data){
+						console.log(data);
+					});
+				}
+				/*modal = true;
 				results = true;
 				if(event.keyCode == 13){
 					query = $("#search").val();
@@ -82,7 +89,7 @@ if (loggedIn == true) {
 					$.post("search/" + query, function(data){
 						$("#modal").html(data).fadeIn();
 					});
-				}
+				}*/
 			});
 
 		/************************************/

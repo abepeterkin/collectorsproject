@@ -1,18 +1,25 @@
 <!doctype html>
 <html>
 <head>
-<link rel="stylesheet" href="styles/home.css">
-<script src="js/upload.js"></script>
 <title>Object Uploader</title>
 </head>
 <body>
-<form encType="multipart/form-data" id="upload_frm">
-<table id="uploadSpreadsheet_tbl">
-<tr>
-<td><h1>Upload new dataset</h1></td></tr>
-<tr><td><input type="file" accept="application/msexcel" name="spreadsheet" required placeholder="Select file..."></td></tr>
-  <tr><td><input type="submit" class="btn"</td>Upload</tr>
-</table>
-</form>
+  <div id="upload_body">
+    <h1>Object Uploader</h1>
+    <form encType="multipart/form-data" id="upload_form" action="upload" method="post">
+      <p>Column containing the object name: </p>
+      <input type="number" name="namecolumn" min="1" required>
+      <p>Column containing the object provenance: </p>
+      <input type="number" name="provenancecolumn" min="1" required>
+      <p>Ignore header row?
+        <input name="ignoreheader" type="radio" value="true" checked>
+        Yes
+        <input name="ignoreheader" type="radio" value="false">
+        No</p>
+      <p>Spreadsheet containing object data (.xlsx files only): </p>
+      <input type="file" name="spreadsheet" required id="upload_file_button">
+      <input type="submit" id="submit_button">
+    </form>
+  </div>
 </body>
 </html>
