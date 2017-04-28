@@ -37,7 +37,11 @@ $(document).ready(function(){
 		$("#signInModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
 
-
+	$("#upload").click(function() {
+	    $("#uploadModal")[0].style.display = "flex";
+		$("#uploadModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+	});
+	
 	$(document).click(function(event) {
     	if (event.target == $("#signUpModal")[0]) {
 			$("#signUpModal")[0].style.display = "none";
@@ -51,12 +55,16 @@ $(document).ready(function(){
 	});
 
 	$(document).click(function(event) {
+    	if (event.target == $("#objectModal")[0]) {
+			$("#objectModal")[0].style.display = "none";
+		}
+	});
+
+	$(document).click(function(event) {
     	if (event.target == $("#uploadModal")[0]) {
 			$("#uploadModal")[0].style.display = "none";
 		}
 	});
-
-
 
 	$("#search").keyup(function(event){
 
@@ -112,10 +120,10 @@ $(document).ready(function(){
 				}
 
 				var modalHTML = new EJS({url: '../pages/artifact.ejs'}).render(obj);
-				$("#upload_body").html(modalHTML);
+				$("#object_body").html(modalHTML);
 
-				$("#uploadModal")[0].style.display = "flex";
-				$("#uploadModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+				$("#objectModal")[0].style.display = "flex";
+				$("#objectModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 			});
 
 			$(document).on('mouseover', ".search_result", function(event) {

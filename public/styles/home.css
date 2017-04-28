@@ -94,6 +94,16 @@ body {
 	border-radius: 25px;
 }
 
+.objectModalContent {
+/*    background-color: hsla(0,0%,0%,0.7);*/
+    margin: 20% auto;
+    padding: 20px;
+    border: 1px solid #888;
+	height: 10%;
+    width: 10%;
+	border-radius: 25px;
+}
+
 /************************************/
 /*			SIGN UP MODAL			*/
 /************************************/
@@ -306,7 +316,34 @@ table {
 }
 
 
+/************************************/
+/*			OBJECT MODAL 			*/
+/************************************/
 
+#object_body {
+ 	position: absolute;
+  	margin: auto;
+  	top: 0;
+  	right: 0;
+  	bottom: 0;
+  	left: 0;
+  	width: 500px;
+  	height: 500px;
+
+ 	border-radius: 20px;
+ 	display: flex;
+ 	flex-direction: column;
+ 	justify-content: center;
+ 	align-items: center;
+	color: black;
+	background-color: white;
+	font-family: "akzidenz-light";
+}
+
+#object_body h1 {
+	color: black;
+	font-family: "akzidenz-bold";
+}
 
 
 /************************************/

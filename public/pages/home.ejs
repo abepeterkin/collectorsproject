@@ -26,7 +26,7 @@ var username = "<%= username %>";
     <a id="about" href="#">About</a>
     <a id="signIn" href="#">Sign in</a>
     <a id="signUp" href="#">Sign up</a>
-    <a href="/upload" id="upload">Upload File</a>
+    <a id="upload">Upload File</a>
     <a id="profile" href="#">Profile</a>
     <a href="/logout" id="signOut">Sign out</a>
   </div>
@@ -108,20 +108,27 @@ var username = "<%= username %>";
   </div>
 </div>
 
-<!-- Modal content for signing in -->
-<!--<div id="resultModal" class="modal">
-  <div class="resultModalContent">
-    <div id="resultBody">
-      
-    </div>
-  </div>
-</div>-->
-
-
 <!-- Modal content for uploading -->
 <div id="uploadModal" class="modal">
   <div class="uploadModalContent">
     <div id="upload_body">
+      <h1>Object Uploader</h1>
+      <form action="/upload" method="POST" encType="multipart/form-data" id="upload_form">
+        <p>Column containing the object name: </p> <input type="number" name="namecolumn" min="1" required>
+        <p>Column containing the object provenance: </p> <input type="number" name="provenancecolumn" min="1" required>
+        <p>Ignore header row? <input name="ignoreheader" type="radio" value="true" checked> Yes <input name="ignoreheader" type="radio" value="false"> No</p>
+        <input type="file" name="spreadsheet" required id="upload_file_button">
+        <input type="submit" id="submit_button">
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal content for uploading -->
+<div id="objectModal" class="modal">
+  <div class="objectModalContent">
+    <div id="object_body">
       
 
     </div>
