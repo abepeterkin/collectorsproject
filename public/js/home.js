@@ -69,8 +69,9 @@ if (username != "") {
 						for (var key in resultObjects) {
 							if (resultObjects.hasOwnProperty(key)) {
      						var obj = resultObjects[key];
-								console.log(JSON.stringify(obj));
-								var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
+								var resultHTML = new EJS({
+									url: '../pages/searchresult.ejs'
+								}).render(obj);
 								$("#search_results").append(resultHTML);
 							}
 						}
@@ -97,7 +98,7 @@ if (username != "") {
 					});
 				}*/
 		});
-
+		
 		/************************************/
 		/*			Exit modal boxes		*/
 		/************************************/
