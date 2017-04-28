@@ -22,13 +22,19 @@ var username = "<%= username %>";
   <div id="title">
     <h1 id="nav_bar_title">the collector's project</h1>
   </div>
-  <div id="nav_bar"><a id="news" href="#">News</a>
+  <div id="nav_bar">
+    <a id="news" href="#">News</a>
     <a id="about" href="#">About</a>
     <a id="signIn" href="#">Sign in</a>
     <a id="signUp" href="#">Sign up</a>
-    <a href="/upload" id="upload">Upload File</a>
-    <a id="profile" href="#">Profile</a>
-    <a href="/logout" id="signOut">Sign out</a>
+    <div class="dropdown" id="dropdown">
+      <button class="dropbtn" id="dropbtn">Dropdown</button>
+      <div class="dropdown-content">
+        <a id="profile" href="#">Profile</a>
+        <a href="/upload" id="upload">Upload File</a>
+        <a href="/logout" id="signOut">Sign out</a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -40,6 +46,11 @@ var username = "<%= username %>";
       <td colspan="3"><div id="body_words">
           <p id="top">Your search begins here. </p>
         </div></td>
+    </tr>
+    <tr>
+      <td colspan="3"><div id="search_help">
+        <input type="checkbox" id="search_details"> Search Instructions</input>
+      </div></td>
     </tr>
     <tr>
       <td colspan="3"><div id="body_search">

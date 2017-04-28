@@ -8,10 +8,17 @@ checkUser();
 
 var searchbar = $("#search");
 
+$('#search_details').click(function(){
+  if(this.checked) {
+  	alert("To Search for an exact phrase, put the query in quotes. For instance, if you wanted to find 'John Smith' only, type into the search box \"John Smith\" with the quotes. \n\nTo exclude a term, use -term. For instance, if you wanted to exclude Smith, type in \"John -Smith\" without the quotes. This is case insensitive, so \"John -smith\" is the same query.");
+  }
+});
+
 if (username != "") {
-	$("#profile").html(username);
+	$("#dropbtn").html(username);
 	$("#signIn").hide();
 	$("#signUp").hide();
+	// $("#signOut").hide();
 }
 
 	if (modal == false) {
@@ -121,6 +128,7 @@ if (username != "") {
 			$("#profile").hide();
 			$("#signOut").hide();
 			$("#upload").hide();
+			$("#dropdown").hide();
 		}
 	}
 
