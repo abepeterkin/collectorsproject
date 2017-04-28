@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../styles/item.css">
+<script src="../js/visual.js"></script>
+<script src="../js/item.js"></script>
+<title>egyptian jar</title>
+</head>
+<body>
+<div id="header">
+  <div id="title">
+    <h1>the collector's project</h1>
+  </div>
+  <div id="nav_bar">
+    <ul>
+      <li><a href="#">search</a></li>
+      <li><a href="#">about</a></li>
+      <li><a href="#">sign in</a></li>
+    </ul>
+  </div>
+</div>
+<div id="page_body">
+  <div id="search">
+    <div id="results">
+      <h2>search results</h2>
+      <input id="bar" type="text" name="search" placeholder="search...">
+    </div>
+    <div id="filters">
+      <h4>filters</h4>
+      <form>
+        <input class="check" type="checkbox" name="location" value="location">
+        location
+        <input id="location_input" type="text" name="location">
+        <input class="check" type="checkbox" name="date" value="date">
+        date
+        <input id="date_input" type="text" name="date">
+        <input class="check" type="checkbox" name="person" value="person">
+        people
+        <input id="person_input" type="text" name="person">
+        <input type="submit" value="submit">
+      </form>
+    </div>
+  </div>
+  <div id="results_module" class="tabs">
+    <div class="tab">
+      <button class="tablinks">
+      <a id="back_button" href="../search/search.html">←</a>
+      </button>
+      <button class="tablinks" onclick="openResult(event, 'Information')">Information</button>
+      <button class="tablinks" onclick="openResult(event, 'Map')">Map</button>
+    </div>
+    <div id="Information" class="tabcontent">
+      <h1>egyptian jar</h1>
+      <!--<a href="#">edit info</a>--> 
+      
+      <!--code for popup; won't work in separate js file for me for some reason--> 
+      
+      <!-- Trigger/Open The Modal -->
+      <button id="myBtn">edit info</button>
+      
+      <!-- The Modal -->
+      <div id="myModal" class="modal"> 
+        
+        <!-- Modal content -->
+        <div class="modal-content"> <span class="close">&times;</span>
+          <center>
+            <h1>edit info</h1>
+          </center>
+          <p>add image</p>
+          <button>upload</button>
+          <p>add movement</p>
+          <table class="list" style="width:50%">
+            <tr>
+              <td>date</td>
+              <td><input class="searchbar" type="text"></td>
+            </tr>
+            <tr>
+              <td>contributors</td>
+              <td><input class="searchbar" type="text">
+                <br>
+                <a href="#">+ add another</a></td>
+            </tr>
+            <tr>
+              <td>location</td>
+              <td><input class="searchbar" type="text"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <script>
+	// Get the modal
+	var modal = document.getElementById('myModal');
+
+	// Get the button that opens the modal
+	var btn = document.getElementById("myBtn");
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks the button, open the modal 
+	btn.onclick = function() {
+	    modal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+	    modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
+</script>
+      <div id="images">
+        <h2>images</h2>
+        <div id="art1" class="artifact">
+          <div class="box"><img src="../images/2000.30.jpg" width="100px" height="100px"></div>
+        </div>
+        <div id="art1" class="artifact">
+          <div class="box"> </div>
+        </div>
+        <div id="art1" class="artifact">
+          <div class="box"> </div>
+        </div>
+        <div id="art1" class="artifact">
+          <div class="box"> </div>
+        </div>
+      </div>
+      <div id="discovery">
+        <h2>discovery</h2>
+        <table class="list" style="width:50%">
+          <tr>
+            <td>location</td>
+            <td>Cairo, Egypt</td>
+          </tr>
+          <tr>
+            <td>date</td>
+            <td>11 September 1992</td>
+          </tr>
+          <tr>
+            <td>contributors</td>
+            <td>John Doe, McGill University</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Jane Doe, University of Rhode Island</td>
+          </tr>
+        </table>
+      </div>
+      <div id="movement">
+        <h2>movement</h2>
+        <table class="list" id="last_table" style="width:50%">
+          <tr>
+            <td>15 August 2000</td>
+            <td><a href="#">George Georges</a></td>
+            <td>Museum of Fine Arts, Boston</td>
+          </tr>
+          <tr>
+            <td>26 December 2004</td>
+            <td><a href="#">Michael Michaelson</a></td>
+            <td>MoMA, San Francisco</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div id="Map" class="tabcontent"> </div>
+  </div>
+</div>
+</body>
+</html>
