@@ -327,8 +327,9 @@ table {
   	right: 0;
   	bottom: 0;
   	left: 0;
-  	width: 500px;
-  	height: 500px;
+
+  	width: 700px;
+  	height: 300px;
 
  	border-radius: 20px;
  	display: flex;
@@ -338,6 +339,8 @@ table {
 	color: black;
 	background-color: white;
 	font-family: "akzidenz-light";
+
+	padding: 40px;
 }
 
 #object_body h1 {
