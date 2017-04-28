@@ -1,64 +1,44 @@
 /************************************/
-/*				GENERIC				*/
+/*				MAIN BODY			*/
 /************************************/
+
 body {
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
+	margin:0;
+	padding:0;
 }
 
 #header {
 	display: flex;
-	flex-direction: row;
+	flex-direction:row;
 	font-family:"akzidenz-bold";
-	margin: 0;
-	padding: 0;
-	justify-content: space-between;
+	margin:0;
+	padding:0;
+	justify-content:space-between;
 	align-items: center;
+
 	height: 100px;
 	background-color: hsla(0,0%,0%,0.5);
-	z-index: 0;
 }
 
-h1 {
+#title h1 {
 	padding-left:30px;
 	font-size: 30pt;
-	color: hsla(0,0%,100%,1);
-	padding-bottom: 0px;
-	margin-bottom: 0px;
-	font-family:"akzidenz-regular";
-}
-
-h2 {
-	padding-left:40px;
-	margin: 0;
-	font-size: 20pt;
-	color: #5D5D5D;
-	font-family:"akzidenz-regular";
-}
-
-p {
-	color: hsla(0,0%,100%,1);
-}
-
-label {
-	color: hsla(0,0%,100%,1);
-	font-family:"akzidenz-regular";
+	color: white;
 }
 
 /************************************/
 /*			NAVIGATION MENU			*/
 /************************************/
 #nav_bar {
-	font-family: "akzidenz-regular";
-	float: right;
+	font-family:"akzidenz-regular";
+	float:right;
 	margin-right: 40px;
 }
 
 #nav_bar a {
-	text-decoration: none;
+	text-decoration:none;
 	color: white;
-	padding: 15px;
+	padding:15px;
 	font-size: 20px;
 	font-family:"akzidenz-medium";
 }
@@ -71,80 +51,21 @@ label {
 /************************************/
 /*				MODALS				*/
 /************************************/
-#modal {
-	display: none;
-	margin: 0 auto;
-	position: absolute;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
-
-#modalBox {
-	position: fixed;
-	left: 40%;
-	right: 40%;
-	top: 30%;
-}
-
-/****************************/
-/*			Sign up			*/
-/****************************/
-#signup_tbl {
-	background: hsla(0,0%,0%,0.8);
-	border: solid white 1px;
-	border-radius: 15px;
-	padding: 50px;
-	color: white;
-}
-
-#signup_tbl td {
-	padding: 5px;
-}
-
-/****************************/
-/*			Sign in			*/
-/****************************/
-#signIn_tbl {
-	background: hsla(0,0%,0%,0.8);
-	border: solid white 1px;
-	border-radius: 25px;
-	padding: 50px;
-}
-
-#signIn_tbl td {
-	padding: 5px;
-}
-
-/****************************/
-/*		User Profile		*/
-/****************************/
-#userProfile_tbl {
-	background: hsla(0,0%,0%,0.8);
-	border: solid white 1px;
-	border-radius: 25px;
-	padding: 50px;
-}
-
-#userProfile_tbl td {
-	padding: 5px;
-}
-/*
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 2;
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+/*    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 .signUpModalContent {
+ /*   background-color: hsla(0,0%,0%,0.7);*/
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -154,6 +75,7 @@ label {
 }
 
 .signInModalContent {
+/*    background-color: hsla(0,0%,0%,0.7);*/
     margin: 20% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -163,6 +85,7 @@ label {
 }
 
 .uploadModalContent {
+/*    background-color: hsla(0,0%,0%,0.7);*/
     margin: 20% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -170,11 +93,11 @@ label {
     width: 10%;
 	border-radius: 25px;
 }
-*/
+
 /************************************/
 /*			SIGN UP MODAL			*/
 /************************************/
-/*#signUpBody {
+#signUpBody {
 	position: absolute;
   	margin: auto;
   	top: 0;
@@ -183,6 +106,7 @@ label {
   	left: 0;
   	width: 40%;
   	height: 450px;
+/*  	overflow-y: auto;*/
  	border-radius: 25px;
  	display: flex;
  	flex-direction: column;
@@ -216,11 +140,10 @@ label {
 	margin-right: 10px;
 }
 
-.btn {
-	height: 30px;
-    width: 200px;
-	border-radius: 25px;
-    font-size: 20px;
+.butt {
+	height:50px;
+    width:100px;
+    font-size: 15px;
 }
 
 #floatright {
@@ -232,9 +155,8 @@ label {
 }
 
 input[type=checkbox] {
-  transform: scale(1.5);
+	transform: scale(1.5);
 }
-
 
 #signUpBody h2 {
 	color: black;
@@ -258,12 +180,20 @@ td {
 table {
 	margin-bottom: 40px;
 	margin-top: 20px;
+
+}
+
+.searchbar {
+	height: 20px;
+	width: 200px;
+	font-size: 18px;
+	font-family: "akzidenz-light";
 }
 
 /************************************/
 /*			SIGN IN MODAL			*/
 /************************************/
-/*#signInBody {
+#signInBody {
 	position: absolute;
   	margin: auto;
   	top: 0;
@@ -323,19 +253,62 @@ table {
 	width: 200px;
 }
 
+
 /************************************/
 /*			UPLOAD MODAL 			*/
 /************************************/
-#uploadSpreadsheet_tbl {
-	background: hsla(0,0%,0%,0.8);
-	border: solid white 1px;
-	border-radius: 15px;
-	padding: 50px;
+
+#upload_body {
+ 	position: absolute;
+  	margin: auto;
+  	top: 0;
+  	right: 0;
+  	bottom: 0;
+  	left: 0;
+  	width: 500px;
+  	height: 500px;
+
+ 	border-radius: 20px;
+ 	display: flex;
+ 	flex-direction: column;
+ 	justify-content: center;
+ 	align-items: center;
+	color: black;
+	background-color: white;
+	font-family: "akzidenz-light";
 }
 
-#uploadSpreadsheet_tbl td {
-	padding: 5px;
+#upload_body h1 {
+	color: black;
+	font-family: "akzidenz-bold";
 }
+
+#submit_button {
+	color: white;
+	font-family: "akzidenz-medium";
+	background-color: #4f65d3;
+	border-style: none;
+	font-size: 20px;
+	width: 150px;
+	height: 50px;
+	margin-top: 40px;
+}
+
+#upload_form {
+	display: flex;
+  	flex-direction: column;
+ 	justify-content: center;
+ 	align-items: center;
+}
+
+#upload_file_button {
+	padding-left: 80px;
+}
+
+
+
+
+
 /************************************/
 /*				BODY				*/
 /************************************/
@@ -343,17 +316,19 @@ table {
 #body_text {
 	position: fixed;
   	margin: auto;
+
   	top: 40%;
   	right: 0;
   	bottom: 20%;
-  	left: 20%;
+  	left: 0;
+
   	width: 75%;
+
   	text-align: center;
-	color: hsla(0,0%,100%,1);
-    font-family: "akzidenz-light";
-	font-weight: bold;
-	font-size: 20px;
+
+
 }
+
 
 #top {
 	color: white;
@@ -362,9 +337,10 @@ table {
 	margin: 25px;
 }
 
+
 #search {
     height: 50px;
-    width: 100%;
+    width: 50%;
     border-radius: 25px;
     padding: 5px 5px 5px 25px;
     z-index: 1;
@@ -373,15 +349,17 @@ table {
     font-family: "akzidenz-light"
 }
 
+
+
 /************************************/
 /*				SEARCH				*/
 /************************************/
-
 #search_results {
 	position: absolute;
 	margin: auto;
-	margin-top: 50px;
-	top: 150px;
+	margin-top: 100px;
+
+	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
@@ -392,6 +370,9 @@ table {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+	background-color: white;
+	overflow: scroll;
+	visibility: hidden;
 }
 
 .search_result {
@@ -399,6 +380,8 @@ table {
 	font-size: 12px;
 	display:inline-block;
 	margin:20px;
+	margin-bottom: 0px;
+	padding: 0px;
 	background-color: white;
 	width:100px;
 	height:100px;
@@ -407,63 +390,17 @@ table {
 	border-width: 1px;
 }
 
-/**COMMENTING THIS OUT BECAUSE I COULDN'T FIND THE HTML IT ORIGINALLY APPLIED TO - Abe
-
-#search_results {
-    background-color: white;
-	overflow: scroll;
-	position: absolute;
-  	margin: auto;
-  	margin-top: 50px;
-  	top: 150px;
-  	right: 0;
-  	bottom: 0;
-  	left: 0;
-  	width: 80%;
-  	height: 70%;
-  	padding-left: 50px;
-  	padding-right: 50px;
-  	display: flex;
-  	flex-direction: row;
-  	flex-wrap: wrap;
-}
-
-.artifact {
-	display:inline-block;
-	margin:20px;
-}
-
-.artifact h4 {
-	margin:0;
-	padding:0;
-	font-family:"akzidenz-regular";
-	text-align:center;
-}
-
-.box {
-	width:100px;
-	height:100px;
-	background-color: none;
-	border-style:solid;
-	border-radius:5px;
-	border-width: 1px;
-	margin:0 auto;
-}
-
-.object_label {
-	width: 100px;
-}
-
-************************************************/
 
 /************************************/
 /*			RESPONSIVE				*/
 /************************************/
+
+
 @media only screen and (max-width: 1500px) {
-   	#top {
+   	#top { 
    		font-size: 50px;
    	}
-
+   	
    	#header {
    		height: 50px;
    	}
@@ -520,11 +457,13 @@ table {
    		visibility: hidden;
    		height: 1px;
    	}
+
 }
 
-/****************************/
-/*			Fonts			*/
-/****************************/
+/************************************/
+/*				FONTS				*/
+/************************************/
+
 @font-face {
 	font-family:"akzidenz-bold";
 	src:url("akzidenz/akzidenz_bold.otf") format("opentype");
