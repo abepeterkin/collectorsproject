@@ -6,10 +6,7 @@ var results = false;
 background();
 checkUser();
 
-var searchbar = $("#search");
-
 if (username != "") {
-	$("#profile").html(username);
 	$("#signIn").hide();
 	$("#signUp").hide();
 }
@@ -20,14 +17,8 @@ if (username != "") {
 		/************************************/
 		$("#signUp").click(function(){
 			modal = true;
-			$.ajax({
-				type: "GET",
-				url: "/signup",
-				success: function(data){
-					$("#modalBox").html(data);
-					$("#modal").fadeIn();
-				}
-			});
+			$("#modalBox").load("pages/signup.ejs");
+			$("#modal").fadeIn();
 		});
 
 		/************************************/
@@ -35,48 +26,49 @@ if (username != "") {
 		/************************************/
 		$("#signIn").click(function() {
 			modal = true;
-			$.ajax({
-				type: "GET",
-				url: "/signin",
-				success: function(data){
-					$("#modalBox").html(data);
-					$("#modal").fadeIn();
-				}
-			});
+			$("#modalBox").load("pages/signin.ejs");
+			$("#modal").fadeIn();
 		});
 
 		/************************************/
 		/*				Upload 				*/
 		/************************************/
-			$("#upload").click(function() {
-				modal = true;
-				$.post("upload", function(data){
-					console.log(data);
-				});
-			});
-
+		$("#upload").click(function() {
+			modal = true;
+			$("#modalBox").load("pages/upload.ejs");
+			$("#modal").fadeIn();
+		});
 
 		/************************************/
 		/*			Profile Modal			*/
 		/************************************/
-			$("#profile").click(function() {
-				modal = true;
-				$.post("profile", function(data){
-					$("#modal").html(data).fadeIn();
-				});
-			});
+		$("#profile").click(function() {
+			modal = true;
+			$("#modalBox").load("pages/profile.ejs");
+			$("#modal").fadeIn();
+		});
+		
+		/************************************/
+		/*				Sign out			*/
+		/************************************/
+		$("#signOut").click(function() {
+			modal = false;
+			window.location.href = "/logout";
+		});
 
 		/************************************/
 		/*			Search Modal			*/
 		/************************************/
-			searchbar.keyup(function(event){
+		$("#search").keyup(function(event){
+			if(event.keyCode == 13){
+				$("#body_words").fadeOut();
 				$("#search_results").html("");
-				if (searchbar.val() !== "") {
-					$.post("search/" + searchbar.val(), function(result){
+				if ($("#search").val() !== "") {
+					$.post("search/" + $("#search").val(), function(result){
 						var resultObjects = JSON.parse(result);
 						for (var key in resultObjects) {
 							if (resultObjects.hasOwnProperty(key)) {
-      					var obj = resultObjects[key];
+     						var obj = resultObjects[key];
 								console.log(JSON.stringify(obj));
 								var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
 								$("#search_results").append(resultHTML);
@@ -84,8 +76,15 @@ if (username != "") {
 						}
 					});
 				}
-				/*modal = true;
-				results = true;
+								$("#search").animate({
+					bottom: '500px'
+				});
+				$("#search").ajaxComplete(function() {
+					$("#search").prop('disabled', false);
+				});
+			}
+			/*modal = true;
+			results = true;
 				if(event.keyCode == 13){
 					query = $("#search").val();
 					$("#body_words").hide();
@@ -97,27 +96,22 @@ if (username != "") {
 						$("#modal").html(data).fadeIn();
 					});
 				}*/
-			});
+		});
 
 		/************************************/
 		/*			Exit modal boxes		*/
 		/************************************/
-			$(document).click(function(event) {
-				if (event.target == $("#modal")[0]) {
-					if (results == true) {
-						$("#body_words").show();
-					}
-					$("#modal").fadeOut();
-					modal = false;
-					console.log(modal);
-				}
-			});
-		console.log(modal);
+		$(document).click(function(event) {
+			if (event.target == $("#modal")[0]) {
+				$("#modal").fadeOut();
+				modal = false;
+			}
+		});
 	}
 
 	function checkUser() {
 		if (username === "") {
-			$("#username").hide();
+			$("#usernameDropdown").hide();
 			$("#profile").hide();
 			$("#signOut").hide();
 			$("#upload").hide();

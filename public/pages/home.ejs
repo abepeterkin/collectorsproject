@@ -22,13 +22,18 @@ var username = "<%= username %>";
   <div id="title">
     <h1 id="nav_bar_title">the collector's project</h1>
   </div>
-  <div id="nav_bar"><a id="news" href="#">News</a>
+  <div id="nav_bar">
+  	<a id="signIn" href="#">Sign in</a>
+	<div id="dropdown" class="dropdown">
+		<a class="dropbtn" id="usernameDropdown"><%= username %></a>
+		<div class="dropdown-content">
+		    <a id="upload" href="#">Upload File</a>
+	   		<a id="profile" href="#">Profile</a>
+		   	<a id="signOut" href="#">Sign out</a>
+		</div>
+	</div>
     <a id="about" href="#">About</a>
-    <a id="signIn" href="#">Sign in</a>
-    <a id="signUp" href="#">Sign up</a>
-    <a href="/upload" id="upload">Upload File</a>
-    <a id="profile" href="#">Profile</a>
-    <a href="/logout" id="signOut">Sign out</a>
+	<a id="news" href="#">News</a>
   </div>
 </div>
 
@@ -46,8 +51,10 @@ var username = "<%= username %>";
           <input type="text" id="search" placeholder="Enter your search term...">
         </div></td>
     </tr>
+	<tr>
+	<td>
+	  <div id="search_results"></div></td></tr>
   </table>
-  <div id="search_results"></div>
 </div>
 <div id="modal">
   <div id="modalBox"></div>
