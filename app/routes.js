@@ -119,6 +119,23 @@ app.post('/search/:query', function(req, res) {
 });
 
 /************************/
+/*	View object process	*/
+/************************/
+app.get('/object/:query', function(req, res) {
+	res.render('object.ejs', {
+		_id: req.params.query
+	});
+});
+
+app.post('/object/:query', function(req, res) {
+	var query = req.params.query;
+	objectDB.findObjects(query, function(result) {
+		var resultJSON = JSON.stringify(result);
+		res.send(resultJSON);
+	});
+});
+
+/************************/
 /*	Helper Functions	*/
 /************************/
 function isLoggedIn(req, res, next) {

@@ -1,13 +1,3 @@
-window.onload = function() {
-	var numImages = 2;
-    var randomNumber = Math.floor(Math.random() * numImages) + 1;
-	$("#backgroundImageID").css("background-image", "url(images/background_" + randomNumber + ".jpg");
-}
-
-
-var searchbar = $("#search");
-
-
 $(document).ready(function(){
 
 	console.log("USER: " + username);
@@ -83,73 +73,115 @@ if (username != "") {
 	});
 
 	$("#search").keyup(function(event){
+var modal = false;
+var results = false;
 
-			//document.getElementById("body_words").remove();
-			$("#top").hide();
-	    	document.getElementById("body_text").display="block";
-		    document.getElementById("body_text").style.top="75px"; 
+background();
+checkUser();
 
-		    document.getElementById("header").style.height = "50px";
+if (username != "") {
+	$("#signIn").hide();
+	$("#signUp").hide();
+}
 
+	if (modal == false) {
+		/************************************/
+		/*			Signup button			*/
+		/************************************/
+		$("#signUp").click(function(){
+			modal = true;
+			$("#modalBox").load("pages/signup.ejs");
+			$("#modal").fadeIn();
+		});
 
-		    document.getElementById("nav_bar_title").style.fontSize = "20px";
-		    document.getElementById("news").style.fontSize = "15px";
-		    document.getElementById("about").style.fontSize = "15px";
-		    document.getElementById("signIn").style.fontSize = "15px";
-		    document.getElementById("signUp").style.fontSize = "15px";
+		/************************************/
+		/*	Redirect to signup from login	*/
+		/************************************/
+		$("#signIn").click(function() {
+			modal = true;
+			$("#modalBox").load("pages/signin.ejs");
+			$("#modal").fadeIn();
+		});
 
-		    document.getElementById("upload").style.fontSize = "15px";
-		    document.getElementById("profile").style.fontSize = "15px";
-		    document.getElementById("signOut").style.fontSize = "15px";
+		/************************************/
+		/*				Upload 				*/
+		/************************************/
+		$("#upload").click(function() {
+			modal = true;
+			$("#modalBox").load("pages/upload.ejs");
+			$("#modal").fadeIn();
+		});
 
-		    document.getElementById("search_results").style.visibility="visible";
-		    document.getElementById("search_results").style.top="20px";
-		    document.getElementById("search_results").style.height="600px";
+		/************************************/
+		/*			Profile Modal			*/
+		/************************************/
+		$("#profile").click(function() {
+			modal = true;
+			$("#modalBox").load("pages/profile.ejs");
+			$("#modal").fadeIn();
+		});
+		
+		/************************************/
+		/*				Sign out			*/
+		/************************************/
+		$("#signOut").click(function() {
+			modal = false;
+			window.location.href = "/logout";
+		});
 
-
-		$("#search_results").html("");
+		/************************************/
+		/*			Search Modal			*/
+		/************************************/
+		$("#search").keyup(function(event){
+			if(event.keyCode == 13){
+				$("#body_words").fadeOut();
+				$("#search_results").html("");
 				if ($("#search").val() !== "") {
-
-				    console.log($("#search").val());
 					$.post("search/" + $("#search").val(), function(result){
 						var resultObjects = JSON.parse(result);
 						for (var key in resultObjects) {
 							if (resultObjects.hasOwnProperty(key)) {
-      					var obj = resultObjects[key];
-								console.log(JSON.stringify(obj));
-								var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
+     						var obj = resultObjects[key];
+								var resultHTML = new EJS({
+									url: '../pages/searchresult.ejs'
+								}).render(obj);
 								$("#search_results").append(resultHTML);
 							}
 						}
 					});
 				}
-			});
-
-			$(document).on('click', ".search_result", function(event) {
-				console.log("RESULT CLICKED");
-
-				var obj = {
-					_id : $(this).attr("_id"),
-					affiliation: $(this).attr("data-affiliation"),
-					name : $(this).attr("data-name"),
-					Provenance : $(this).attr("data-provenance")
-				}
-
-				var modalHTML = new EJS({url: '../pages/artifact.ejs'}).render(obj);
-				$("#object_body").html(modalHTML);
-
-				$("#objectModal")[0].style.display = "flex";
-				$("#objectModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
-			});
-
-			$(document).on('mouseover', ".search_result", function(event) {
-				console.log("RESULT MOUSEOVER");
-				$('body').css('cursor','pointer');
-			});
-
-			$(document).on('mouseleave', ".search_result", function(event) {
-				$('body').css('cursor','default');
-			});
+								$("#search").animate({
+					bottom: '500px'
+				});
+				$("#search").ajaxComplete(function() {
+					$("#search").prop('disabled', false);
+				});
+			}
+			/*modal = true;
+			results = true;
+				if(event.keyCode == 13){
+					query = $("#search").val();
+					$("#body_words").hide();
+					$("#body_text").display = "block";
+					console.log($("#body_text"));
+//					$("#body_text").style.top = "75px";
+//					$("#header").style.height = "50px";
+					$.post("search/" + query, function(data){
+						$("#modal").html(data).fadeIn();
+					});
+				}*/
+		});
+		
+		/************************************/
+		/*			Exit modal boxes		*/
+		/************************************/
+		$(document).click(function(event) {
+			if (event.target == $("#modal")[0]) {
+				$("#modal").fadeOut();
+				modal = false;
+			}
+		});
+	}
 
 	function checkUser() {
 		if (username === "") {
@@ -161,4 +193,9 @@ if (username != "") {
 		}
 	}
 
+	function background() {
+		var numImages = 2;
+		var randomNumber = Math.floor(Math.random() * numImages) + 1;
+		$("#backgroundImageID").css("background-image", "url(images/background_" + randomNumber + ".jpg");
+	}
 });
