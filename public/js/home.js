@@ -57,7 +57,7 @@ if (username != "") {
 	    $("#uploadModal")[0].style.display = "flex";
 		$("#uploadModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
-	
+
 	$(document).click(function(event) {
     	if (event.target == $("#signUpModal")[0]) {
 			$("#signUpModal")[0].style.display = "none";
@@ -87,7 +87,7 @@ if (username != "") {
 			//document.getElementById("body_words").remove();
 			$("#top").hide();
 	    	document.getElementById("body_text").display="block";
-		    document.getElementById("body_text").style.top="75px"; 
+		    document.getElementById("body_text").style.top="75px";
 
 		    document.getElementById("header").style.height = "50px";
 
@@ -150,6 +150,28 @@ if (username != "") {
 			$(document).on('mouseleave', ".search_result", function(event) {
 				$('body').css('cursor','default');
 			});
+
+			$('#upload_body').submit(function(event) {
+				event.preventDefault();
+				var data = new FormData();
+				data.append('provenancecolumn', $('input[name=provenancecolumn]').val());
+				data.append('namecolumn', $('input[name=namecolumn]').val());
+				data.append('ignoreheader', $('input[name=ignoreheader]').val());
+				data.append('file', $('input[type=file]')[0].files[0]);
+				console.log($('input[type=file]')[0].files[0]);
+				$(this).html("Uploading...");
+				$.ajax({
+            url: '/upload',
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            success: function(data){
+							$('#upload_body').html(data);
+						}
+				});
+		});
 
 	function checkUser() {
 		if (username === "") {

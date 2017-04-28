@@ -62,13 +62,13 @@ app.get('/profile', isLoggedIn, function(req, res) {
 /************************/
 /*		Search process	*/
 /************************/
-app.post('/uploadfile', function(req, res) {
+/*app.post('/uploadfile', function(req, res) {
 	var spreadsheet = req.files.spreadsheet;
 	console.log('- Received file submission: ' + spreadsheet.name);
 	workbook = XLSX.read(spreadsheet.data);
 	xlsx = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
 	res.send(objectDB.insertArtifact(xlsx));
-});
+});*/
 
 app.get('/upload', isLoggedIn, function(req, res) {
 	res.render('upload.ejs', {
@@ -77,6 +77,11 @@ app.get('/upload', isLoggedIn, function(req, res) {
 });
 
 app.post('/upload', isLoggedIn, function(req, res) {
+	console.log(req.body);
+	console.log(req.files);
+	console.log(req.body.provenancecolumn);
+	console.log(req.body.namecolumn);
+	console.log(req.body.ignoreheader);
 	if (!req.body.provenancecolumn || !req.body.namecolumn || !req.files || !req.body.ignoreheader) {
 		res.render('uploadresult.ejs', {
 			result: "Invalid request",
@@ -132,7 +137,7 @@ function isLoggedIn(req, res, next) {
 function insertObjects(req) {
 	var nameColumn = parseInt(req.body.namecolumn) - 1;
 	var provenanceColumn = parseInt(req.body.provenancecolumn) - 1;
-	var spreadsheet = req.files.spreadsheet;
+	var spreadsheet = req.files.file;
 	var ignoreheader = req.body.ignoreheader;
 	console.log('- Received file submission: ' + spreadsheet.name);
 	var workbook = XLSX.read(spreadsheet.data);

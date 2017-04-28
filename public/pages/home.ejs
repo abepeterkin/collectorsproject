@@ -122,7 +122,7 @@ var username = "<%= username %>";
   <div class="uploadModalContent">
     <div id="upload_body">
       <h1>Object Uploader</h1>
-      <form action="/upload" method="POST" encType="multipart/form-data" id="upload_form">
+      <form method="POST" encType="multipart/form-data" id="upload_form">
         <p>Column containing the object name: </p> <input type="number" name="namecolumn" min="1" required>
         <p>Column containing the object provenance: </p> <input type="number" name="provenancecolumn" min="1" required>
         <p>Ignore header row? <input name="ignoreheader" type="radio" value="true" checked> Yes <input name="ignoreheader" type="radio" value="false"> No</p>
@@ -138,7 +138,7 @@ var username = "<%= username %>";
 <div id="objectModal" class="modal">
   <div class="objectModalContent">
     <div id="object_body">
-      
+
 
     </div>
   </div>
