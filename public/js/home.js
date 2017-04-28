@@ -104,6 +104,29 @@ $(document).ready(function(){
 						}
 					});
 				}
-	});
+			});
+
+			$(document).on('click', ".search_result", function(event) {
+				console.log("RESULT CLICKED");
+				modal = true;
+				var obj = {
+					_id : $(this).attr("_id"),
+					affiliation: $(this).attr("data-affiliation"),
+					name : $(this).attr("data-name"),
+					Provenance : $(this).attr("data-provenance")
+				}
+				var modalHTML = new EJS({url: '../pages/artifact.ejs'}).render(obj);
+				$("#modal").html(modalHTML).fadeIn();
+			});
+
+			$(document).on('mouseover', ".search_result", function(event) {
+				console.log("RESULT MOUSEOVER");
+				$('body').css('cursor','pointer');
+			});
+
+			$(document).on('mouseleave', ".search_result", function(event) {
+				$('body').css('cursor','default');
+			});
+
 
 });
