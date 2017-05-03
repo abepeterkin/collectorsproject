@@ -10,7 +10,7 @@ $(document).ready(function(){
       					var obj = resultObjects[key];
 								console.log(JSON.stringify(obj));
 								var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
-								$("#search_results").append(resultHTML);
+								$("#profile_search_results").append(resultHTML);
 							}
 						}
 					});
