@@ -10,13 +10,13 @@ var datab = [];
 MongoClient.connect(url, function(err, db) {
   assert.equal(null, err);
   console.log("Connected correctly to server.");
-  dropAll(db);
+  /*dropAll(db);
   objectIndexing(db);
   console.log("Indexed objects");
   personIndexing(db);
   console.log("Indexed persons");
   locationIndexing(db);
-  console.log("Indexed locations");
+  console.log("Indexed locations");*/
   db.close();
 });
 

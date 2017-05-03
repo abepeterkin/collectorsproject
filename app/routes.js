@@ -123,6 +123,20 @@ app.post('/search/:query', function(req, res) {
 	}
 });
 
+app.post('/search/:query/:userid', function(req, res) {
+	var query = req.params.query;
+	var userid = req.params.userid
+	console.log("QUERY: [" + [query] + "]");
+	console.log("QUERY: [" + [userid] + "]");
+	if (query !== "") {
+		objectDB.searchForUserObjects(userid, query, function(result) {
+			var resultJSON = JSON.stringify(result);
+			res.send(resultJSON);
+			console.log(resultJSON);
+		});
+	}
+});
+
 /************************/
 /*	Helper Functions	*/
 /************************/

@@ -3,19 +3,27 @@
 <head>
 <title>Node Authentication</title>
 <link rel="stylesheet" href="styles/home.css">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="styles/profile.css">
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+var user_id = "<%= user._id %>";
+</script>
+<script src="js/ejs_production.js"></script>
 <script src="js/profile.js"></script>
 </head>
 <body>
+
+  <!-- Navigation content -->
+  <div id="header">
+    <div id="title">
+      <h1 id="nav_bar_title">the collector's project</h1>
+    </div>
+    <div id="nav_bar">
+      <a id="" href="/">Back to home page</a>
+    </div>
+  </div>
+
 <table id="userProfile_tbl">
-  <tr>
-    <td><h2>Welcome <%= user %></h2></td>
-  </tr>
-  <tr>
-    <td><label>User ID:</label></td>
-    <td colspan="2"><%= user._id %></td>
-  </tr>
   <tr>
     <td><label>Email:</label></td>
     <td><%= user.local.email %></td>
@@ -44,5 +52,14 @@
     <td colspan="2"><%= user.country %></td>
   </tr>
 </table>
+
+<div id="profile_search">
+
+    <div id="profile_search_words"><p>Search within the objects you've uploaded: </p></div>
+    <div id="profile_search_bar"><input type="text" id="search" placeholder="Enter an artifact, place, or person"></div>
+
+    <div id="profile_search_results"></div>
+</div>
+
 </body>
 </html>

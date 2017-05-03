@@ -1,20 +1,47 @@
 $(document).ready(function(){
-	
-	function edit(type){
-	}
-	
-/*	var span = document.getElementsByClassName("close")[0];	
 
-	$("#edit").click(function() {
-	    $("#signInModal")[0].style.display = "flex";
-		$("#signInModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
-	});
+	$("#search").keyup(function(event){
 
-	$(document).click(function(event) {
-    	if (event.target == $("#signInModal")[0]) {
-			$("#signInModal")[0].style.display = "none";
-		}
-	});
+		if ($("#search").val() !== "") {
+				$.post("search/" + $("#search").val() + "/" + user_id, function(result){
+						var resultObjects = JSON.parse(result);
+						for (var key in resultObjects) {
+							if (resultObjects.hasOwnProperty(key)) {
+      					var obj = resultObjects[key];
+								console.log(JSON.stringify(obj));
+								var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
+								$("#search_results").append(resultHTML);
+							}
+						}
+					});
+				}
+			});
 
-	document.getElementById("defaultOpen").click();*/
+			$(document).on('click', ".search_result", function(event) {
+				console.log("RESULT CLICKED");
+
+				var obj = {
+					_id : $(this).attr("_id"),
+					affiliation: $(this).attr("data-affiliation"),
+					name : $(this).attr("data-name"),
+					Provenance : $(this).attr("data-provenance")
+				}
+
+				var modalHTML = new EJS({url: '../pages/artifact.ejs'}).render(obj);
+				$("#object_body").html(modalHTML);
+
+				$("#objectModal")[0].style.display = "flex";
+				$("#objectModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+			});
+
+			$(document).on('mouseover', ".search_result", function(event) {
+				console.log("RESULT MOUSEOVER");
+				$('body').css('cursor','pointer');
+			});
+
+			$(document).on('mouseleave', ".search_result", function(event) {
+				$('body').css('cursor','default');
+			});
+
+
 });
