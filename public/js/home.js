@@ -1,5 +1,5 @@
 window.onload = function() {
-	var numImages = 2;
+	var numImages = 4;
     var randomNumber = Math.floor(Math.random() * numImages) + 1;
 	$("#backgroundImageID").css("background-image", "url(images/background_" + randomNumber + ".jpg");
 }
