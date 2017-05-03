@@ -93,7 +93,6 @@ if (username != "") {
 
 
 		    document.getElementById("nav_bar_title").style.fontSize = "20px";
-		    document.getElementById("news").style.fontSize = "15px";
 		    document.getElementById("about").style.fontSize = "15px";
 		    document.getElementById("signIn").style.fontSize = "15px";
 		    document.getElementById("signUp").style.fontSize = "15px";
@@ -108,9 +107,9 @@ if (username != "") {
 
 
 		$("#search_results").html("");
-				if ($("#search").val() !== "") {
+		if ($("#search").val() !== "") {
 
-				    console.log($("#search").val());
+				  console.log($("#search").val());
 					$.post("search/" + $("#search").val(), function(result){
 						var resultObjects = JSON.parse(result);
 						for (var key in resultObjects) {

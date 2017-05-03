@@ -487,10 +487,10 @@ table {
 
 
 @media only screen and (max-width: 1500px) {
-   	#top { 
+   	#top {
    		font-size: 50px;
    	}
-   	
+
    	#header {
    		height: 50px;
    	}

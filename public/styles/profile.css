@@ -17,6 +17,7 @@
 }
 
 #profile_search_results {
+
 	position: absolute;
 	margin: auto;
 	margin-top: 50px;
@@ -31,5 +32,4 @@
 	flex-wrap: wrap;
 	background-color: white;
 	overflow: scroll;
-	visibility: hidden;
 }

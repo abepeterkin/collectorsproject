@@ -2,6 +2,7 @@ $(document).ready(function(){
 
 	$("#search").keyup(function(event){
 
+		$("#profile_search_results").html("");
 		if ($("#search").val() !== "") {
 				$.post("search/" + $("#search").val() + "/" + user_id, function(result){
 						var resultObjects = JSON.parse(result);
@@ -43,5 +44,10 @@ $(document).ready(function(){
 				$('body').css('cursor','default');
 			});
 
+			$(document).click(function(event) {
+					if (event.target == $("#objectModal")[0]) {
+					$("#objectModal")[0].style.display = "none";
+				}
+			});
 
 });
