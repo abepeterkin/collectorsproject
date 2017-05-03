@@ -15,3 +15,21 @@
 #profile_search #body_words{
 	color : black
 }
+
+#profile_search_results {
+	position: absolute;
+	margin: auto;
+	margin-top: 50px;
+
+
+	width: 50%;
+	height: 70%;
+	padding-left: 50px;
+	padding-right: 50px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	background-color: white;
+	overflow: scroll;
+	visibility: hidden;
+}
