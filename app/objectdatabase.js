@@ -10,14 +10,14 @@ var datab = [];
 MongoClient.connect(url, function(err, db) {
   assert.equal(null, err);
   console.log("Connected correctly to server.");
-  /*dropAll(db);
+  dropAll(db);
   objectIndexing(db);
   console.log("Indexed objects");
   personIndexing(db);
   console.log("Indexed persons");
   locationIndexing(db);
   console.log("Indexed locations");
-  db.close();*/
+  db.close();
 });
 
 function insertMany(objects) {
@@ -310,7 +310,7 @@ function removeObject(obid) {
 function searchForUserObjects(userId, query, callback) {
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
-    var results = db.collection('object').find({userId: {$eq: userId}, {$text : {$search : query}}}, {
+    var results = db.collection('object').find({$and: [{userId : {$eq: userId}}, {$text : {$search : query}}]}, {
       score : {$meta : "textScore"}}).sort(
       {score: {$meta : "textScore"}}).toArray(function(err, documents) {
         assert.equal(err, null);
@@ -337,6 +337,6 @@ module.exports.searchOnLocation = searchOnLocation;
 module.exports.addObjectToPerson = addObjectToPerson;
 module.exports.addLocationToPerson = addLocationToPerson;
 module.exports.getUsersObjects = getUsersObjects;
-module.exports.updateObject = udpateObject;
+module.exports.updateObject = updateObject;
 module.exports.removeObject = removeObject;
 module.exports.searchForUserObjects = searchForUserObjects;
