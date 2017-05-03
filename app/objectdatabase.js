@@ -25,14 +25,14 @@ function insertMany(objects) {
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
     console.log("Connected to DB");
-  db.collection('object').insertMany(objects, function(err, records) {
-    assert.equal(err, null);
-    console.log("Inserted " + records.insertedCount + " into the object collection.");
-  });
-  console.log("Closing");
-  db.close();
-  console.log("Closed");
-  });
+    db.collection('object').insertMany(objects, function(err, records) {
+      assert.equal(err, null);
+      console.log("Inserted " + records.insertedCount + " into the object collection.");
+    });
+    console.log("Closing");
+    db.close();
+    console.log("Closed");
+    });
   console.log("Gets after connect");
 }
 
@@ -210,7 +210,7 @@ var addPersonToObject = function(object, person) {
 }
 
 var searchOnObject = function(query, callback) {
-    MongoClient.connect(url, function(err, db) {
+  MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
     var results = db.collection('object').find({$text : {$search : query}}, {
       score : {$meta : "textScore"}}).sort(
@@ -271,32 +271,57 @@ var addLocationToPerson = function(person, location) {
   });
 }
 
-function searchQuery(query, callback){
-	MongoClient.connect(url, function(err, db) {
-		if (err) {
-			callback(err);
-		} else {
-      console.log(query);
-			db.collection('artifacts').find(query, function(err, data) {
-				if (err) {
-					callback(err);
-				} else {
-					callback(data);
-				}
-			})
-		}
-	});
+function getUsersObjects(userId, callback) {
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+    var results = db.collection('object').find({"userId" : userId}).sort(
+      'uploadDate', 1).toArray(function(err, documents) {
+        assert.equal(err, null);
+        callback(documents);
+      });
+    db.close();
+  });
 }
 
-function insertArtifact(artifact, callback){
-	db.collection('artifacts').insert(artifact, function(err, data) {
-		if (err) {
-			callback(err);
-		} else {
-			callback(data);
-		}
-	})
+function updateObject(obid, artifact) {
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+    db.collection('object').update({ _id: obid }, artifact, function(err, records) {
+      assert.equal(err, null);
+      console.log("Updated Object with Id " + obid);
+    });
+    db.close();
+    console.log("Closed the db after updating");
+  });
 }
+
+function removeObject(obid) {
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+    db.collection('object').deleteOne({ _id: obid }, function(err) {
+      assert.equal(err, null);
+      console.log("Removed Object with Id " + obid);
+    });
+    db.close();
+    console.log("Closed the db after removing");
+  });
+}
+
+function searchForUserObjects(userId, query, callback) {
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+    var results = db.collection('object').find({userId: {$eq: userId}, {$text : {$search : query}}}, {
+      score : {$meta : "textScore"}}).sort(
+      {score: {$meta : "textScore"}}).toArray(function(err, documents) {
+        assert.equal(err, null);
+        callback(documents);
+      });
+    db.close();
+  });
+}
+
+//adding date to insert
+//getting object id for any object on the screen to remove or update
 
 module.exports.insertMany = insertMany;
 module.exports.addLocationToObject = addLocationToObject;
@@ -311,5 +336,7 @@ module.exports.searchOnPerson = searchOnPerson;
 module.exports.searchOnLocation = searchOnLocation;
 module.exports.addObjectToPerson = addObjectToPerson;
 module.exports.addLocationToPerson = addLocationToPerson;
-module.exports.searchQuery = searchQuery;
-module.exports.insertArtifact = insertArtifact;
+module.exports.getUsersObjects = getUsersObjects;
+module.exports.updateObject = udpateObject;
+module.exports.removeObject = removeObject;
+module.exports.searchForUserObjects = searchForUserObjects;
