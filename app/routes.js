@@ -10,7 +10,8 @@ app.get('/', function(req, res) {
 	if (req.isAuthenticated()) {
 		console.log(req.user);
 		res.render('home.ejs', {
-			email	       : req.user.local.email,
+			userid		 : req.user._id,
+			email        : req.user.local.email,
 			firstname    : req.user.firstname,
 			lastname     : req.user.lastname,
 			affiliation  : req.user.affiliation,
@@ -20,7 +21,8 @@ app.get('/', function(req, res) {
 		console.log("User " + req.user + " logged in");
 	} else {
 		res.render('home.ejs', {
-			email	       : undefined,
+			userid		 : undefined,
+			email	     : undefined,
 			firstname    : undefined,
 			lastname     : undefined,
 			affiliation  : undefined,

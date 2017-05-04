@@ -113,7 +113,7 @@ if (email !== "undefined") {
 	});
 
 		$("#profile_search_results").html("");
-		if ($("#searchSmall").val() !== "") {
+		$("#searchSmall").on('change', function() {
 			$.post("search/" + $("#searchSmall").val() + "/" + user_id, function(result){
 				var resultObjects = JSON.parse(result);
 				for (var key in resultObjects) {
@@ -125,8 +125,7 @@ if (email !== "undefined") {
 					}
 				}
 			});
-		}
-		//});
+		});
 
 			$(document).on('click', ".search_result", function(event) {
 				console.log("RESULT CLICKED");
