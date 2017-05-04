@@ -7,8 +7,8 @@ module.exports = function(app, passport) {
 /*	Home page with menu	*/
 /************************/
 app.get('/', function(req, res) {
-	console.log(req.user);
 	if (req.isAuthenticated()) {
+		console.log(req.user);
 		res.render('home.ejs', {
 			user: req.user
 		});
@@ -78,11 +78,11 @@ app.get('/upload', isLoggedIn, function(req, res) {
 });
 
 app.post('/upload', isLoggedIn, function(req, res) {
-	console.log(req.body);
+//	console.log(req.body);
 	console.log(req.files);
-	console.log(req.body.provenancecolumn);
-	console.log(req.body.namecolumn);
-	console.log(req.body.ignoreheader);
+//	console.log(req.body.provenancecolumn);
+//	console.log(req.body.namecolumn);
+//	console.log(req.body.ignoreheader);
 	if (!req.body.provenancecolumn || !req.body.namecolumn || !req.files || !req.body.ignoreheader) {
 		res.render('uploadresult.ejs', {
 			result: "Invalid request",
