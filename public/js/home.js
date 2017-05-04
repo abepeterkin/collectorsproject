@@ -58,8 +58,8 @@ if (email !== "undefined") {
 		$("#uploadModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
 
-
 	$("#profile").click(function() {
+		loadProfileData();
 	    $("#profileModal")[0].style.display = "flex";
 		$("#profileModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
@@ -111,7 +111,31 @@ if (email !== "undefined") {
 	    $("#objectInfo")[0].style.display = "block";
 		event.currentTarget.className += " active";
 	});
+	
+	function loadProfileData() {
+		// will need to refresh the variables in the template so that new data will be shown if changed in profile	
+	}
+	
+	$("#editEmail").on('change', function() {
+		console.log("mail");
+		$.post("edit/email/" + user_id + "/" + $("#editEmail").val(), function(result){
+			console.log(result);
+		});
+	});
 
+	$("#editFirstName").on('change', function() {
+		console.log("first name");
+		$.post("edit/firstname/" + user_id + "/" + $("#editFirstName").val(), function(result){
+			console.log(result);
+		});
+	});
+
+	$("#editLastName").on('change', function() {
+		console.log("last name");
+		$.post("edit/lastname/" + user_id + "/" + $("#editLastName").val(), function(result){
+			console.log(result);
+		});
+	});
 
 		$("#searchSmall").on('change', function() {
 			$("#profile_search_results").html("");

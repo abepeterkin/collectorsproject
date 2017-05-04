@@ -138,7 +138,7 @@ app.post('/search/:query', function(req, res) {
 
 app.post('/search/:query/:userid', function(req, res) {
 	var query = req.params.query;
-	var userid = req.params.userid
+	var userid = req.params.userid;
 	console.log("QUERY: [" + [query] + "]");
 	console.log("QUERY: [" + [userid] + "]");
 	if (query !== "") {
@@ -147,6 +147,25 @@ app.post('/search/:query/:userid', function(req, res) {
 			res.send(resultJSON);
 			console.log(resultJSON);
 		});
+	}
+});
+
+app.post('/edit/:query/:userid/:value', function(req, res) {
+	var query = req.params.query;
+	var userid = req.params.userid;
+	var value = req.params.value;
+	if (query == "email") {
+		//update email
+		console.log(query + "/" + userid + "/" + value);
+	} else if (query == "firstname") {
+		//update first name
+			console.log(query + "/" + userid + "/" + value);
+	} else if (query == "lastname") {
+		//update last name
+			console.log(query + "/" + userid + "/" + value);
+	} else {
+		//return error
+			console.log(query + "/" + userid + "/" + value);
 	}
 });
 

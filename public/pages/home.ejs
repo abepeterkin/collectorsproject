@@ -124,34 +124,31 @@ var counry = "<%= country %>";
           <div id="accountInfo" class="tabcontent">
             <table>
               <tr>
-                <td colspan="3"><h3>Account information</h3></td>
+                <td colspan="2"><h3>Account information</h3></td>
               </tr>
               <tr>
                 <td><label>Email:</label></td>
-                <td><%= email %></td>
-                <td><a href="#" onClick="edit(email)">edit</a>
+                <td><input type="text" id="editEmail" placeholder="<%= email %>"></td>
               </tr>
               <tr>
                 <td><label>First name:</label></td>
-                <td><%= firstname %></td>
-                <td><a href="#" onClick="edit(firstname)">edit</a>
+                <td><input type="text" id="editFirstName" placeholder="<%= firstname %>"></td>
               </tr>
               <tr>
                 <td><label>Last name:</label></td>
-                <td><%= lastname %></td>
-                <td><a href="#" onClick="edit(lastname)">edit</a>
+                <td><input type="text" id="editLastName" placeholder="<%= lastname %>"></td>
               </tr>
               <tr>
                 <td><label>Institution:</label></td>
-                <td colspan="2"><%= affiliation %></td>
+                <td><%= affiliation %></td>
               </tr>
               <tr>
                 <td><label>City:</label></td>
-                <td colspan="2"><%= city %></td>
+                <td><%= city %></td>
               </tr>
               <tr>
                 <td><label>Country:</label></td>
-                <td colspan="2"><%= country %></td>
+                <td><%= country %></td>
               </tr>
             </table>
           </div>
@@ -169,7 +166,7 @@ var counry = "<%= country %>";
               </tr>
               <tr>
                 <td></td>
-                <td><div id="profile_search_bar"><input type="text" id="searchSmall" placeholder="Enter an artifact, place, or person"></div></td>
+                <td><div id="profile_search_bar"><input type="text" id="searchSmall" placeholder="Enter object number..."></div></td>
               <tr>
                 <td colspan="2"><div id="profile_search_results"></div></td>
                 <td>
