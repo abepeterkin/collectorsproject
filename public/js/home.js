@@ -112,8 +112,9 @@ if (email !== "undefined") {
 		event.currentTarget.className += " active";
 	});
 
-		$("#profile_search_results").html("");
+
 		$("#searchSmall").on('change', function() {
+			$("#profile_search_results").html("");
 			$.post("search/" + $("#searchSmall").val() + "/" + user_id, function(result){
 				var resultObjects = JSON.parse(result);
 				for (var key in resultObjects) {
@@ -145,7 +146,6 @@ if (email !== "undefined") {
 			});
 
 			$(document).on('mouseover', ".search_result", function(event) {
-				console.log("RESULT MOUSEOVER");
 				$('body').css('cursor','pointer');
 			});
 
@@ -172,7 +172,7 @@ function setTabs() {
 }
 
 
-	$("#search").keyup(function(event){
+	$("#search").on("change", function(event){
 
 			//document.getElementById("body_words").remove();
 			$("#top").hide();

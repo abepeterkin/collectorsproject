@@ -555,6 +555,28 @@ h3 {
 }
 
 
+
+/************************************/
+/*			PROFILE				*/
+/************************************/
+
+#accountInfo {
+	color: white
+}
+
+#profile_search_results {
+
+	margin: auto;
+
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	background-color: white;
+	overflow: scroll;
+}
+
+
 /************************************/
 /*			RESPONSIVE				*/
 /************************************/
