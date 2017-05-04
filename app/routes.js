@@ -1,4 +1,5 @@
 var objectDB = require("./objectdatabase.js");
+var user = require('../app/models/user');
 var XLSX = require('xlsx');
 
 module.exports = function(app, passport) {
@@ -150,13 +151,17 @@ app.post('/search/:query/:userid', function(req, res) {
 	}
 });
 
-app.post('/edit/:query/:userid/:value', function(req, res) {
+app.post('/edit/:query/:userid/:value',isLoggedIn, function(req, res) {
 	var query = req.params.query;
 	var userid = req.params.userid;
 	var value = req.params.value;
 	if (query == "email") {
-		//update email
-		console.log(query + "/" + userid + "/" + value);
+		user.update({
+			_id: req.session.passport.user.id}, {
+				email: req.params.value 
+			}, function(err, numberAffected, rawResponse) {
+				console.log('new profile update error');
+	    });
 	} else if (query == "firstname") {
 		//update first name
 			console.log(query + "/" + userid + "/" + value);
