@@ -10,9 +10,9 @@ var searchbar = $("#search");
 
 $(document).ready(function(){
 
-	console.log("USER: " + user);
+	console.log("USER: " + email);
 
-	$("#tester").html(user);
+	//$("#tester").html(user);
 
 	var span = document.getElementsByClassName("close")[0];
 
@@ -22,8 +22,8 @@ $('#search_details').click(function(){
   }
 });
 
-if (user != "") {
-	$("#dropbtn").html(user);
+if (email !== "undefined") {
+	$("#dropbtn").html(firstname);
 	$("#signIn").hide();
 	$("#signUp").hide();
 	// $("#signOut").hide();
@@ -57,8 +57,8 @@ if (user != "") {
 	    $("#uploadModal")[0].style.display = "flex";
 		$("#uploadModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
-	
-	
+
+
 	$("#profile").click(function() {
 	    $("#profileModal")[0].style.display = "flex";
 		$("#profileModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
@@ -87,25 +87,25 @@ if (user != "") {
 			$("#uploadModal")[0].style.display = "none";
 		}
 	});
-	
+
 	$(document).click(function(event) {
     	if (event.target == $("#profileModal")[0]) {
 			$("#profileModal")[0].style.display = "none";
 		}
 	});
-	
+
 	$("#accountInfoBtn").click(function(event) {
 		setTabs();
 	    $("#accountInfo")[0].style.display = "block";
 		event.currentTarget.className += " active";
 	});
-	
+
 	$("#uploadInfoBtn").click(function(event) {
 		setTabs();
 	    $("#uploadInfo")[0].style.display = "block";
 		event.currentTarget.className += " active";
 	});
-	
+
 	$("#objectInfoBtn").click(function(event) {
 		setTabs();
 	    $("#objectInfo")[0].style.display = "block";
@@ -262,15 +262,5 @@ function setTabs() {
 						}
 				});
 		});
-
-	function checkUser() {
-		if (user === "") {
-			$("#username").hide();
-			$("#profile").hide();
-			$("#signOut").hide();
-			$("#upload").hide();
-			$("#dropdown").hide();
-		}
-	}
 
 });

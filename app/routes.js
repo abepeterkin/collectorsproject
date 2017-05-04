@@ -10,12 +10,22 @@ app.get('/', function(req, res) {
 	if (req.isAuthenticated()) {
 		console.log(req.user);
 		res.render('home.ejs', {
-			user: req.user
+			email	       : req.user.local.email,
+			firstname    : req.user.firstname,
+			lastname     : req.user.lastname,
+			affiliation  : req.user.affiliation,
+			city         : req.user.city,
+			country      : req.user.country
 		});
 		console.log("User " + req.user + " logged in");
 	} else {
 		res.render('home.ejs', {
-			user: ""
+			email	       : undefined,
+			firstname    : undefined,
+			lastname     : undefined,
+			affiliation  : undefined,
+			city         : undefined,
+			country      : undefined
 		});
 		console.log("Logged unregistered user");
 	}

@@ -11,7 +11,12 @@
 <script src="js/ejs_production.js"></script>
 <script src="js/home.js" type="text/javascript"></script>
 <script>
-var user = "<%= user.firstname %>";
+var email = "<%= email %>";
+var firstname = "<%= firstname %>";
+var lastname = "<%= lastname %>";
+var affiliation = "<%= affiliation %>";
+var city = "<%= city %>";
+var counry = "<%= country %>";
 </script>
 <title>The Collector's Project</title>
 </head>
@@ -122,30 +127,30 @@ var user = "<%= user.firstname %>";
               </tr>
               <tr>
                 <td><label>Email:</label></td>
-                <td><%= user.email %></td>
+                <td><%= email %></td>
                 <td><a href="#" onClick="edit(email)">edit</a>
               </tr>
               <tr>
                 <td><label>First name:</label></td>
-                <td><%= user.firstname %></td>
+                <td><%= firstname %></td>
                 <td><a href="#" onClick="edit(firstname)">edit</a>
               </tr>
               <tr>
                 <td><label>Last name:</label></td>
-                <td><%= user.lastname %></td>
+                <td><%= lastname %></td>
                 <td><a href="#" onClick="edit(lastname)">edit</a>
               </tr>
               <tr>
                 <td><label>Institution:</label></td>
-                <td colspan="2"><%= user.affiliation %></td>
+                <td colspan="2"><%= affiliation %></td>
               </tr>
               <tr>
                 <td><label>City:</label></td>
-                <td colspan="2"><%= user.city %></td>
+                <td colspan="2"><%= city %></td>
               </tr>
               <tr>
                 <td><label>Country:</label></td>
-                <td colspan="2"><%= user.country %></td>
+                <td colspan="2"><%= country %></td>
               </tr>
             </table>
           </div>
