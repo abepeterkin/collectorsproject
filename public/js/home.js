@@ -62,6 +62,7 @@ if (email !== "undefined") {
 		loadProfileData();
 	    $("#profileModal")[0].style.display = "flex";
 		$("#profileModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+	    $("#accountInfo")[0].style.display = "block";
 	});
 
 	$(document).click(function(event) {
@@ -102,7 +103,10 @@ if (email !== "undefined") {
 
 	$("#uploadInfoBtn").click(function(event) {
 		setTabs();
-	    $("#uploadInfo")[0].style.display = "block";
+	    $.post("search/" + affiliation, function(result){
+			$("#uploadList").html(result);// Will need to show data by museumID: where museumID == affiliation and just return object name (the registration number);
+		});
+		$("#uploadInfo")[0].style.display = "block";
 		event.currentTarget.className += " active";
 	});
 
