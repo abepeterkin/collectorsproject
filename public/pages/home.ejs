@@ -9,9 +9,10 @@
     crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="js/ejs_production.js"></script>
-<script src="js/home.js"></script>
+<script src="js/home.js" type="text/javascript"></script>
 <script>
-var username = "<%= username %>";
+var user = "<%= user.firstname %>";
+console.log(user);
 </script>
 <title>The Collector's Project</title>
 </head>
@@ -22,82 +23,71 @@ var username = "<%= username %>";
   <div id="title">
     <h1 id="nav_bar_title">the collector's project</h1>
   </div>
-  <div id="nav_bar">
-    <a id="about" href="#">About</a>
-    <a id="signIn" href="#">Sign in</a>
-    <a id="signUp" href="#">Sign up</a>
+  <div id="nav_bar"> <a id="about" href="#">About</a> <a id="signIn" href="#">Sign in</a> <a id="signUp" href="#">Sign up</a>
     <div class="dropdown" id="dropdown">
       <button class="dropbtn" id="dropbtn">Dropdown</button>
-      <div class="dropdown-content">
-        <a id="profile" href="/profile">Profile</a>
-        <a id="upload">Upload File</a>
-        <a href="/logout" id="signOut">Sign out</a>
-      </div>
+      <div class="dropdown-content"> <a id="profile">Profile</a> <a id="upload">Upload File</a> <a href="/logout" id="signOut">Sign out</a> </div>
     </div>
   </div>
 </div>
 
 <!-- Main content -->
 
-
 <div id="body_text">
-
   <div id="search_results"></div>
-    <div id="body_words"><p id="top">Your search begins here. </p></div>
-    <input type="checkbox" id="search_details"><label>Search Instructions</label></input>
-    <div id="body_search"><input type="text" id="search" placeholder="Enter an artifact, place, or person"></div>
-
-    <div id="search_results"></div>
+  <div id="body_words">
+    <p id="top">Your search begins here. </p>
+  </div>
+  <input type="checkbox" id="search_details">
+  <label>Search Instructions</label>
+  </input>
+  <div id="body_search">
+    <input type="text" id="search" placeholder="Enter an artifact, place, or person">
+  </div>
+  <div id="search_results"></div>
 </div>
-
-
 
 <!-- Modal content for signing up -->
 <div id="signUpModal" class="modal">
   <div class="signUpModalContent">
     <form action="/signup" method="post">
-    <div id="signUpBody">
-      <h2 id="signUpTitle">Sign Up</h2>
-      <div id="right_column">
-        <table style="width:100%">
-          <tr>
-            <td>Email</td>
-            <td><input class="searchbar" name="email" type="email"></td>
-          </tr>
-          <tr>
-            <td>Password</td>
-            <td><input class="searchbar" name="password" type="text"></td>
-          </tr>
-
-            <td>First name</td>
-            <td><input class="searchbar" name="firstname" type="text"></td>
-          </tr>
-          <tr>
-            <td>Last name</td>
-            <td><input class="searchbar" name="lastname"  type="text"></td>
-          </tr>
-          <tr>
-
-          <tr>
-            <td>Affiliation</td>
-            <td><input class="searchbar" name="affiliation" type="text"></td>
-          </tr>
-          <tr>
-            <td>City</td>
-            <td><input class="searchbar" name="city" type="text"></td>
-          </tr>
-          <tr>
-            <td>Country</td>
-            <td><input class="searchbar" name="country" type="text"></td>
-          </tr>
-        </table>
+      <div id="signUpBody">
+        <h2 id="signUpTitle">Sign Up</h2>
+        <div id="right_column">
+          <table style="width:100%">
+            <tr>
+              <td>Email</td>
+              <td><input class="searchbar" name="email" type="email"></td>
+            </tr>
+            <tr>
+              <td>Password</td>
+              <td><input class="searchbar" name="password" type="text"></td>
+            </tr>
+            <tr>
+              <td>First name</td>
+              <td><input class="searchbar" name="firstname" type="text"></td>
+            </tr>
+            <tr>
+              <td>Last name</td>
+              <td><input class="searchbar" name="lastname"  type="text"></td>
+            </tr>
+            <tr>
+            <tr>
+              <td>Affiliation</td>
+              <td><input class="searchbar" name="affiliation" type="text"></td>
+            </tr>
+            <tr>
+              <td>City</td>
+              <td><input class="searchbar" name="city" type="text"></td>
+            </tr>
+            <tr>
+              <td>Country</td>
+              <td><input class="searchbar" name="country" type="text"></td>
+            </tr>
+          </table>
+        </div>
+        <button class="butt" type="submit" id="createAccount">create account</button>
       </div>
-
-
-      <button class="butt" type="submit" id="createAccount">create account</button>
-
-
-    </div>
     </form>
   </div>
 </div>
@@ -106,13 +96,85 @@ var username = "<%= username %>";
 <div id="signInModal" class="modal">
   <div class="signInModalContent">
     <form action="/signin" method="post">
-    <div id="signInBody">
-      <h2 id="signInTitle">Sign In</h2>
-      <input name="email" id="username_login" type="email" placeholder="Your email">
-      <input name="password" id="username_password" type="password" placeholder="Password">
-      <button class="butt" id="login_button">sign in</button>
-    </div>
-  </form>
+      <div id="signInBody">
+        <h2 id="signInTitle">Sign In</h2>
+        <input name="email" id="username_login" type="email" placeholder="Your email">
+        <input name="password" id="username_password" type="password" placeholder="Password">
+        <button class="butt" id="login_button">sign in</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal content for profiles -->
+<div id="profileModal" class="modal">
+  <div class="profileModalContent">
+    <table id="userProfile_tbl">
+      <tr>
+        <td><div class="tab">
+            <button class="tablinks" id="accountInfoBtn">Account information</button>
+            <button class="tablinks" id="uploadInfoBtn">Uploaded data</button>
+            <button class="tablinks" id="objectInfoBtn">Search for object</button>
+          </div>
+          <div id="accountInfo" class="tabcontent">
+            <table>
+              <tr>
+                <td colspan="3"><h3>Account information</h3></td>
+              </tr>
+              <tr>
+                <td><label>Email:</label></td>
+                <td><%= user.local.email %></td>
+                <td><a href="#" onClick="edit(email)">edit</a>
+              </tr>
+              <tr>
+                <td><label>First name:</label></td>
+                <td><%= user.firstname %></td>
+                <td><a href="#" onClick="edit(firstname)">edit</a>
+              </tr>
+              <tr>
+                <td><label>Last name:</label></td>
+                <td><%= user.lastname %></td>
+                <td><a href="#" onClick="edit(lastname)">edit</a>
+              </tr>
+              <tr>
+                <td><label>Institution:</label></td>
+                <td colspan="2"><%= user.affiliation %></td>
+              </tr>
+              <tr>
+                <td><label>City:</label></td>
+                <td colspan="2"><%= user.city %></td>
+              </tr>
+              <tr>
+                <td><label>Country:</label></td>
+                <td colspan="2"><%= user.country %></td>
+              </tr>
+            </table>
+          </div>
+          <div id="uploadInfo" class="tabcontent">
+            <table>
+              <tr>
+                <td><h3>Uploaded data</h3></td>
+              </tr>
+            </table>
+          </div>
+          <div id="objectInfo" class="tabcontent">
+            <table>
+              <tr>
+                <td colspan="2"><h3>Search for an object</h3></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><div id="profile_search_bar">
+                    <input type="text" id="searchSmall" placeholder="Enter an artifact, place, or person">
+                  </div></td>
+              <tr>
+                <td colspan="2"><div id="profile_search_results"></div></td>
+                <td>
+              </tr>
+            </table>
+          </div></td>
+      </tr>
+    </table>
   </div>
 </div>
 
@@ -122,9 +184,15 @@ var username = "<%= username %>";
     <div id="upload_body">
       <h1>Object Uploader</h1>
       <form method="POST" encType="multipart/form-data" id="upload_form">
-        <p>Column containing the object name: </p> <input type="number" name="namecolumn" min="1" required>
-        <p>Column containing the object provenance: </p> <input type="number" name="provenancecolumn" min="1" required>
-        <p>Ignore header row? <input name="ignoreheader" type="radio" value="true" checked> Yes <input name="ignoreheader" type="radio" value="false"> No</p>
+        <p>Column containing the object name: </p>
+        <input type="number" name="namecolumn" min="1" required>
+        <p>Column containing the object provenance: </p>
+        <input type="number" name="provenancecolumn" min="1" required>
+        <p>Ignore header row?
+          <input name="ignoreheader" type="radio" value="true" checked>
+          Yes
+          <input name="ignoreheader" type="radio" value="false">
+          No</p>
         <input type="file" name="spreadsheet" required id="upload_file_button">
         <input type="submit" id="submit_button">
       </form>
@@ -132,16 +200,11 @@ var username = "<%= username %>";
   </div>
 </div>
 
-
 <!-- Modal content for uploading -->
 <div id="objectModal" class="modal">
   <div class="objectModalContent">
-    <div id="object_body">
-
-
-    </div>
+    <div id="object_body"> </div>
   </div>
 </div>
-
 </body>
 </html>

@@ -7,14 +7,15 @@ module.exports = function(app, passport) {
 /*	Home page with menu	*/
 /************************/
 app.get('/', function(req, res) {
+	console.log(req.user);
 	if (req.isAuthenticated()) {
 		res.render('home.ejs', {
-			username: req.user.firstname
+			user: req.user
 		});
 		console.log("User " + req.user + " logged in");
 	} else {
 		res.render('home.ejs', {
-			username: ""
+			user: ""
 		});
 		console.log("Logged unregistered user");
 	}
