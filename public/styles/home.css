@@ -155,24 +155,26 @@ label {
 }
 
 .profileModalContent {
-/*    background-color: hsla(0,0%,0%,0.7);*/
+    background-color: hsla(0,0%,0%,0.7);
     margin: 20% auto;
-    padding: 20px;
+/*    padding: 20px;*/
     border: 1px solid #888;
-	height: 30%;
-    width: 35%;
+	height: auto;
+    width: auto;
 	border-radius: 25px;
 }
 
 /* Style the tab */
 div.tab {
+	border-radius: 15px;
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+/*    border: 1px solid #ccc;*/
+    background-color: hsla(0,0%,100%,1);
 }
 
 /* Style the buttons inside the tab */
 div.tab button {
+	border-radius: 15px;
     background-color: inherit;
     float: left;
     border: none;
@@ -194,11 +196,13 @@ div.tab button.active {
 
 /* Style the tab content */
 .tabcontent {
+/*    background-color: hsla(0,0%,0%,0.7);*/
     display: none;
     padding: 6px 12px;
-    border: 1px solid #ccc;
+/*    border: 1px solid #ccc;*/
+	border-radius: 25px;
     border-top: none;
-    -webkit-animation: fadeEffect 1s;
+    -webkit-animation: fadeEffect 0.5s;
     animation: fadeEffect 1s; /* Fading effect takes 1 second */
 }
 
@@ -477,7 +481,6 @@ table {
 
 }
 
-
 #top {
 	color: white;
 	font-family:"akzidenz-light";
@@ -500,7 +503,7 @@ table {
 #searchSmall {
     height: 20px;
     width: 50%;
-    border-radius: 15px;
+/*    border-radius: 15px;*/
     padding: 5px 5px 5px 25px;
     z-index: 1;
     text-align: center;
@@ -508,7 +511,9 @@ table {
     font-family: "akzidenz-light"
 }
 
-
+h3 {
+	color: hsla(0,0%,100%,1);
+}
 
 /************************************/
 /*				SEARCH				*/
