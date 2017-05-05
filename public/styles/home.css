@@ -556,7 +556,6 @@ table {
 
 	margin: auto;
 
-
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -564,6 +563,16 @@ table {
 	overflow: scroll;
 }
 
+#uploadList {
+	margin: auto;
+
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	background-color: white;
+	overflow: scroll;
+}
 
 
 /************************************/

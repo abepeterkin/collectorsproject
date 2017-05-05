@@ -104,9 +104,19 @@ if (email !== "undefined") {
 	});
 
 	$("#uploadInfoBtn").click(function(event) {
-		setTabs();
+			setTabs();
 	    $.post("search/" + affiliation, function(result){
-			$("#uploadList").html(result);// Will need to show data by museumID: where museumID == affiliation and just return object name (the registration number);
+				//$("#uploadList").html(result);// Will need to show data by museumID: where museumID == affiliation and just return object name (the registration number);
+				$("#uploadList").html("");
+				var resultObjects = JSON.parse(result);
+				for (var key in resultObjects) {
+					if (resultObjects.hasOwnProperty(key)) {
+      				var obj = resultObjects[key];
+						console.log(JSON.stringify(obj));
+						var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
+						$("#uploadList").append(resultHTML);
+					}
+				}
 		});
 		$("#uploadInfo")[0].style.display = "block";
 		event.currentTarget.className += " active";
