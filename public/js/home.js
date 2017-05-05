@@ -59,10 +59,12 @@ if (email !== "undefined") {
 	});
 
 	$("#profile").click(function() {
+		setTabs();
 		loadProfileData();
 	    $("#profileModal")[0].style.display = "flex";
 		$("#profileModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	    $("#accountInfo")[0].style.display = "block";
+
 	});
 
 	$(document).click(function(event) {
@@ -115,11 +117,11 @@ if (email !== "undefined") {
 	    $("#objectInfo")[0].style.display = "block";
 		event.currentTarget.className += " active";
 	});
-	
+
 	function loadProfileData() {
-		// will need to refresh the variables in the template so that new data will be shown if changed in profile	
+		// will need to refresh the variables in the template so that new data will be shown if changed in profile
 	}
-	
+
 	$("#editEmail").on('change', function() {
 		console.log("mail");
 		$.post("edit/email/" + user_id + "/" + $("#editEmail").val(), function(result){
