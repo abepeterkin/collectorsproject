@@ -1,5 +1,3 @@
-$(document).ready(function() {
-
 var text = "";
 
 highlight();
@@ -57,6 +55,4 @@ $(".custom-menu li").click(function(){
 			break;
     }
 	$(".custom-menu").hide(100);
-});
-
 });
