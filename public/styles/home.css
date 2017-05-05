@@ -446,6 +446,18 @@ table {
 	background-color: white;
 }
 
+.signin-alert {
+	color: red;
+	font-size : 24px;
+	font-family: "akzidenz-medium";
+}
+
+#back-to-homepage {
+	margin-top: 10px;
+	font-size : 16px;
+	font-family: "akzidenz-medium";
+}
+
 #signInBody td {
 	color: black;
 	background-color: blue;

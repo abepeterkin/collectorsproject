@@ -4,9 +4,25 @@
 <title>Sign in</title>
 <link rel="stylesheet" href="styles/home.css">
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="js/signin.js"></script>
+<!--<script src="js/signin.js"></script>-->
 </head>
 <body>
+
+  <div class="modal" style="display:flex">
+    <div class="signInModalContent">
+      <form action="/signin" method="post">
+        <div id="signInBody">
+          <h2 id="signInTitle">Sign In</h2>
+          <div class="signin-alert"><%= message %></div>
+          <input name="email" id="username_login" type="email" placeholder="Your email">
+          <input name="password" id="username_password" type="password" placeholder="Password">
+          <button class="butt" id="login_button">sign in</button>
+          <a id="back-to-homepage" href="/">Back to homepage</a>
+        </div>
+      </form>
+    </div>
+  </div>
+<!--
 <form id="#login_frm" action="signin" method="post">
 <table id="signIn_tbl">
     <tr>
@@ -30,6 +46,6 @@
       </div>
       </div>
 </table>
-</form>
+</form>-->
 </body>
 </html>
