@@ -1,25 +1,37 @@
-<link rel="stylesheet" type="text/css" href="styles/home.css">
+<!--<link rel="stylesheet" type="text/css" href="styles/home.css">-->
 <script src="js/artifact.js"></script>
 <script>
-var affiliation = "<%= affiliation %>";
-var id = "<%= _id %>";
-var provenance = "<%= Provenance %>";
+	var affiliation = "<%= affiliation %>";
+	var id = "<%= _id %>";
+	var provenance = "<%= Provenance %>";
 </script>
+
 <div class="artifact-modal">
-<table border="1">
-<tr>
-<div id="toolbar">
-<td><image src="images/pencil.png" height="20px" onclick="getSelectionText();">
-<image src="images/flag.png" height="20px" onclick="flag();"/></td>
-</div></tr>
-<tr><td><div id="artifact_affiliation"><p><b>Collection:</b> <%= affiliation %></p></div></td></tr>
-<tr><td><div id="artifact_name"><p><b>Registration number:</b> <%= name %></p></div></td></tr>
-<tr><td><div id="artifact_provenance"><p><b>Provenance:</b> <%= Provenance %></div>
-<ul class='custom-menu'>
-  <li data-action="first">Person</li>
-  <li data-action="second">Time</li>
-  <li data-action="third">Place</li>
-</ul>
-</td></tr>
-</table>
+	<table id="artifact_table" border="1">
+		<tr>
+		<div id="toolbar">
+			<td><image src="images/pencil.png" height="20px" onclick="getSelectionText();">
+			<image src="images/flag.png" height="20px" onclick="flag();"/></td>
+		</div></tr>
+		<tr>
+			<td>
+				<div id="artifact_affiliation"><p><b>Collection:</b> <%= affiliation %></p></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="artifact_name"><p><b>Registration number:</b> <%= name %></p></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="artifact_provenance"><p><b>Provenance:</b> <%= Provenance %></div>
+				<ul class='custom-menu'>
+				  <li data-action="first">Person</li>
+				  <li data-action="second">Time</li>
+				  <li data-action="third">Place</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
 </div>

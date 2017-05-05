@@ -17,7 +17,7 @@ var firstname = "<%= firstname %>";
 var lastname = "<%= lastname %>";
 var affiliation = "<%= affiliation %>";
 var city = "<%= city %>";
-var counry = "<%= country %>";
+var country = "<%= country %>";
 </script>
 <title>The Collector's Project</title>
 </head>
@@ -36,7 +36,7 @@ var counry = "<%= country %>";
       <div class="dropdown" id="dropdown">
         <button class="dropbtn" id="dropbtn">Dropdown</button>
           <div class="dropdown-content"> 
-            <a id="profile">Profile</a> 
+            <a href="/profile" id="profile">Profile</a> 
             <a id="upload">Upload File</a> 
             <a href="/logout" id="signOut">Sign out</a> 
           </div>
@@ -208,7 +208,7 @@ var counry = "<%= country %>";
   </div>
 </div>
 
-<!-- Modal content for uploading -->
+<!-- Modal content for objects -->
 <div id="objectModal" class="modal">
   <div class="objectModalContent">
     <div id="object_body"> </div>

@@ -67,9 +67,21 @@ app.post('/signin', passport.authenticate('local-login', {
 /************************/
 /*		User profiles	*/
 /************************/
-app.get('/profile', isLoggedIn, function(req, res) {
+/*app.get('/profile', isLoggedIn, function(req, res) {
 	res.render('profile.ejs', {
 		user: req.user // get the user out of session and pass to template
+	});
+});*/
+
+app.get('/profile', isLoggedIn, function(req, res) {
+	res.render('demoprofile.ejs', {
+		userid		 : req.user._id,
+		email        : req.user.local.email,
+		firstname    : req.user.firstname,
+		lastname     : req.user.lastname,
+		affiliation  : req.user.affiliation,
+		city         : req.user.city,
+		country      : req.user.country
 	});
 });
 
@@ -137,6 +149,7 @@ app.post('/search/:query', function(req, res) {
 	}
 });
 
+//post to this with search small//
 app.post('/search/:query/:userid', function(req, res) {
 	var query = req.params.query;
 	var userid = req.params.userid;

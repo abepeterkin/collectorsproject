@@ -12,30 +12,15 @@ $(document).ready(function(){
 
 	console.log("USER: " + email);
 
-	//$("#tester").html(user);
-
 	var span = document.getElementsByClassName("close")[0];
 
 if (email !== "undefined") {
 	$("#dropbtn").html(firstname);
 	$("#signIn").hide();
 	$("#signUp").hide();
-	// $("#signOut").hide();
 } else {
 	$("#dropdown").hide();
 }
-// =======
-// 	if (username === "") {
-// 		$("#username").hide();
-// 		$("#profile").hide();
-// 		$("#signOut").hide();
-// 		$("#upload").hide();
-// 	} else {
-// 		$("#profile").html(username);
-// 		$("#signIn").hide();
-// 		$("#signUp").hide();
-// 	}
-// >>>>>>> e2fb8bd683e78660d5a266d582f1afcc5bd1f5c4
 
 	$("#signUp").click(function() {
 	    $("#signUpModal")[0].style.display = "flex";
@@ -52,14 +37,14 @@ if (email !== "undefined") {
 		$("#uploadModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
 
-	$("#profile").click(function() {
+/*	$("#profile").click(function() {
 		setTabs();
 		loadProfileData();
 	    $("#profileModal")[0].style.display = "flex";
 		$("#profileModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	    $("#accountInfo")[0].style.display = "block";
 
-	});
+	});*/
 
 	$(document).click(function(event) {
     	if (event.target == $("#signUpModal")[0]) {
@@ -85,7 +70,7 @@ if (email !== "undefined") {
 		}
 	});
 
-	$(document).click(function(event) {
+/*	$(document).click(function(event) {
     	if (event.target == $("#profileModal")[0]) {
 			$("#profileModal")[0].style.display = "none";
 		}
@@ -177,6 +162,9 @@ if (email !== "undefined") {
 
 				$("#objectModal")[0].style.display = "flex";
 				$("#objectModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+
+				var table_height = $("#artifact_table").height();
+				$("#object_body").height(table_height);
 			});
 
 			$(document).on('mouseover', ".search_result", function(event) {
@@ -204,7 +192,7 @@ function setTabs() {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
 }
-
+*/
 
 	$("#search").on("change", function(event){
 
@@ -220,6 +208,8 @@ function setTabs() {
 		    document.getElementById("about").style.fontSize = "15px";
 		    document.getElementById("signIn").style.fontSize = "15px";
 		    document.getElementById("signUp").style.fontSize = "15px";
+
+		    document.getElementById("dropbtn").style.fontSize = "15px";
 
 		    document.getElementById("upload").style.fontSize = "15px";
 		    document.getElementById("profile").style.fontSize = "15px";
