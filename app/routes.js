@@ -151,6 +151,11 @@ app.post('/search/:query/:userid', function(req, res) {
 	}
 });
 
+app.get('/mark/:id', function(req, res) {
+	var id = req.params.id;
+	// Search through lists of people, places, times for object id and return associated search terms to mark in the text for the user
+});
+
 app.post('/edit/:query/:userid/:value',isLoggedIn, function(req, res) {
 	var query = req.params.query;
 	var userid = req.params.userid;

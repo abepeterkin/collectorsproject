@@ -4,7 +4,7 @@ highlight();
 
 function highlight() {
 	// This function should retrieve all people, places, and time values from the database and highlight them in the provenance lists
-	$.get("/mark", function() {
+	$.get("/mark/" + id, function() {
 //		mark();
 	});
 }
