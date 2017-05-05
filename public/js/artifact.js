@@ -8,6 +8,10 @@ function highlight() {
 //		mark();
 	});
 }
+
+function flag() {
+	
+}
 	
 function getSelectionText() {
 	if (window.getSelection) {

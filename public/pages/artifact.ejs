@@ -6,11 +6,11 @@ var id = "<%= _id %>";
 var provenance = "<%= Provenance %>";
 </script>
 <div class="artifact-modal">
-<table>
+<table border="1">
 <tr>
 <div id="toolbar">
-<td><button onclick="getSelectionText();">Mark</button></td>
-<td><button onclick="flag();">Flag</button></td>
+<td><image src="images/pencil.png" height="20px" onclick="getSelectionText();">
+<image src="images/flag.png" height="20px" onclick="flag();"/></td>
 </div></tr>
 <tr><td><div id="artifact_affiliation"><p><b>Collection:</b> <%= affiliation %></p></div></td></tr>
 <tr><td><div id="artifact_name"><p><b>Registration number:</b> <%= name %></p></div></td></tr>
