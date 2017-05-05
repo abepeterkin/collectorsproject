@@ -643,6 +643,10 @@ table {
 	overflow: scroll;
 }
 
+#profileModal {
+	font-family:"akzidenz-light";
+}
+
 
 /************************************/
 /*			RESPONSIVE				*/
@@ -652,6 +656,7 @@ table {
 @media only screen and (max-width: 1500px) {
    	#top {
    		font-size: 50px;
+   		font-family: "akzidenz-regular";
    	}
 
    	#header {
@@ -675,6 +680,7 @@ table {
 
    	#search {
    		width: 80%
+   		border-style:none;
    	}
 
    	#nav_bar_title {
