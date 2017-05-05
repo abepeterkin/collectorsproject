@@ -216,7 +216,7 @@ function setTabs() {
 		    document.getElementById("header").style.height = "50px";
 
 
-		    document.getElementById("nav_bar_title").style.fontSize = "20px";
+		    document.getElementById("wow_title").style.fontSize = "20px";
 		    document.getElementById("about").style.fontSize = "15px";
 		    document.getElementById("signIn").style.fontSize = "15px";
 		    document.getElementById("signUp").style.fontSize = "15px";

@@ -26,6 +26,14 @@ body {
 	color: white;
 }
 
+#wow_title {
+	padding-left:30px;
+	font-size:22pt;
+	font-family: "akzidenz-medium";
+	color:white;
+	text-decoration:none;
+}
+
 /************************************/
 /*			NAVIGATION MENU			*/
 /************************************/
@@ -33,6 +41,7 @@ body {
 	font-family:"akzidenz-regular";
 	float:right;
 	margin-right: 40px;
+	margin-top:20px;
 }
 
 #nav_bar a {
@@ -50,7 +59,7 @@ body {
 
 #nav_bar div {
 	float: right;
-	margin-right: 40px;
+	margin-right: 50px;
 	text-decoration: none;
 	background-color: transparent;
 	padding: 10px;
@@ -64,13 +73,21 @@ body {
 	color: white;
 }
 
+#dropbtn {
+	font-size:15px;
+	font-family: "akzidenz-medium";
+	margin-bottom:10px;
+}
+
 .dropdown-content {
     display: none;
     position: absolute;
     /*background-color: hsla(48,100%,50%,0.5);*/
-    min-width: 160px;
+    min-width: 120px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    margin-left:-20px;
+    margin-top:15px;
 }
 
 .dropdown-content a {
@@ -92,6 +109,13 @@ body {
 #nav_bar div:hover {
 	background-color: hsla(48,100%,50%,0.5);
 	border-radius: 15px;
+}
+
+#about {
+	margin-right:10px;
+	margin-top:100px;
+	font-size:30pt;
+
 }
 
 /************************************/
@@ -310,6 +334,7 @@ input[type=checkbox] {
 #signUpBody h2 {
 	color: black;
 	font-family: "akzidenz-bold";
+	margin-bottom:70px;
 }
 
 #createAccount {
@@ -319,16 +344,26 @@ input[type=checkbox] {
 	border-style: none;
 	font-size: 20px;
 	width: 200px;
-	margin-bottom: 40px;
+	margin-bottom: 10px;
+	margin-top:40px;
+	border-radius:10px;
+}
+
+#signUpBody p {
+	font-family: "akzidenz-light";
+	font-size:12pt;
+	margin-bottom:30px;
 }
 
 td {
 	padding-right: 40px;
+	padding-bottom:10px;
 }
 
 table {
 	border: none;
 	border-collapse: collapse;
+	margin-bottom:30px;
 }
 
 .searchbar {
@@ -365,8 +400,8 @@ table {
     padding: 5px 0;
     position: absolute;
     z-index: 1;
-    bottom: 125%;
-    left: 50%;
+    bottom: -130%;
+    left: 20%;
     margin-left: -60px;
     opacity: 0;
     transition: opacity 1s;
@@ -386,6 +421,10 @@ table {
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+    font-family: "akzidenz-light";
+    padding:10px;
+    font-size: 10pt;
+    width:350px;
 }
 
 /************************************/
@@ -449,6 +488,7 @@ table {
 	border-style: none;
 	font-size: 20px;
 	width: 200px;
+	border-radius: 10px;
 }
 
 
@@ -581,27 +621,30 @@ table {
 #search_results {
 	position: absolute;
 	margin: auto;
-	margin-top: 100px;
+	margin-top: 50px;
 
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	width: 80%;
-	height: 70%;
+	width: 90%;
+	height: 50%;
 	padding-left: 50px;
 	padding-right: 50px;
+	padding-top:50px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	background-color: white;
-	overflow: scroll;
-	visibility: hidden;
+/*	overflow: scroll;
+*/	visibility: hidden;
+	border-radius:20px;
 }
 
 .search_result {
 	color: black;
 	font-size: 12px;
+	font-family: "akzidenz-light";
 	display:inline-block;
 	margin:20px;
 	margin-bottom: 0px;

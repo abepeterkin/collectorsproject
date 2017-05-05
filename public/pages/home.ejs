@@ -26,13 +26,21 @@ var counry = "<%= country %>";
 <!-- Navigation content -->
 <div id="header">
   <div id="title">
-    <h1 id="nav_bar_title">the collector's project</h1>
+    <!-- <h1 id="nav_bar_title">the collector's project</h1> -->
+    <a id="wow_title" href="/">the collector's project</a>
   </div>
-  <div id="nav_bar"> <a id="about" href="#">About</a> <a id="signIn" href="#">Sign in</a> <a id="signUp" href="#">Sign up</a>
-    <div class="dropdown" id="dropdown">
-      <button class="dropbtn" id="dropbtn">Dropdown</button>
-      <div class="dropdown-content"> <a id="profile">Profile</a> <a id="upload">Upload File</a> <a href="/logout" id="signOut">Sign out</a> </div>
-    </div>
+  <div id="nav_bar"> 
+    <a id="about" href="#">About</a> 
+    <a id="signIn" href="#">Sign in</a> 
+    <a id="signUp" href="#">Sign up</a>
+      <div class="dropdown" id="dropdown">
+        <button class="dropbtn" id="dropbtn">Dropdown</button>
+          <div class="dropdown-content"> 
+            <a id="profile">Profile</a> 
+            <a id="upload">Upload File</a> 
+            <a href="/logout" id="signOut">Sign out</a> 
+          </div>
+      </div>
   </div>
 </div>
 
@@ -87,6 +95,7 @@ var counry = "<%= country %>";
           </table>
         </div>
         <button class="butt" type="submit" id="createAccount">create account</button>
+        <p>Already have an account? Sign in.</p>
       </div>
     </form>
   </div>
