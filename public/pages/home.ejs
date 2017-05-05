@@ -39,16 +39,11 @@ var counry = "<%= country %>";
 <!-- Main content -->
 
 <div id="body_text">
-  <div id="search_results"></div>
   <div id="body_words">
     <p id="top">Your search begins here. </p>
   </div>
-  <input type="checkbox" id="search_details">
-  <label>Search Instructions</label>
-  </input>
-  <div id="body_search">
-    <input type="search" id="search" placeholder="Enter an artifact, place, or person">
-  </div>
+  <div class="tooltip">
+    <input type="search" id="search" placeholder="Enter an artifact, place, or person"><span class="tooltiptext">Combine exact keywords with plus and double quotes (e.g. "Term A" + "term b"). The search is not case-sensitive.</span></div>
   <div id="search_results"></div>
 </div>
 
@@ -157,7 +152,9 @@ var counry = "<%= country %>";
               <tr>
                 <td><h3>Uploaded data</h3></td>
               </tr>
-			  <tr><td><div id="uploadList"></div></td</tr>
+              <tr>
+                <td><div id="uploadList"></div></td>
+              </tr>
             </table>
           </div>
           <div id="objectInfo" class="tabcontent">
@@ -167,10 +164,11 @@ var counry = "<%= country %>";
               </tr>
               <tr>
                 <td></td>
-                <td><div id="profile_search_bar"><input type="search" id="searchSmall" placeholder="Enter object number..."></div></td>
+                <td><div id="profile_search_bar">
+                    <input type="search" id="searchSmall" placeholder="Enter object number...">
+                  </div></td>
               <tr>
                 <td colspan="2"><div id="profile_search_results"></div></td>
-
               </tr>
             </table>
           </div></td>
