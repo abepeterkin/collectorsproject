@@ -74,7 +74,7 @@ app.post('/signin', passport.authenticate('local-login', {
 });*/
 
 app.get('/profile', isLoggedIn, function(req, res) {
-	res.render('demoprofile.ejs', {
+	res.render('profile.ejs', {
 		userid		 : req.user._id,
 		email        : req.user.local.email,
 		firstname    : req.user.firstname,
@@ -176,7 +176,7 @@ app.post('/edit/:query/:userid/:value',isLoggedIn, function(req, res) {
 	if (query == "email") {
 		user.update({
 			_id: req.session.passport.user.id}, {
-				email: req.params.value 
+				email: req.params.value
 			}, function(err, numberAffected, rawResponse) {
 				console.log('new profile update error');
 	    });

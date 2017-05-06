@@ -53,7 +53,7 @@ body {
   margin-right: 50px;
   text-decoration: none;
   background-color: transparent;
-  
+
   font-size: 15px;
   font-family:"akzidenz-medium";
 }
@@ -419,7 +419,7 @@ div.tab button.active {
 
 /* Style the tab content */
 .tabcontent {
-    
+
     /*padding: 6px 12px;*/
     display: flex;
     justify-content: center;
@@ -437,6 +437,12 @@ th {
 
 td {
     font-family: "akzidenz-light";
+}
+
+#uploadList, #profile_search_results {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 
@@ -511,4 +517,3 @@ td {
 	font-family:"akzidenz-light";
 	src:url("akzidenz/akzidenz_light.otf") format("opentype");
 }
-
