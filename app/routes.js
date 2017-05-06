@@ -1,5 +1,5 @@
 var objectDB = require("./objectdatabase.js");
-var user = require('../app/models/user');
+var user_model = require('../app/models/user');
 var XLSX = require('xlsx');
 
 module.exports = function(app, passport) {
@@ -169,32 +169,13 @@ app.get('/mark/:id', function(req, res) {
 	// Search through lists of people, places, times for object id and return associated search terms to mark in the text for the user
 });
 
-/*app.post('/edit/:query/:userid/:value',isLoggedIn, function(req, res) {
-	var query = req.params.query;
-	var userid = req.params.userid;
-	var value = req.params.value;
-	if (query == "email") {
-		user.update({
-			_id: req.session.passport.user.id}, {
-				email: req.params.value
-			}, function(err, numberAffected, rawResponse) {
-				console.log('new profile update error');
-	    });
-	} else if (query == "firstname") {
-		//update first name
-			console.log(query + "/" + userid + "/" + value);
-	} else if (query == "lastname") {
-		//update last name
-			console.log(query + "/" + userid + "/" + value);
-	} else {
-		//return error
-			console.log(query + "/" + userid + "/" + value);
-	}
-});*/
+/************************/
+/*		Profile editing 	*/
+/************************/
 
 app.post('/editprofile',isLoggedIn, function(req, res) {
-	User.findOne({ 'local.email' :  req.user.email }, function(err, user) {
-
+	user_model.findOne({ 'local.email' :  req.user.local.email }, function(err, user) {
+		console.log("findOne... ");
 			// if there are any errors, return the error
 			if (err) {
 				console.log("Profile update error: " + err);
@@ -203,18 +184,67 @@ app.post('/editprofile',isLoggedIn, function(req, res) {
 
 			// check to see if theres already a user with that email
 			if (user) {
+				console.log("firstname: " + req.body.firstname);
 				user.local.email = req.body.email;
 				user.firstname   = req.body.firstname;
 				user.lastname   = req.body.lastname;
 				user.affiliation   = req.body.affiliation;
 				user.city   = req.body.city;
 				user.country   = req.body.country;
-				console.log("User " +  req.user.email + " profile updated");
+				user.save(function(err) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log("User " +  req.user.local.email + " profile updated");
+					}
+					res.redirect('/profile');
+				});
 			} else {
-					console.log("User " +  req.user.email + " not found");
+					console.log("User " +  req.user.local.email + " not found");
+					res.redirect('/profile');
 			}
 		});
 });
+
+/*app.post('/editpassword',isLoggedIn, function(req, res) {
+	user_model.findOne({ 'local.email' :  req.user.local.email }, function(err, user) {
+		console.log("findOne... ");
+			// if there are any errors, return the error
+			if (err) {
+				console.log("Profile update error: " + err);
+				return;
+			}
+
+			// check to see if theres already a user with that email
+			if (user) {
+				console.log("firstname: " + req.body.firstname);
+				if (!user.methods.validPassword(req.body.oldpassword) {
+					console.log("Incorrect password");
+					res.send("Incorrect password");
+					return;
+				}
+
+				if (req.body.newpassword !== req.body.confirmpassword) {
+					console.log("Passwords do not match");
+					res.send("Passwords do not match");
+					return;
+				}
+				user.local.password = user.methods.generateHash(newpassword);
+				user.save(function(err) {
+						if (err) {
+							console.log(err);
+							res.send(err);
+						} else {
+							console.log("User " +  req.user.local.email + " profile updated");
+							res.send("Password changed successfully!");
+						}
+					});
+			} else {
+				console.log("User " +  req.user.local.email + " not found");
+				res.send("User " +  req.user.local.email + " not found");
+			}
+		});
+});*/
 
 /************************/
 /*	Helper Functions	*/

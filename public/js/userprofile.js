@@ -8,7 +8,7 @@ $(document).ready(function(){
 	$("#user_email").html(email);
 	$("#institution_name").html(affiliation);
 	$("#user_location").html(city + ", " + country);
-	
+
 
 
 	/* opening first tab by default, load user's objects */
@@ -39,6 +39,12 @@ $(document).ready(function(){
 	$("#edit_profile").click(function() {
 	    $("#editInfoModal")[0].style.display = "flex";
 		$("#editInfoModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+		$("input#firstname").val(firstname);
+		$("input#lastname").val(lastname);
+		$("input#email").val(email);
+		$("input#city").val(city);
+		$("input#country").val(country);
+		$("input#affiliation").val(affiliation);
 	});
 
 	/* opens password modal */
@@ -46,7 +52,6 @@ $(document).ready(function(){
 	    $("#passwordModal")[0].style.display = "flex";
 		$("#passwordModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
-
 
 	/* opens object modal */
 	$(document).on('click', ".search_result", function(event) {

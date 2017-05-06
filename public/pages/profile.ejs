@@ -83,6 +83,7 @@ var country = "<%= country %>";
 <div id="editInfoModal" class="modal">
   <div class="editInfoModalContent">
     <div id="editInfoBody">
+      <form action="/editprofile" method="post">
       <div id="right_column">
         <table style="width:100%">
           <tr>
@@ -90,31 +91,26 @@ var country = "<%= country %>";
           </tr>
           <tr>
             <td>First name</td>
-            <td><input class="searchbar" id="firstname" type="text"></td>
           </tr>
           <tr>
             <td>Last name</td>
-            <td><input class="searchbar" id="lastname"  type="text"></td>
           </tr>
           <tr>
             <td>Email</td>
-            <td><input class="searchbar" id="email" type="email"></td>
           </tr>
           <tr>
             <td>Affiliation</td>
-            <td><input class="searchbar" id="affiliation" type="text"></td>
           </tr>
           <tr>
             <td>City</td>
-            <td><input class="searchbar" id="city" type="text"></td>
           </tr>
           <tr>
             <td>Country</td>
-            <td><input class="searchbar" id="country" type="text"></td>
           </tr>
         </table>
-        <center><button id="save_button">Save</button></center>
+        <center><button type="submit" id="profile_save_button">Save</button></center>
       </div>
+    </form>
     </div>
   </div>
 </div>
