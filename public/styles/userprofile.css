@@ -154,7 +154,7 @@ body {
   	right: 0;
   	bottom: 0;
   	left: 0;
-  	width: 40%;
+  	width: 500px;
   	height: 400px;
   	overflow-y: auto;
    	border-radius: 25px;
@@ -200,7 +200,7 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    width: 30%;
+    width: 500px;
     height: 300px;
     overflow-y: auto;
     border-radius: 25px;
