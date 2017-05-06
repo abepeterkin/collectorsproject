@@ -165,11 +165,11 @@ app.post('/search/:query/:userid', function(req, res) {
 });
 
 app.get('/mark/all/:query', function(req, res) {
-	console.log(req.params);	
 	var query = req.params.query;
-	objectDB.searchOnPerson(query, function(result) {
+	console.log(query);
+	objectDB.searchOnPerson(query, function(result) { <!-- This will need to search through documents of people, locations and objects -->
 		var resultJSON = JSON.stringify(result);
-		res.send(resultJSON);
+	//	res.send(resultJSON);
 		console.log(resultJSON);
 	});
 });
@@ -177,11 +177,7 @@ app.get('/mark/all/:query', function(req, res) {
 app.post('/mark/person/:object/:person', function(req, res) {
 	var object = req.params.object;
 	var person = req.params.person;
-
-	// Check if the value is not empty
 	if (person !== "") {
-		
-	// Check if value is already in database -- I don't think this is currently actually checking: Abe/Colm?
 		objectDB.searchOnPerson(person, function(result) {
 			if (result.length !== 0) {
 				console.log(person + " already in collection");
