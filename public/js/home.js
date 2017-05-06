@@ -7,7 +7,6 @@ window.onload = function() {
 
 var searchbar = $("#search");
 
-
 $(document).ready(function(){
 
 	var span = document.getElementsByClassName("close")[0];
@@ -254,14 +253,17 @@ function setTabs() {
 	$(document).on('click', ".search_result", function(event) {
 
 		var obj = {
-			_id : $(this).attr("_id"),
+			id : $(this).attr("data-id"),
 			affiliation: $(this).attr("data-affiliation"),
 			name : $(this).attr("data-name"),
-			Provenance : $(this).attr("data-provenance")
+			provenance : $(this).attr("data-provenance")
 		}
-
+		
 		var modalHTML = new EJS({url: '../pages/artifact.ejs'}).render(obj);
 		$("#object_body").html(modalHTML);
+		
+		var mapHTML = new EJS({url: '../pages/test.ejs'}).render(obj);
+		$("#object_map").html(mapHTML);
 
 		$("#objectModal")[0].style.display = "flex";
 		$("#objectModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";

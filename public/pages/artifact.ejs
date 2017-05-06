@@ -1,10 +1,4 @@
-<script src="js/artifact.js"></script>
-<script>
-	var affiliation = "<%= affiliation %>";
-	var id = "<%= _id %>";
-	var provenance = "<%= Provenance %>";
-</script>
-
+<div id="objectID" data-id='<%= id %>'></div>
 <div class="artifact-modal">
 	<table id="artifact_table" border="1">
 		<tr>
@@ -24,7 +18,7 @@
 		</tr>
 		<tr>
 			<td>
-				<div id="artifact_provenance"><p><b>Provenance:</b> <%= Provenance %></div>
+				<div id="artifact_provenance"><p><b>Provenance:</b> <%= provenance %></div>
 				<ul class='custom-menu'>
 				  <li data-action="first">Person</li>
 				  <li data-action="second">Time</li>
@@ -34,3 +28,4 @@
 		</tr>
 	</table>
 </div>
+<script src="js/artifact.js"></script>

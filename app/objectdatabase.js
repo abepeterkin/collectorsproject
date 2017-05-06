@@ -109,7 +109,7 @@ var addLocationToObject = function(artifactId, location) {
 //do the same for location
 var createPersonHelper = function(person) {
   var createdPerson = {
-    "name" : person.name,
+    "name" : person,
     "Objects": [],
     "Locations" : []
   }
@@ -120,11 +120,11 @@ var createPersonHelper = function(person) {
 var createPerson = function(person, callback) {
   var createdPerson = createPersonHelper(person);
   MongoClient.connect(url, function(err, db) {
-    db.collection('person').insertOne( createdPerson,
+    db.collection('person').insertOne(createdPerson,
      function(err, result) {
       assert.equal(err, null);
       console.log(createdPerson._id);
-      console.log("Inserted " + person.name + " into the person collection.");
+      console.log("Inserted " + createdPerson.name + " into the person collection.");
       } );
     db.close();
   });
@@ -222,10 +222,10 @@ var searchOnObject = function(query, callback) {
   });
 }
 
-var searchOnPerson = function(query, callback) {
+var searchOnPerson = function(person, callback) {
     MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
-    var results = db.collection('person').find({$text : {$search : query}}, {
+    var results = db.collection('person').find({$text : {$search : person}}, {
       score : {$meta : "textScore"}}).sort(
       {score: {$meta : "textScore"}});
     callback(results);
@@ -245,16 +245,21 @@ var searchOnLocation = function(query, callback) {
 }
 
 var addObjectToPerson = function(person, object) {
-  MongoClient.connect(url, function(err, db) {
-    assert.equal(null, err);
-    db.collection('person').update(
-      { _id: person._id },
-     { $push: { Objects: object } },
-     function(err, result) {
-      assert.equal(err, null);
-      console.log("Updated " + person._id + " with new object id " + objectId);
-    });
-   db.close();
+	console.log(person);
+	MongoClient.connect(url, function(err, db) {
+		assert.equal(null, err);
+		db.collection('person').update(
+		{ 
+//			_id: person._id 
+		}, {
+			$push: { 
+				Objects: object 
+				} 
+		}, function(err, result) {
+			assert.equal(err, null);
+			console.log("Updated " + person._id + " with new object id " + object);
+			});
+	db.close();
   });
 }
 

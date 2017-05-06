@@ -1,10 +1,11 @@
 var text = "";
+var id = $("#objectID").attr('data-id');
 
-highlight();
+//highlight(id);
 
-function highlight() {
+function highlight(id) {
 	// This function should retrieve all people, places, and time values from the database and highlight them in the provenance lists
-	$.get("/mark/" + id, function() {
+	$.get("/mark/all/" + id, function() {
 //		mark();
 	});
 }
@@ -48,7 +49,10 @@ $(document).bind("mousedown", function (e) {
 
 $(".custom-menu li").click(function(){
 	switch($(this).attr("data-action")) {
-		case "first": 
+		case "first":
+			$.post("/mark/person/" + id + "/" + text, function(result){
+				console.log(result);	
+			});
 			// Add word to person database; update search results
 			break;
 		case "second": 

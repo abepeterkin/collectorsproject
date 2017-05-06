@@ -164,9 +164,45 @@ app.post('/search/:query/:userid', function(req, res) {
 	}
 });
 
-app.get('/mark/:id', function(req, res) {
+app.get('/mark/all/:id', function(req, res) {
 	var id = req.params.id;
 	// Search through lists of people, places, times for object id and return associated search terms to mark in the text for the user
+});
+
+app.post('/mark/person/:object/:person', function(req, res) {
+	var object = req.params.object;
+	var person = req.params.query;
+
+	// Check if the value is not empty
+	if (person !== "") {
+		
+	// Check if value is already in database -- I don't think this is currently actually checking: Abe/Colm?
+		objectDB.searchOnPerson(person, function(result) {
+			
+			console.log(result);
+
+			// If not
+			if (result !== "") {
+				// Add person to person collection -- This seems to go ok
+				objectDB.createPerson(person, function(result) {
+					res.send(result);
+				});
+				
+				// Add object to person's attributes -- Not sure if this is going ok
+				objectDB.addObjectToPerson(person, object, function(result) {
+					res.send(result);
+				});
+			} else {
+				// Add object to person attributes -- Not sure if this is going ok
+				objectDB.addObjectToPerson(person, object, function(result) {
+					res.send(result);
+					console.log("record added to person");
+				});
+			}
+		});
+	} else {
+		res.send("Invalid query");
+	}
 });
 
 /*app.post('/edit/:query/:userid/:value',isLoggedIn, function(req, res) {
