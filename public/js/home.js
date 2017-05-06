@@ -261,7 +261,6 @@ function setTabs() {
 		
 		var modalHTML = new EJS({url: '../pages/artifact.ejs'}).render(obj);
 		$("#object_body").html(modalHTML);
-		
 		$("#object_map").hide();
 		
 //		var mapHTML = new EJS({url: '../pages/test.ejs'}).render(obj);

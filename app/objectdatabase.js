@@ -10,6 +10,7 @@ var datab = [];
 MongoClient.connect(url, function(err, db) {
   assert.equal(null, err);
   console.log("Connected correctly to server.");
+  db.collection('person').remove({});
   /*dropAll(db);
   objectIndexing(db);
   console.log("Indexed objects");
@@ -105,24 +106,24 @@ var addLocationToObject = function(artifactId, location) {
   });
 }
 //do the same for location
-var createPersonHelper = function(person) {
+var createPersonHelper = function(person, object) {
   var createdPerson = {
     "name" : person,
     "Objects": [],
     "Locations" : []
   }
+  createdPerson.Objects.push(object)
   return createdPerson;
 }
 
 //have person be
-var createPerson = function(person, callback) {
-  var createdPerson = createPersonHelper(person);
+var createPerson = function(person, object, callback) {
+  var createdPerson = createPersonHelper(person, object);
   MongoClient.connect(url, function(err, db) {
     db.collection('person').insertOne(createdPerson,
      function(err, result) {
       assert.equal(err, null);
-      console.log(createdPerson._id);
-      console.log("Inserted " + createdPerson.name + " into the person collection.");
+      console.log("Added " + createdPerson.name + " to the person collection.");
       } );
     db.close();
   });
@@ -257,7 +258,7 @@ var addObjectToPerson = function(person, object) {
 				} 
 		}, function(err, result) {
 			assert.equal(err, null);
-			console.log("Updated " + person._id + " with new object id " + object);
+//			console.log("Updated " + person._id + " with new object id " + object);
 			});
 	db.close();
   });
@@ -336,19 +337,24 @@ function searchForUserObjects(userId, query, callback) {
 //getting object id for any object on the screen to remove or update
 
 module.exports.insertMany = insertMany;
-module.exports.addLocationToObject = addLocationToObject;
+
 module.exports.createPerson = createPerson;
-module.exports.findObjects = findObjects;
 module.exports.createLocation = createLocation;
+
+module.exports.findObjects = findObjects;
+
+module.exports.addLocationToPerson = addLocationToPerson;
+module.exports.addLocationToObject = addLocationToObject;
 module.exports.addObjectToLocation = addObjectToLocation;
+module.exports.addObjectToPerson = addObjectToPerson;
 module.exports.addPersonToLocation = addPersonToLocation;
 module.exports.addPersonToObject = addPersonToObject;
+
+module.exports.searchForUserObjects = searchForUserObjects;
 module.exports.searchOnObject = searchOnObject;
 module.exports.searchOnPerson = searchOnPerson;
 module.exports.searchOnLocation = searchOnLocation;
-module.exports.addObjectToPerson = addObjectToPerson;
-module.exports.addLocationToPerson = addLocationToPerson;
+
 module.exports.getUsersObjects = getUsersObjects;
 module.exports.updateObject = updateObject;
 module.exports.removeObject = removeObject;
-module.exports.searchForUserObjects = searchForUserObjects;
