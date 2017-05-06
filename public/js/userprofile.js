@@ -2,7 +2,7 @@ $(document).ready(function(){
 	var span = document.getElementsByClassName("close")[0];
 
 
-	/* inserting user info*/
+	/* inserting user info */
 	$("#dropbtn").html(firstname);
 	$("#name").html(firstname+" "+lastname);
 	$("#user_email").html(email);
@@ -11,20 +11,21 @@ $(document).ready(function(){
 	
 
 
-	/* opening first tab by default*/
+	/* opening first tab by default, load user's objects */
 	document.getElementById("defaultOpen").click();
+
 	$.post("search/" + affiliation, function(result){
-				$("#uploadList").html("");
-				var resultObjects = JSON.parse(result);
-				for (var key in resultObjects) {
-					if (resultObjects.hasOwnProperty(key)) {
-      				var obj = resultObjects[key];
-						//console.log(JSON.stringify(obj));
-						var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
-						$("#uploadList").append(resultHTML);
-					}
-				}
-		});
+		$("#uploadList").html("");
+		var resultObjects = JSON.parse(result);
+		for (var key in resultObjects) {
+			if (resultObjects.hasOwnProperty(key)) {
+   				var obj = resultObjects[key];
+
+				var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
+				$("#uploadList").append(resultHTML);
+			}
+		}
+	});
 
 
 	/* opens upload modal */
@@ -33,17 +34,11 @@ $(document).ready(function(){
 		$("#uploadModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
 
-	/* closes upload modal */
-	$(document).click(function(event) {
-    	if (event.target == $("#uploadModal")[0]) {
-			$("#uploadModal")[0].style.display = "none";
-		}
-	});
 
 	/* opens edit profile modal */
 	$("#edit_profile").click(function() {
-	    $("#signInModal")[0].style.display = "flex";
-		$("#signInModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+	    $("#editInfoModal")[0].style.display = "flex";
+		$("#editInfoModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
 
 
@@ -67,37 +62,37 @@ $(document).ready(function(){
 		$("#object_body").height(table_height);
 	});
 
-	$(document).on('mouseover', ".search_result", function(event) {
-		$('body').css('cursor','pointer');
-	});
-
-	$(document).on('mouseleave', ".search_result", function(event) {
-		$('body').css('cursor','default');
-	});
 
 
-	/* closes object modal */
+	/* closes modal windows */
 	$(document).click(function(event) {
+		if (event.target == $("#uploadModal")[0]) {
+			$("#uploadModal")[0].style.display = "none";
+		}
+
     	if (event.target == $("#objectModal")[0]) {
 			$("#objectModal")[0].style.display = "none";
+		}
+
+		if (event.target == $("#editInfoModal")[0]) {
+			$("#editInfoModal")[0].style.display = "none";
 		}
 	});
 
 
-	/*gets uploaded objects*/
+	/* gets uploaded objects for Uploads tab*/
 	$("#defaultOpen").click(function(event) {
-		console.log("whoo");
 	    $.post("search/" + affiliation, function(result){
-				$("#uploadList").html("");
-				var resultObjects = JSON.parse(result);
-				for (var key in resultObjects) {
-					if (resultObjects.hasOwnProperty(key)) {
+			$("#uploadList").html("");
+			var resultObjects = JSON.parse(result);
+			for (var key in resultObjects) {
+				if (resultObjects.hasOwnProperty(key)) {
       				var obj = resultObjects[key];
-						console.log(JSON.stringify(obj));
-						var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
-						$("#uploadList").append(resultHTML);
-					}
+					console.log(JSON.stringify(obj));
+					var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
+					$("#uploadList").append(resultHTML);
 				}
+			}
 		});
 	});
 
@@ -106,7 +101,7 @@ $(document).ready(function(){
 	/* POST request for object search */
 	$("#searchSmall").on('change', function() {
 		$("#profile_search_results").html("");
-		
+
 		$.post("search/" + $("#searchSmall").val() + "/" + user_id, function(result){
 			var resultObjects = JSON.parse(result);
 			console.log(resultObjects); //resultObjects is empty []
@@ -118,9 +113,18 @@ $(document).ready(function(){
 					$("#profile_search_results").append(resultHTML);
 				}
 			}
-			console.log('yaaa');
 		});
 	});
 
+
+	/* mousing over a search result */
+	$(document).on('mouseover', ".search_result", function(event) {
+		$('body').css('cursor','pointer');
+	});
+
+	/* mouse leaves over a search result */
+	$(document).on('mouseleave', ".search_result", function(event) {
+		$('body').css('cursor','default');
+	});
 
 });

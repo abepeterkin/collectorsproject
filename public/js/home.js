@@ -1,37 +1,38 @@
+/* generate random background image */
 window.onload = function() {
 	var numImages = 4;
     var randomNumber = Math.floor(Math.random() * numImages) + 1;
 	$("#backgroundImageID").css("background-image", "url(images/background_" + randomNumber + ".jpg");
 }
 
-
 var searchbar = $("#search");
 
 
 $(document).ready(function(){
 
-	console.log("USER: " + email);
-
 	var span = document.getElementsByClassName("close")[0];
 
-if (email !== "undefined") {
-	$("#dropbtn").html(firstname);
-	$("#signIn").hide();
-	$("#signUp").hide();
-} else {
-	$("#dropdown").hide();
-}
+	if (email !== "undefined") {
+		$("#dropbtn").html(firstname);
+		$("#signIn").hide();
+		$("#signUp").hide();
+	} else {
+		$("#dropdown").hide();
+	}
 
+	/* opens signup modal */
 	$("#signUp").click(function() {
 	    $("#signUpModal")[0].style.display = "flex";
 		$("#signUpModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
 
+	/* opens signin modal */
 	$("#signIn").click(function() {
 	    $("#signInModal")[0].style.display = "flex";
 		$("#signInModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
 
+	/* opens upload modal */
 	$("#upload").click(function() {
 	    $("#uploadModal")[0].style.display = "flex";
 		$("#uploadModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
@@ -46,29 +47,28 @@ if (email !== "undefined") {
 
 	});*/
 
+
+	/* close modals */
 	$(document).click(function(event) {
     	if (event.target == $("#signUpModal")[0]) {
 			$("#signUpModal")[0].style.display = "none";
 		}
-	});
 
-	$(document).click(function(event) {
-    	if (event.target == $("#signInModal")[0]) {
+		if (event.target == $("#signInModal")[0]) {
 			$("#signInModal")[0].style.display = "none";
 		}
-	});
 
-	$(document).click(function(event) {
-    	if (event.target == $("#objectModal")[0]) {
+		if (event.target == $("#objectModal")[0]) {
 			$("#objectModal")[0].style.display = "none";
 		}
-	});
 
-	$(document).click(function(event) {
-    	if (event.target == $("#uploadModal")[0]) {
+		if (event.target == $("#uploadModal")[0]) {
 			$("#uploadModal")[0].style.display = "none";
 		}
 	});
+
+
+
 
 /*	$(document).click(function(event) {
     	if (event.target == $("#profileModal")[0]) {
@@ -194,10 +194,12 @@ function setTabs() {
 }
 */
 
+	/* on search */
 	$("#search").on("change", function(event){
 
-			//document.getElementById("body_words").remove();
+		/* this block of code is for hiding and shifting elements on the main page */
 			$("#top").hide();
+
 	    	document.getElementById("body_text").display="block";
 		    document.getElementById("body_text").style.top="75px";
 
@@ -219,61 +221,69 @@ function setTabs() {
 		    document.getElementById("search_results").style.top="20px";
 		    document.getElementById("search_results").style.height="600px";
 
+		/******/
 
+
+		/* get search results */
 		$("#search_results").html("");
 		if ($("#search").val() !== "") {
 
-				  console.log($("#search").val());
-					$.post("search/" + $("#search").val(), function(result){
-						var resultObjects = JSON.parse(result);
-						for (var key in resultObjects) {
-							if (resultObjects.hasOwnProperty(key)) {
+			$.post("search/" + $("#search").val(), function(result){
+				var resultObjects = JSON.parse(result);
+				for (var key in resultObjects) {
+					if (resultObjects.hasOwnProperty(key)) {
       					var obj = resultObjects[key];
-								console.log(JSON.stringify(obj));
-								var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
-								$("#search_results").append(resultHTML);
-							}
-						}
-					});
+							console.log(JSON.stringify(obj));
+							var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
+							$("#search_results").append(resultHTML);
+					}
 				}
 			});
+		}
+	});
 
-			$(document).on('click', ".search_result", function(event) {
-				console.log("RESULT CLICKED");
 
-				var obj = {
-					_id : $(this).attr("_id"),
-					affiliation: $(this).attr("data-affiliation"),
-					name : $(this).attr("data-name"),
-					Provenance : $(this).attr("data-provenance")
-				}
 
-				var modalHTML = new EJS({url: '../pages/artifact.ejs'}).render(obj);
-				$("#object_body").html(modalHTML);
+	/* on clicking a search result */
+	$(document).on('click', ".search_result", function(event) {
 
-				$("#objectModal")[0].style.display = "flex";
-				$("#objectModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
-			});
+		var obj = {
+			_id : $(this).attr("_id"),
+			affiliation: $(this).attr("data-affiliation"),
+			name : $(this).attr("data-name"),
+			Provenance : $(this).attr("data-provenance")
+		}
 
-			$(document).on('mouseover', ".search_result", function(event) {
-				console.log("RESULT MOUSEOVER");
-				$('body').css('cursor','pointer');
-			});
+		var modalHTML = new EJS({url: '../pages/artifact.ejs'}).render(obj);
+		$("#object_body").html(modalHTML);
 
-			$(document).on('mouseleave', ".search_result", function(event) {
-				$('body').css('cursor','default');
-			});
+		$("#objectModal")[0].style.display = "flex";
+		$("#objectModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+	});
 
-			$('#upload_body').submit(function(event) {
-				event.preventDefault();
-				var data = new FormData();
-				data.append('provenancecolumn', $('input[name=provenancecolumn]').val());
-				data.append('namecolumn', $('input[name=namecolumn]').val());
-				data.append('ignoreheader', $('input[name=ignoreheader]').val());
-				data.append('file', $('input[type=file]')[0].files[0]);
-				console.log($('input[type=file]')[0].files[0]);
-				$(this).html("Uploading...");
-				$.ajax({
+
+	/* on mousing over a search result */
+	$(document).on('mouseover', ".search_result", function(event) {
+		$('body').css('cursor','pointer');
+	});
+
+	/* mouse leaves a search result */
+	$(document).on('mouseleave', ".search_result", function(event) {
+		$('body').css('cursor','default');
+	});
+
+
+	/* uploading a file */
+	$('#upload_body').submit(function(event) {
+		event.preventDefault();
+		var data = new FormData();
+		data.append('provenancecolumn', $('input[name=provenancecolumn]').val());
+		data.append('namecolumn', $('input[name=namecolumn]').val());
+		data.append('ignoreheader', $('input[name=ignoreheader]').val());
+		data.append('file', $('input[type=file]')[0].files[0]);
+		console.log($('input[type=file]')[0].files[0]);
+		$(this).html("Uploading...");
+		$.ajax({
             url: '/upload',
             data: data,
             cache: false,
@@ -281,9 +291,8 @@ function setTabs() {
             processData: false,
             type: 'POST',
             success: function(data){
-							$('#upload_body').html(data);
-						}
-				});
+				$('#upload_body').html(data);
+			}
 		});
-
+	});
 });

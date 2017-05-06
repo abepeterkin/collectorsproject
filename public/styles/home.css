@@ -20,15 +20,10 @@ body {
 	background-color: hsla(0,0%,0%,0.5);
 }
 
-#title h1 {
-	padding-left:30px;
-	font-size: 30pt;
-	color: white;
-}
 
 #wow_title {
 	padding-left:30px;
-	font-size:22pt;
+	font-size:22pt; /* 30pt */
 	font-family: "akzidenz-medium";
 	color:white;
 	text-decoration:none;
@@ -65,6 +60,7 @@ body {
 
 	font-size: 15px;
 	font-family:"akzidenz-medium";
+	border-radius: 15px;
 }
 
 #nav_bar div button {
@@ -113,7 +109,6 @@ body {
 #about {
 	margin-right:10px;
 	margin-top:100px;
-	font-size:30pt;
 }
 
 /************************************/
@@ -126,14 +121,13 @@ body {
     left: 0;
     top: 0;
     width: 100%; /* Full width */
-		height: 100%; /* Full height */
+	height: 100%; /* Full height */
 /*    overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 .signUpModalContent {
- /*   background-color: hsla(0,0%,0%,0.7);*/
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -143,17 +137,15 @@ body {
 }
 
 .signInModalContent {
-/*    background-color: hsla(0,0%,0%,0.7);*/
     margin: 20% auto;
     padding: 20px;
     border: 1px solid #888;
-	height: 30%;
-    width: 35%;
+	height: 10%;
+    width: 10%;
 	border-radius: 25px;
 }
 
 .uploadModalContent {
-/*    background-color: hsla(0,0%,0%,0.7);*/
     margin: 20% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -163,7 +155,6 @@ body {
 }
 
 .objectModalContent {
-/*    background-color: hsla(0,0%,0%,0.7);*/
     margin: 20% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -181,6 +172,13 @@ body {
     width: auto;
 	border-radius: 25px;
 }
+
+
+
+/************************************/
+/*			TABS			*/
+/************************************/
+
 
 /* Style the tab */
 div.tab {
@@ -255,7 +253,19 @@ div.tab button.active {
 	background-color: white;
 }
 
-#right_column, #left_column {
+#signUpBody h2 {
+	color: black;
+	font-family: "akzidenz-bold";
+	margin-bottom:70px;
+}
+
+#signUpBody p {
+	font-family: "akzidenz-light";
+	font-size:12pt;
+	margin-bottom:30px;
+}
+
+#signup_column {
     display: flex;
  	justify-content: center;
  	align-items: center;
@@ -264,75 +274,10 @@ div.tab button.active {
 	color: grey;
 }
 
-.indent {
-	text-indent: 20px;
-	margin: 0px;
-	padding: 0px;
-	font-size: 30px;
-}
-
-.smaller {
-	font-size: 20px;
-}
-
-.check {
-	padding-right: 10px;
-	margin-right: 10px;
-}
-
 .butt {
 	height:50px;
     width:100px;
     font-size: 15px;
-}
-
-.highlighted {
-	background-color: hsla(0,0%,60%,1);
-	border-radius: 5px;
-}
-
-.custom-menu {
-    display: none;
-    z-index: 1000;
-    position: absolute;
-    overflow: hidden;
-    border: 1px solid #CCC;
-    white-space: nowrap;
-    font-family: sans-serif;
-    background: #FFF;
-    color: #333;
-    border-radius: 5px;
-    padding: 0;
-}
-
-/* Each of the items in the list */
-.custom-menu li {
-    padding: 8px 12px;
-    cursor: pointer;
-    list-style-type: none;
-    transition: all .3s ease;
-}
-
-.custom-menu li:hover {
-    background-color: #DEF;
-}
-
-#floatright {
-	text-align: center;
-}
-
-#center {
-	text-align: center;
-}
-
-input[type=checkbox] {
-	transform: scale(1.5);
-}
-
-#signUpBody h2 {
-	color: black;
-	font-family: "akzidenz-bold";
-	margin-bottom:70px;
 }
 
 #createAccount {
@@ -346,12 +291,6 @@ input[type=checkbox] {
 	border-radius:10px;
 }
 
-#signUpBody p {
-	font-family: "akzidenz-light";
-	font-size:12pt;
-	margin-bottom:30px;
-}
-
 td {
 	padding-right: 40px;
 	padding-bottom:10px;
@@ -363,65 +302,7 @@ table {
 	margin-bottom:30px;
 }
 
-.searchbar {
-	height: 20px;
-	width: 200px;
-	font-size: 18px;
-	font-family: "akzidenz-light";
-}
 
-.tooltip {
-    position: relative;
-    display: inline-block;
-}
-
-#search {
-    height: 50px;
-    width: 400px;
-    border-radius: 25px;
-    padding: 5px 5px 5px 25px;
-    z-index: 1;
-    text-align: center;
-    font-size: 20px;
-    font-family: "akzidenz-light"
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 300px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: -130%;
-    left: 20%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 1s;
-}
-
-/*.tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}*/
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-    font-family: "akzidenz-light";
-    padding:10px;
-    font-size: 10pt;
-    width:350px;
-}
 
 /************************************/
 /*			SIGN IN MODAL			*/
@@ -602,17 +483,12 @@ table {
 #body_text {
 	position: fixed;
   	margin: auto;
-
   	top: 40%;
   	right: 0;
   	bottom: 20%;
   	left: 0;
-
   	width: 75%;
-
   	text-align: center;
-
-
 }
 
 #top {
@@ -632,6 +508,72 @@ table {
     font-size: 20px;
     font-family: "akzidenz-light"
 }
+
+
+/************************************/
+/*			SEARCH BAR				*/
+/************************************/
+
+.searchbar {
+	height: 20px;
+	width: 200px;
+	font-size: 18px;
+	font-family: "akzidenz-light";
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+#search {
+    height: 50px;
+    width: 400px;
+    border-radius: 25px;
+    padding: 5px 5px 5px 25px;
+    z-index: 1;
+    text-align: center;
+    font-size: 20px;
+    font-family: "akzidenz-light"
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 300px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: -130%;
+    left: 20%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+/*.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}*/
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    font-family: "akzidenz-light";
+    padding:10px;
+    font-size: 10pt;
+    width:350px;
+}
+
 
 /************************************/
 /*				SEARCH				*/
@@ -681,7 +623,6 @@ table {
 /*			PROFILE				*/
 /************************************/
 
-
 #profile_search_results {
 
 	margin: auto;
@@ -727,9 +668,6 @@ table {
    	#wow_title h1 {
    		font-size: 20px;
    	}
-
-
-
 }
 
 @media only screen and (max-width: 750px) {
@@ -756,9 +694,6 @@ table {
 	}
 }
 
-
-
-
 @media only screen and (max-height: 500px) {
 
    	#body_words {
@@ -766,6 +701,10 @@ table {
    		height: 1px;
    	}
 
+   	#search {
+   		width: 20%
+   		border-style:none;
+   	}
 }
 
 /************************************/
