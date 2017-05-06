@@ -169,7 +169,7 @@ app.get('/mark/:id', function(req, res) {
 	// Search through lists of people, places, times for object id and return associated search terms to mark in the text for the user
 });
 
-app.post('/edit/:query/:userid/:value',isLoggedIn, function(req, res) {
+/*app.post('/edit/:query/:userid/:value',isLoggedIn, function(req, res) {
 	var query = req.params.query;
 	var userid = req.params.userid;
 	var value = req.params.value;
@@ -190,6 +190,30 @@ app.post('/edit/:query/:userid/:value',isLoggedIn, function(req, res) {
 		//return error
 			console.log(query + "/" + userid + "/" + value);
 	}
+});*/
+
+app.post('/editprofile',isLoggedIn, function(req, res) {
+	User.findOne({ 'local.email' :  req.user.email }, function(err, user) {
+
+			// if there are any errors, return the error
+			if (err) {
+				console.log("Profile update error: " + err);
+				return;
+			}
+
+			// check to see if theres already a user with that email
+			if (user) {
+				user.local.email = req.body.email;
+				user.firstname   = req.body.firstname;
+				user.lastname   = req.body.lastname;
+				user.affiliation   = req.body.affiliation;
+				user.city   = req.body.city;
+				user.country   = req.body.country;
+				console.log("User " +  req.user.email + " profile updated");
+			} else {
+					console.log("User " +  req.user.email + " not found");
+			}
+		});
 });
 
 /************************/
