@@ -36,14 +36,12 @@ function insertMany(objects) {
   console.log("Gets after connect");
 }
 
-
 var dropAll = function(db) {
   db.collection('object').remove({});
   db.collection('person').remove({});
   db.collection('location').remove({});
   console.log("Dropped all");
 }
-
 
 var objectIndexing = function(db) {
   db.collection('object').createIndex({
@@ -222,13 +220,15 @@ var searchOnObject = function(query, callback) {
   });
 }
 
-var searchOnPerson = function(person, callback) {
+var searchOnPerson = function(query, callback) {
     MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
-    var results = db.collection('person').find({$text : {$search : person}}, {
+    var results = db.collection('person').find({$text : {$search : query}}, {
       score : {$meta : "textScore"}}).sort(
-      {score: {$meta : "textScore"}});
-    callback(results);
+      {score: {$meta : "textScore"}}).toArray(function(err, documents) {
+        assert.equal(err, null);
+        callback(documents);
+      });
     db.close();
   });
 }

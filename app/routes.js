@@ -178,10 +178,10 @@ app.post('/mark/person/:object/:person', function(req, res) {
 		
 	// Check if value is already in database -- I don't think this is currently actually checking: Abe/Colm?
 		objectDB.searchOnPerson(person, function(result) {
-			
-			console.log(result);
+			var resultJSON = JSON.stringify(result);
+			console.log(resultJSON);
 
-			// If not
+/*			// If not
 			if (result !== "") {
 				// Add person to person collection -- This seems to go ok
 				objectDB.createPerson(person, function(result) {
@@ -198,7 +198,7 @@ app.post('/mark/person/:object/:person', function(req, res) {
 					res.send(result);
 					console.log("record added to person");
 				});
-			}
+			}*/
 		});
 	} else {
 		res.send("Invalid query");
