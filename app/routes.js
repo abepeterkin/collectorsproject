@@ -103,7 +103,7 @@ app.get('/upload', isLoggedIn, function(req, res) {
 });
 
 app.post('/upload', isLoggedIn, function(req, res) {
-//	console.log(req.body);
+	console.log(req.body);
 	console.log(req.files);
 //	console.log(req.body.provenancecolumn);
 //	console.log(req.body.namecolumn);
