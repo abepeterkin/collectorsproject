@@ -387,7 +387,7 @@ div.tab {
     overflow: hidden;
     display: flex;
     justify-content: center;
-  }
+}
 
 /* Style the buttons inside the tab */
 div.tab button {
@@ -440,9 +440,15 @@ td {
 }
 
 
+#uploadList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 
 /************************************/
-/*      RESPONSIVE        */
+/*      RESPONSIVE                  */
 /************************************/
 
 
