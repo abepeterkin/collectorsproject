@@ -277,8 +277,8 @@ function insertObjects(req) {
     var object = {
       userId: req.user._id,
       museumId : req.user.affiliation,
-      name : name,
-      Provenance : provenance,
+      name : escapeHtml(name),
+      Provenance : escapeHtml(provenance),
       Persons : [],
       Locations : []
     }
@@ -286,4 +286,17 @@ function insertObjects(req) {
   }
   objectDB.insertMany(objectArray);
 }
+}
+
+var entityMap = {
+  '<': '',
+  '>': '',
+	"'": '',
+  '"': '',
+};
+
+function escapeHtml (string) {
+  return String(string).replace(/[<>"']/g, function (s) {
+    return entityMap[s];
+  });
 }
