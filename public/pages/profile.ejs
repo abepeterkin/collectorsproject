@@ -31,7 +31,7 @@ var country = "<%= country %>";
     <a id="wow_title" href="/">the collector's project</a>
   </div>
   <div id="nav_bar">
-    <a href="/">Home page</a> 
+    <a href="/">Home page</a>
       <div class="dropdown" id="dropdown">
         <button class="dropbtn" id="dropbtn">Dropdown</button>
           <div class="dropdown-content">
@@ -60,8 +60,8 @@ var country = "<%= country %>";
 
 <div id="user_uploads">
     <div class="tab">
-      <button class="tablinks" onclick="openCity(event, 'Uploads')" id="defaultOpen">Uploads</button>
-      <button class="tablinks" onclick="openCity(event, 'Saved_objects')">Object Search</button>
+      <button class="tablinks" onclick="openCity(event, 'Uploads')" id="defaultOpen">All Uploads</button>
+      <button class="tablinks" onclick="openCity(event, 'Saved_objects')"><%= affiliation %> Search</button>
     </div>
       <div id="Uploads" class="tabcontent">
         <div id=uploadList> </div>
@@ -69,9 +69,9 @@ var country = "<%= country %>";
 
 
     <div id="Saved_objects" class="tabcontent">
-      <h3>Search for an object</h3>
+      <h3>Search for an object you've uploaded</h3>
       <div id="profile_search_bar">
-          <input type="search" id="searchSmall" placeholder="Enter object number...">
+          <input type="search" id="searchSmall" placeholder="Search...">
       </div>
       <div id="profile_search_results"> </div>
     </div>
