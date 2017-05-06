@@ -56,6 +56,7 @@ var country = "<%= country %>";
       <h4 id="user_location"> </h4>
     </div>
     <a href="#" id="edit_profile">edit profile</a>
+    <a href="#" id="change_password">change password</a>
 </div>
 
 <div id="user_uploads">
@@ -111,19 +112,42 @@ var country = "<%= country %>";
             <td>Country</td>
             <td><input class="searchbar" id="country" type="text"></td>
           </tr>
-          <tr>
-            <td>Password</td>
-            <td><input class="searchbar" id="password" type="text"></td>
-          </tr>
-          <tr>
-
-          </tr>
         </table>
         <center><button id="save_button">Save</button></center>
       </div>
     </div>
   </div>
 </div>
+
+
+<!-- Modal content for changing password -->
+<div id="passwordModal" class="modal">
+  <div class="passwordModalContent">
+    <div id="passwordBody">
+      <div id="right_column">
+        <table style="width:100%">
+          <tr>
+            <h4>Change Password</h4>
+          </tr>
+          <tr>
+            <td>Current password</td>
+            <td><input class="password_textbar" id="current_password" type="text"></td>
+          </tr>
+          <tr>
+            <td>New password</td>
+            <td><input class="password_textbar" id="new_password"  type="text"></td>
+          </tr>
+          <tr>
+            <td>Confirm new password</td>
+            <td><input class="password_textbar" id="confirm_new_password"  type="text"></td>
+          </tr>
+        </table>
+        <center><button id="password_save_button">Save</button></center>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Modal content for uploading -->
 <div id="uploadModal" class="modal">

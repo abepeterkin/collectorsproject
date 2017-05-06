@@ -131,8 +131,8 @@ body {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 10%;
-    height: 10px;
+    width: 1px;
+    height: 1px;
 	border-radius: 25px;
 }
 
@@ -140,8 +140,8 @@ body {
     margin: 20% auto;
     padding: 20px;
     border: 1px solid #888;
-	height: 10%;
-    width: 10%;
+	height: 1px;
+    width: 1px;
 	border-radius: 25px;
 }
 
@@ -149,8 +149,8 @@ body {
     margin: 20% auto;
     padding: 20px;
     border: 1px solid #888;
-	height: 10%;
-    width: 10%;
+	height: 1px;
+    width: 1px;
 	border-radius: 25px;
 }
 
@@ -158,8 +158,8 @@ body {
     margin: 20% auto;
     padding: 20px;
     border: 1px solid #888;
-	height: 10%;
-    width: 10%;
+	height: 1px;
+    width: 1px;
 	border-radius: 25px;
 }
 
@@ -168,8 +168,8 @@ body {
     margin: 20% auto;
 /*    padding: 20px;*/
     border: 1px solid #888;
-	height: auto;
-    width: auto;
+	height: 1px;
+    width: 1px;
 	border-radius: 25px;
 }
 
@@ -272,8 +272,8 @@ div.tab button.active {
   	right: 0;
   	bottom: 0;
   	left: 0;
-  	width: 40%;
-  	height: 450px;
+  	width: 600px;
+  	height: 500px;
 /*  	overflow-y: auto;*/
  	border-radius: 25px;
  	display: flex;
@@ -344,7 +344,7 @@ table {
   	right: 0;
   	bottom: 0;
   	left: 0;
-  	width: 40%;
+  	width: 450px;
   	height: 400px;
   	overflow-y: auto;
  	border-radius: 25px;
@@ -545,8 +545,8 @@ table {
 }
 
 #search {
-    height: 50px;
-    width: 400px;
+    height: 60px;
+    width: 750px;
     border-radius: 25px;
     padding: 5px 5px 5px 25px;
     z-index: 1;
@@ -609,7 +609,7 @@ table {
 	height: 50%;
 	padding-left: 50px;
 	padding-right: 50px;
-	padding-top:50px;
+	padding-top:30px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -638,7 +638,7 @@ table {
 
 
 /************************************/
-/*			PROFILE				*/
+/*			PROFILE					*/
 /************************************/
 
 #profile_search_results {

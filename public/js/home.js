@@ -38,6 +38,13 @@ $(document).ready(function(){
 		$("#uploadModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
 
+	/* redirects to signin modal */
+	$("#signin_redirect").click(function() {
+		$("#signUpModal")[0].style.display = "none";
+	    $("#signInModal")[0].style.display = "flex";
+		$("#signInModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+	});
+
 /*	$("#profile").click(function() {
 		setTabs();
 		loadProfileData();
@@ -241,7 +248,6 @@ function setTabs() {
 			});
 		}
 	});
-
 
 
 	/* on clicking a search result */
