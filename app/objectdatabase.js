@@ -10,7 +10,6 @@ var datab = [];
 MongoClient.connect(url, function(err, db) {
   assert.equal(null, err);
   console.log("Connected correctly to server.");
-  db.collection('person').remove({});
   /*dropAll(db);
   objectIndexing(db);
   console.log("Indexed objects");
@@ -37,12 +36,14 @@ function insertMany(objects) {
   console.log("Gets after connect");
 }
 
+
 var dropAll = function(db) {
   db.collection('object').remove({});
   db.collection('person').remove({});
   db.collection('location').remove({});
   console.log("Dropped all");
 }
+
 
 var objectIndexing = function(db) {
   db.collection('object').createIndex({
@@ -106,24 +107,24 @@ var addLocationToObject = function(artifactId, location) {
   });
 }
 //do the same for location
-var createPersonHelper = function(person, object) {
+var createPersonHelper = function(person) {
   var createdPerson = {
-    "name" : person,
+    "name" : person.name,
     "Objects": [],
     "Locations" : []
   }
-  createdPerson.Objects.push(object)
   return createdPerson;
 }
 
 //have person be
-var createPerson = function(person, object, callback) {
-  var createdPerson = createPersonHelper(person, object);
+var createPerson = function(person, callback) {
+  var createdPerson = createPersonHelper(person);
   MongoClient.connect(url, function(err, db) {
-    db.collection('person').insertOne(createdPerson,
+    db.collection('person').insertOne( createdPerson,
      function(err, result) {
       assert.equal(err, null);
-      console.log("Added " + createdPerson.name + " to the person collection.");
+      console.log(createdPerson._id);
+      console.log("Inserted " + person.name + " into the person collection.");
       } );
     db.close();
   });
@@ -226,10 +227,8 @@ var searchOnPerson = function(query, callback) {
     assert.equal(null, err);
     var results = db.collection('person').find({$text : {$search : query}}, {
       score : {$meta : "textScore"}}).sort(
-      {score: {$meta : "textScore"}}).toArray(function(err, documents) {
-        assert.equal(err, null);
-        callback(documents);
-      });
+      {score: {$meta : "textScore"}});
+    callback(results);
     db.close();
   });
 }
@@ -246,21 +245,16 @@ var searchOnLocation = function(query, callback) {
 }
 
 var addObjectToPerson = function(person, object) {
-	console.log(person);
-	MongoClient.connect(url, function(err, db) {
-		assert.equal(null, err);
-		db.collection('person').update(
-		{ 
-//			_id: person._id 
-		}, {
-			$push: { 
-				Objects: object 
-				} 
-		}, function(err, result) {
-			assert.equal(err, null);
-//			console.log("Updated " + person._id + " with new object id " + object);
-			});
-	db.close();
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+    db.collection('person').update(
+      { _id: person._id },
+     { $push: { Objects: object } },
+     function(err, result) {
+      assert.equal(err, null);
+      console.log("Updated " + person._id + " with new object id " + objectId);
+    });
+   db.close();
   });
 }
 
@@ -337,24 +331,19 @@ function searchForUserObjects(userId, query, callback) {
 //getting object id for any object on the screen to remove or update
 
 module.exports.insertMany = insertMany;
-
-module.exports.createPerson = createPerson;
-module.exports.createLocation = createLocation;
-
-module.exports.findObjects = findObjects;
-
-module.exports.addLocationToPerson = addLocationToPerson;
 module.exports.addLocationToObject = addLocationToObject;
+module.exports.createPerson = createPerson;
+module.exports.findObjects = findObjects;
+module.exports.createLocation = createLocation;
 module.exports.addObjectToLocation = addObjectToLocation;
-module.exports.addObjectToPerson = addObjectToPerson;
 module.exports.addPersonToLocation = addPersonToLocation;
 module.exports.addPersonToObject = addPersonToObject;
-
-module.exports.searchForUserObjects = searchForUserObjects;
 module.exports.searchOnObject = searchOnObject;
 module.exports.searchOnPerson = searchOnPerson;
 module.exports.searchOnLocation = searchOnLocation;
-
+module.exports.addObjectToPerson = addObjectToPerson;
+module.exports.addLocationToPerson = addLocationToPerson;
 module.exports.getUsersObjects = getUsersObjects;
 module.exports.updateObject = updateObject;
 module.exports.removeObject = removeObject;
+module.exports.searchForUserObjects = searchForUserObjects;

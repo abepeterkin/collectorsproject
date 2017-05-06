@@ -8,7 +8,7 @@ $(document).ready(function(){
 	$("#user_email").html(email);
 	$("#institution_name").html(affiliation);
 	$("#user_location").html(city + ", " + country);
-	
+
 
 
 	/* opening first tab by default, load user's objects */
@@ -39,6 +39,12 @@ $(document).ready(function(){
 	$("#edit_profile").click(function() {
 	    $("#editInfoModal")[0].style.display = "flex";
 		$("#editInfoModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+		$("input#firstname").val(firstname);
+		$("input#lastname").val(lastname);
+		$("input#email").val(email);
+		$("input#city").val(city);
+		$("input#country").val(country);
+		$("input#affiliation").val(affiliation);
 	});
 
 	/* opens password modal */
@@ -47,12 +53,11 @@ $(document).ready(function(){
 		$("#passwordModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
 
-
 	/* opens object modal */
 	$(document).on('click', ".search_result", function(event) {
 
 		var obj = {
-			_id : $(this).attr("id"),
+			_id : $(this).attr("_id"),
 			affiliation: $(this).attr("data-affiliation"),
 			name : $(this).attr("data-name"),
 			Provenance : $(this).attr("data-provenance")
@@ -111,6 +116,7 @@ $(document).ready(function(){
 	/* POST request for object search */
 	$("#searchSmall").on('change', function() {
 		$("#profile_search_results").html("");
+
 		$.post("search/" + $("#searchSmall").val() + "/" + user_id, function(result){
 			var resultObjects = JSON.parse(result);
 			console.log(resultObjects); //resultObjects is empty []
@@ -124,6 +130,30 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+/* THIS DOESN"T WORK YET!!*/
+	/*$('#edit_password_form').submit(function(event) {
+		console.log("this jquery happens...");
+		event.preventDefault();
+		var new_p = $("#new_password").val();
+		var confirm_p = $("#confirm_new_password").val();
+		if (new_p && confirm_p) {
+
+				console.log("gets here 1");
+			var post_params = {
+				newpassword : new_p,
+				confirmpassword : confirm_p
+			}
+			$("#edit_password_error_message").val("Submitting...");
+			$.post("/editpassword", post_params, function(data) {
+				console.log("gets here 2");
+				$("#edit_password_error_message").val(data);
+			});
+		} else {
+			console.log("gets here 3");
+			$("#edit_password_error_message").val("Please fill out all fields");
+		}
+	});*/
 
 
 	/* uploading a file */
