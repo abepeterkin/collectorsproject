@@ -41,6 +41,12 @@ $(document).ready(function(){
 		$("#editInfoModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
 
+	/* opens password modal */
+	$("#change_password").click(function() {
+	    $("#passwordModal")[0].style.display = "flex";
+		$("#passwordModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+	});
+
 
 	/* opens object modal */
 	$(document).on('click', ".search_result", function(event) {
@@ -76,6 +82,10 @@ $(document).ready(function(){
 
 		if (event.target == $("#editInfoModal")[0]) {
 			$("#editInfoModal")[0].style.display = "none";
+		}
+
+		if (event.target == $("#passwordModal")[0]) {
+			$("#passwordModal")[0].style.display = "none";
 		}
 	});
 
