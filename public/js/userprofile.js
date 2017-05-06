@@ -52,7 +52,7 @@ $(document).ready(function(){
 	$(document).on('click', ".search_result", function(event) {
 
 		var obj = {
-			_id : $(this).attr("_id"),
+			_id : $(this).attr("id"),
 			affiliation: $(this).attr("data-affiliation"),
 			name : $(this).attr("data-name"),
 			Provenance : $(this).attr("data-provenance")
@@ -111,7 +111,6 @@ $(document).ready(function(){
 	/* POST request for object search */
 	$("#searchSmall").on('change', function() {
 		$("#profile_search_results").html("");
-
 		$.post("search/" + $("#searchSmall").val() + "/" + user_id, function(result){
 			var resultObjects = JSON.parse(result);
 			console.log(resultObjects); //resultObjects is empty []
