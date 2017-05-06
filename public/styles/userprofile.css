@@ -369,7 +369,7 @@ body {
   display:inline-block;
   margin:20px;
   margin-bottom: 0px;
-  padding: 0px;
+  padding: 10px;
   background-color: white;
   width:100px;
   height:100px;
@@ -443,6 +443,7 @@ td {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+  align-content: flex-start;
 }
 
 
@@ -452,6 +453,9 @@ td {
     flex-wrap: wrap;
 }
 
+#profile_search_results {
+  margin-top: 50px;
+}
 
 /************************************/
 /*      RESPONSIVE                  */

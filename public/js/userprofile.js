@@ -117,6 +117,29 @@ $(document).ready(function(){
 	});
 
 
+	/* uploading a file */
+	$('#upload_body').submit(function(event) {
+		event.preventDefault();
+		var data = new FormData();
+		data.append('provenancecolumn', $('input[name=provenancecolumn]').val());
+		data.append('namecolumn', $('input[name=namecolumn]').val());
+		data.append('ignoreheader', $('input[name=ignoreheader]').val());
+		data.append('file', $('input[type=file]')[0].files[0]);
+		console.log($('input[type=file]')[0].files[0]);
+		$(this).html("Uploading...");
+		$.ajax({
+            url: '/upload',
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            success: function(data){
+				$('#upload_body').html(data);
+			}
+		});
+	});
+
 	/* mousing over a search result */
 	$(document).on('mouseover', ".search_result", function(event) {
 		$('body').css('cursor','pointer');

@@ -259,6 +259,9 @@ function setTabs() {
 
 		$("#objectModal")[0].style.display = "flex";
 		$("#objectModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+
+		var table_height = $("#artifact_table").height();
+		$("#object_body").height(table_height);
 	});
 
 
