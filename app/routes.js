@@ -206,45 +206,39 @@ app.post('/editprofile',isLoggedIn, function(req, res) {
 		});
 });
 
-/*app.post('/editpassword',isLoggedIn, function(req, res) {
+app.post('/editpassword',isLoggedIn, function(req, res) {
 	user_model.findOne({ 'local.email' :  req.user.local.email }, function(err, user) {
 		console.log("findOne... ");
 			// if there are any errors, return the error
 			if (err) {
 				console.log("Profile update error: " + err);
+				res.send("Something went wrong. Try again later.");
 				return;
 			}
 
 			// check to see if theres already a user with that email
 			if (user) {
-				console.log("firstname: " + req.body.firstname);
-				if (!user.methods.validPassword(req.body.oldpassword) {
-					console.log("Incorrect password");
-					res.send("Incorrect password");
-					return;
-				}
 
 				if (req.body.newpassword !== req.body.confirmpassword) {
 					console.log("Passwords do not match");
 					res.send("Passwords do not match");
 					return;
 				}
-				user.local.password = user.methods.generateHash(newpassword);
-				user.save(function(err) {
-						if (err) {
-							console.log(err);
-							res.send(err);
-						} else {
-							console.log("User " +  req.user.local.email + " profile updated");
-							res.send("Password changed successfully!");
-						}
-					});
+				user.setPassword(req.body.newpassword, function(err) {
+					if (err) {
+						console.log(err);
+						res.send("Something went wrong. Try again later.");
+					} else {
+						console.log("User " +  req.user.local.email + " profile updated");
+						res.send("Password change successful!");
+					}
+				});
 			} else {
 				console.log("User " +  req.user.local.email + " not found");
 				res.send("User " +  req.user.local.email + " not found");
 			}
 		});
-});*/
+});
 
 /************************/
 /*	Helper Functions	*/

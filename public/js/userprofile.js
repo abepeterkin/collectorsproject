@@ -131,6 +131,30 @@ $(document).ready(function(){
 		});
 	});
 
+/* THIS DOESN"T WORK YET!!*/
+	/*$('#edit_password_form').submit(function(event) {
+		console.log("this jquery happens...");
+		event.preventDefault();
+		var new_p = $("#new_password").val();
+		var confirm_p = $("#confirm_new_password").val();
+		if (new_p && confirm_p) {
+
+				console.log("gets here 1");
+			var post_params = {
+				newpassword : new_p,
+				confirmpassword : confirm_p
+			}
+			$("#edit_password_error_message").val("Submitting...");
+			$.post("/editpassword", post_params, function(data) {
+				console.log("gets here 2");
+				$("#edit_password_error_message").val(data);
+			});
+		} else {
+			console.log("gets here 3");
+			$("#edit_password_error_message").val("Please fill out all fields");
+		}
+	});*/
+
 
 	/* uploading a file */
 	$('#upload_body').submit(function(event) {

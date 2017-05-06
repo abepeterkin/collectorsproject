@@ -56,7 +56,7 @@ var country = "<%= country %>";
       <h4 id="user_location"> </h4>
     </div>
     <a href="#" id="edit_profile">edit profile</a>
-    <a href="#" id="change_password">change password</a>
+    <!--<a href="#" id="change_password">change password</a>-->
 </div>
 
 <div id="user_uploads">
@@ -126,26 +126,25 @@ var country = "<%= country %>";
 <div id="passwordModal" class="modal">
   <div class="passwordModalContent">
     <div id="passwordBody">
+      <form id="edit_password_form" method="post">
+        <div id="edit_password_error_message"></div>
       <div id="right_column">
         <table style="width:100%">
           <tr>
             <h4>Change Password</h4>
           </tr>
           <tr>
-            <td>Current password</td>
-            <td><input class="password_textbar" id="current_password" type="text"></td>
-          </tr>
-          <tr>
             <td>New password</td>
-            <td><input class="password_textbar" id="new_password"  type="text"></td>
+            <td><input class="password_textbar" id="new_password" name="newpassword" type="password" required></td>
           </tr>
           <tr>
             <td>Confirm new password</td>
-            <td><input class="password_textbar" id="confirm_new_password"  type="text"></td>
+            <td><input class="password_textbar" id="confirm_new_password" name="confirmpassword" type="password" required></td>
           </tr>
         </table>
-        <center><button id="password_save_button">Save</button></center>
+        <center><button type="submit" id="password_save_button">Save</button></center>
       </div>
+      </form>
     </div>
   </div>
 </div>
