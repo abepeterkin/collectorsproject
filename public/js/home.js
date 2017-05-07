@@ -37,6 +37,11 @@ $(document).ready(function(){
 	    $("#uploadModal")[0].style.display = "flex";
 		$("#uploadModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
+	
+	$("#about").click(function() {
+	    $("#aboutModal")[0].style.display = "flex";
+		$("#aboutModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+	});
 
 	/* redirects to signin modal */
 	$("#signin_redirect").click(function() {
