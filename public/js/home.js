@@ -84,13 +84,13 @@ $(document).ready(function(){
 	    	document.getElementById("body_text").display="block";
 		    document.getElementById("body_text").style.top="75px";
 
-		    document.getElementById("header").style.height = "50px";
+		    //document.getElementById("header").style.height = "50px";
 
 
 		    document.getElementById("wow_title").style.fontSize = "20px";
 		    document.getElementById("about").style.fontSize = "15px";
 
-		    document.getElementById("about").style.height = "15px";
+		    document.getElementById("about").style.height = "5px";
 
 
 		    document.getElementById("signIn").style.fontSize = "15px";

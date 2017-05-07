@@ -583,6 +583,15 @@ td {
       color: white;
       border-style: solid grey 1px;
     }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    #nav_bar a:hover {
+      background-color: transparent;
+      color: pink;
+    }
 }
 
 @media only screen and (max-width: 1500px) {
