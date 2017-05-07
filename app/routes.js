@@ -164,13 +164,14 @@ app.post('/search/:query/:userid', function(req, res) {
 	}
 });
 
-app.get('/mark/all/:query', function(req, res) {
-	var query = req.params.query;
-	console.log(query);
-	objectDB.searchOnPerson(query, function(result) { // This will need to search through documents of people, locations and objects -->
+app.get('/mark/person/:object', function(req, res) {
+	var object = req.params.object;
+
+	// Search Objects arrays in person collection
+	objectDB.searchObjectOfPerson(object, function(result) {
 		var resultJSON = JSON.stringify(result);
-	//	res.send(resultJSON);
-		console.log(resultJSON);
+		res.send(resultJSON);
+	//	console.log(result);
 	});
 });
 
@@ -180,10 +181,28 @@ app.post('/mark/person/:object/:person', function(req, res) {
 	if (person !== "") {
 		objectDB.searchOnPerson(person, function(result) {
 			if (result.length !== 0) {
-				console.log(person + " already in collection");
+				console.log(person + " is already in the collection; adding '" + object + "' to existing record for: " + person);
+/*				objectDB.addPersonToObject(object, person, function(data) {
+					res.send(data);
+				});*/
+				console.log("Updating all associated object records...");
+				objectDB.updatePersonsInObjects(person, function (data) {
+					console.log(data);
+					res.send(data);
+				});
 			} else {
 				objectDB.createPerson(person, object, function(data) {
-					res.send(result);
+					res.send(data);
+				});
+				
+				/*objectDB.addPersonToObject(object, person, function(data) {
+					res.send(data);
+				});*/
+				
+				console.log("Updating all associated object records...");
+				objectDB.updatePersonsInObjects(person, function (data) {
+					console.log(data);
+					res.send(data);
 				});
 			}
 		});
