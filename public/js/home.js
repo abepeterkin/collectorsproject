@@ -84,7 +84,7 @@ $(document).ready(function(){
 	    	document.getElementById("body_text").display="block";
 		    document.getElementById("body_text").style.top="75px";
 
-		    //document.getElementById("header").style.height = "50px";
+		    document.getElementById("header").style.height = "50px";
 
 
 		    document.getElementById("wow_title").style.fontSize = "20px";

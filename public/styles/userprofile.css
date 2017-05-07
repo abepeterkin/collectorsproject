@@ -44,8 +44,8 @@ body {
 }
 
 #nav_bar a:hover {
-  background-color: hsla(48,100%,50%,0.5);
-  border-radius: 15px;
+  /*background-color: hsla(48,100%,50%,0.5);*/
+  color: gold;
 }
 
 #nav_bar div {
@@ -89,7 +89,7 @@ body {
 }
 
 .dropdown-content a:hover {
-  background-color: #f1f1f1;
+  /*background-color: #f1f1f1;*/
 }
 
 #nav_bar div:hover .dropdown-content {
@@ -590,7 +590,7 @@ td {
 
     #nav_bar a:hover {
       background-color: transparent;
-      color: pink;
+      color: gold;
     }
 }
 
