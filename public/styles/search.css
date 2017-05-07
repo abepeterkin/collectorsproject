@@ -5,7 +5,7 @@ body {
 #header {
 	display: flex;
 	flex-direction:row;
-	font-family:"akzidenz-bold";
+	font-family:"nhd-bold";
 	margin:0;
 	padding:0;justify-content:space-between;
 	align-items: center;
@@ -13,13 +13,15 @@ body {
 }
 #title h1 {
 	padding-left:20px;
-	font-size: 20pt;
+	font-size: 22pt;
 }
 
 
 #nav_bar {
-	font-family:"akzidenz-medium";
+	font-family:"nhd-medium";
 	float:right;
+	margin-right:40px;
+	margin-top:20px;
 }
 #nav_bar ul {
 	list-style-type: none;
@@ -51,7 +53,7 @@ body {
 	border-radius:10px;
 }
 #search h2 {
-	font-family:"akzidenz-regular";
+	font-family:"nhd-regular";
 	font-size:14pt;
 	letter-spacing: 0px;
 	padding-left:15px;
@@ -61,7 +63,7 @@ body {
 	width:150px;
 }
 #filters form {
-	font-family:"akzidenz-light";
+	font-family:"nhd-lt";
 }
 #filters input {
 	margin-left:25px;
@@ -82,7 +84,7 @@ body {
 	margin-bottom:20px;
 }
 #search h4 {
-	font-family:"akzidenz-regular";
+	font-family:"nhd-regular";
 	font-size:12pt;
 	padding-left:25px;
 }
@@ -102,7 +104,7 @@ body {
 	.artifact h4 {
 		margin:0;
 		padding:0;
-		font-family:"akzidenz-regular";
+		font-family:"nhd-regular";
 		text-align:center;
 	}
 	.box {
@@ -134,7 +136,7 @@ div.tab button {
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
-    font-family:"akzidenz-medium";
+    font-family:"nhd-medium";
     font-size:12pt;
 }
 
@@ -184,29 +186,141 @@ div.tab button.active {
 #urn {
 	text-decoration: none;
 	color: #9E98E5;
-	font-family: "akzidenz-regular";
+	font-family: "nhd-regular";
 }
 
 
 /*FONTS*/
 
-@font-face {
+/*@font-face {
 	font-family:"akzidenz-bold";
 	src:url("../akzidenz/akzidenz_bold.otf") format("opentype");
 }
 
 @font-face {
-	font-family:"akzidenz-regular";
+	font-family:"nhd-regular";
 	src:url("akzidenz/akzidenz_regular.otf") format("opentype");
 }
 
 @font-face {
-	font-family:"akzidenz-medium";
+	font-family:"nhd-medium";
 	src:url("akzidenz/akzidenz_medium.otf") format("opentype");
 }
 
 @font-face {
 	font-family:"akzidenz-light";
 	src:url("akzidenz/akzidenz_light.otf") format("opentype");
+}*/
+
+@font-face {
+	font-family:"nhd-ult-thin";
+	src:url("NeueHaas/nhdultrathin.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-ult-thin-italic";
+	src:url("NeueHaas/nhdultraitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-thin";
+	src:url("NeueHaas/nhdthin.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-thin-italic";
+	src:url("NeueHaas/nhdthinitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-x-lt";
+	src:url("NeueHaas/nhdxllt.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-x-lt-italic";
+	src:url("NeueHaas/nhdxlltitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-lt";
+	src:url("NeueHaas/nhdlt.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-lt-italic";
+	src:url("NeueHaas/nhdltitalic.otf") format("opentype");
+}
+
+
+@font-face {
+	font-family:"nhd-regular";
+	src:url("NeueHaas/nhdreg.otf") format("opentype");
+}
+
+
+@font-face {
+	font-family:"nhd-regular-italic";
+	src:url("NeueHaas/nhdregitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-medium";
+	src:url("NeueHaas/nhdmedium.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-medium-italic";
+	src:url("NeueHaas/nhdmediumitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-bold";
+	src:url("NeueHaas/nhdbold.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-bold-italic";
+	src:url("NeueHaas/nhdbolditalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-black";
+	src:url("NeueHaas/nhdblk.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-black-italic";
+	src:url("NeueHaas/nhdblkitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-regular";
+	src:url("NeueHaas/nhtreg.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-regular-italic";
+	src:url("NeueHaas/nhtregitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-medium";
+	src:url("NeueHaas/nhtmed.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-medium-italic";
+	src:url("NeueHaas/nhtmeditalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-bold";
+	src:url("NeueHaas/nhtbold.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-bold-italic";
+	src:url("NeueHaas/nhtbolditalic.otf") format("opentype");
 }
 

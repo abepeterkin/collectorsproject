@@ -10,7 +10,7 @@ body {
 #header {
 	display: flex;
 	flex-direction:row;
-	font-family:"akzidenz-bold";
+	font-family:"nhd-bold";
 	margin:0;
 	padding:0;
 	justify-content:space-between;
@@ -24,7 +24,7 @@ body {
 #wow_title {
 	padding-left:30px;
 	font-size:22pt; /* 30pt */
-	font-family: "akzidenz-medium";
+	font-family: "nhd-bold";
 	color:white;
 	text-decoration:none;
 }
@@ -33,7 +33,7 @@ body {
 /*			NAVIGATION MENU			*/
 /************************************/
 #nav_bar {
-	font-family:"akzidenz-regular";
+	font-family:"nhd-medium";
 	float:right;
 	margin-right: 40px;
 	margin-top:20px;
@@ -44,11 +44,11 @@ body {
 	color: white;
 	padding:15px;
 	font-size: 20px;
-	font-family:"akzidenz-medium";
+	font-family:"nhd-medium";
 }
 
 #nav_bar a:hover {
-	background-color: hsla(48,100%,50%,0.5);
+	background-color: hsla(229,45%,93%,0.3);
 	border-radius: 15px;
 }
 
@@ -59,7 +59,7 @@ body {
 	background-color: transparent;
 
 	font-size: 15px;
-	font-family:"akzidenz-medium";
+	font-family:"nhd-medium";
 	border-radius: 15px;
 }
 
@@ -71,7 +71,7 @@ body {
 
 #dropbtn {
 	font-size:20px;
-	font-family: "akzidenz-medium";
+	font-family: "nhd-medium";
 	margin-bottom:10px;
 }
 
@@ -109,6 +109,10 @@ body {
 #about {
 	margin-right:10px;
 	margin-top:100px;
+}
+
+#body_words h1 {
+	font-family: "nhd-lt";
 }
 
 /************************************/
@@ -285,12 +289,12 @@ div.tab button.active {
 
 #signUpBody h2 {
 	color: black;
-	font-family: "akzidenz-bold";
+	font-family: "nhd-bold";
 	margin-bottom:70px;
 }
 
 #signUpBody p {
-	font-family: "akzidenz-light";
+	font-family: "nhd-lt";
 	font-size:12pt;
 	margin-bottom:30px;
 }
@@ -300,7 +304,7 @@ div.tab button.active {
  	justify-content: center;
  	align-items: center;
 	font-size: 20px;
-	font-family: "akzidenz-light";
+	font-family: "nhd-lt";
 	color: grey;
 }
 
@@ -312,7 +316,7 @@ div.tab button.active {
 
 #createAccount {
 	color: white;
-	font-family: "akzidenz-medium";
+	font-family: "nhd-medium";
 	background-color: #4f65d3;
 	border-style: none;
 	font-size: 20px;
@@ -359,14 +363,14 @@ table {
 .signin-alert {
 	color: red;
 	font-size : 24px;
-	font-family: "akzidenz-medium";
+	font-family: "nhd-medium";
 }
 
 #back-to-homepage {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	font-size : 16px;
-	font-family: "akzidenz-medium";
+	font-family: "nhd-medium";
 }
 
 #signInBody td {
@@ -376,7 +380,7 @@ table {
 
 #signInBody h2 {
 	color: black;
-	font-family: "akzidenz-bold";
+	font-family: "nhd-bold";
 }
 
 #username_login {
@@ -386,7 +390,7 @@ table {
 	margin-bottom: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
-	font-family: "akzidenz-light";
+	font-family: "nhd-lt";
 	font-size: 20px;
 }
 
@@ -397,13 +401,13 @@ table {
 	margin-bottom: 40px;
 	padding-left: 10px;
 	padding-right: 10px;
-	font-family: "akzidenz-light";
+	font-family: "nhd-lt";
 	font-size: 20px;
 }
 
 #login_button {
 	color: white;
-	font-family: "akzidenz-medium";
+	font-family: "nhd-medium";
 	background-color: #4f65d3;
 	border-style: none;
 	font-size: 20px;
@@ -433,17 +437,17 @@ table {
  	align-items: center;
 	color: black;
 	background-color: white;
-	font-family: "akzidenz-light";
+	font-family: "nhd-lt";
 }
 
 #upload_body h1 {
 	color: black;
-	font-family: "akzidenz-bold";
+	font-family: "nhd-bold";
 }
 
 #submit_button {
 	color: white;
-	font-family: "akzidenz-medium";
+	font-family: "nhd-medium";
 	background-color: #4f65d3;
 	border-style: none;
 	font-size: 20px;
@@ -487,7 +491,7 @@ table {
  	align-items: center;
 	color: black;
 	background-color: white;
-	font-family: "akzidenz-light";
+	font-family: "nhd-lt";
 
 	padding: 40px;
 }
@@ -509,13 +513,13 @@ table {
  	align-items: center;
 	color: black;
 	background-color: white;
-	font-family: "akzidenz-light";
+	font-family: "nhd-lt";
 	padding: 40px;
 }
 
 #object_body h1 {
 	color: black;
-	font-family: "akzidenz-bold";
+	font-family: "nhd-bold";
 }
 
 
@@ -545,7 +549,7 @@ table {
 
 #top {
 	color: white;
-	font-family:"akzidenz-light";
+	font-family:"nhd-lt";
 	font-size: 80px;
 	margin: 25px;
 }
@@ -558,7 +562,7 @@ table {
 	height: 20px;
 	width: 200px;
 	font-size: 18px;
-	font-family: "akzidenz-light";
+	font-family: "nhd-lt";
 }
 
 .tooltip {
@@ -574,7 +578,7 @@ table {
     z-index: 1;
     text-align: center;
     font-size: 20px;
-    font-family: "akzidenz-light"
+    font-family: "nhd-lt"
 }
 
 .tooltip .tooltiptext {
@@ -608,7 +612,7 @@ table {
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
-    font-family: "akzidenz-light";
+    font-family: "nhd-lt";
     padding:10px;
     font-size: 10pt;
     width:350px;
@@ -645,7 +649,7 @@ table {
 .search_result {
 	color: black;
 	font-size: 12px;
-	font-family: "akzidenz-light";
+	font-family: "nhd-lt";
 	display:inline-block;
 	margin:20px;
 	padding: 10px;
@@ -686,7 +690,7 @@ table {
 }
 
 #profileModal {
-	font-family:"akzidenz-light";
+	font-family:"nhd-lt";
 }
 
 
@@ -698,7 +702,7 @@ table {
 @media only screen and (max-width: 1500px) {
    	#top {
    		font-size: 50px;
-   		font-family: "akzidenz-regular";
+   		font-family: "nhd-regular";
    	}
 
    	#header {
@@ -713,6 +717,7 @@ table {
 @media only screen and (max-width: 750px) {
    	#search::-webkit-input-placeholder  {
    		visibility: hidden;
+   		font-family:"nhd-thin";
    	}
 
    	#search {
@@ -750,23 +755,138 @@ table {
 /************************************/
 /*				FONTS				*/
 /************************************/
-
+/*
 @font-face {
-	font-family:"akzidenz-bold";
+	font-family:"nhd-bold";
 	src:url("akzidenz/akzidenz_bold.otf") format("opentype");
 }
 
 @font-face {
-	font-family:"akzidenz-regular";
+	font-family:"nhd-regular";
 	src:url("akzidenz/akzidenz_regular.otf") format("opentype");
 }
 
 @font-face {
-	font-family:"akzidenz-medium";
+	font-family:"nhd-medium";
 	src:url("akzidenz/akzidenz_medium.otf") format("opentype");
 }
 
 @font-face {
-	font-family:"akzidenz-light";
+	font-family:"nhd-lt";
 	src:url("akzidenz/akzidenz_light.otf") format("opentype");
+}*/
+
+/*NEUE HAAS GROTESK*/
+
+@font-face {
+	font-family:"nhd-ult-thin";
+	src:url("NeueHaas/nhdultrathin.otf") format("opentype");
 }
+
+@font-face {
+	font-family:"nhd-ult-thin-italic";
+	src:url("NeueHaas/nhdultraitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-thin";
+	src:url("NeueHaas/nhdthin.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-thin-italic";
+	src:url("NeueHaas/nhdthinitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-x-lt";
+	src:url("NeueHaas/nhdxllt.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-x-lt-italic";
+	src:url("NeueHaas/nhdxlltitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-lt";
+	src:url("NeueHaas/nhdlt.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-lt-italic";
+	src:url("NeueHaas/nhdltitalic.otf") format("opentype");
+}
+
+
+@font-face {
+	font-family:"nhd-regular";
+	src:url("NeueHaas/nhdreg.otf") format("opentype");
+}
+
+
+@font-face {
+	font-family:"nhd-regular-italic";
+	src:url("NeueHaas/nhdregitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-medium";
+	src:url("NeueHaas/nhdmedium.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-medium-italic";
+	src:url("NeueHaas/nhdmediumitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-bold";
+	src:url("NeueHaas/nhdbold.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-bold-italic";
+	src:url("NeueHaas/nhdbolditalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-black";
+	src:url("NeueHaas/nhdblk.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-black-italic";
+	src:url("NeueHaas/nhdblkitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-regular";
+	src:url("NeueHaas/nhtreg.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-regular-italic";
+	src:url("NeueHaas/nhtregitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-medium";
+	src:url("NeueHaas/nhtmed.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-medium-italic";
+	src:url("NeueHaas/nhtmeditalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-bold";
+	src:url("NeueHaas/nhtbold.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-bold-italic";
+	src:url("NeueHaas/nhtbolditalic.otf") format("opentype");
+}
+
