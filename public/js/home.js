@@ -37,6 +37,11 @@ $(document).ready(function(){
 	    $("#uploadModal")[0].style.display = "flex";
 		$("#uploadModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
+	
+	$("#about").click(function() {
+	    $("#aboutModal")[0].style.display = "flex";
+		$("#aboutModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+	});
 
 	/* redirects to signin modal */
 	$("#signin_redirect").click(function() {
@@ -63,6 +68,10 @@ $(document).ready(function(){
 		if (event.target == $("#uploadModal")[0]) {
 			$("#uploadModal")[0].style.display = "none";
 		}
+		
+		if (event.target == $("#aboutModal")[0]) {
+			$("#aboutModal")[0].style.display = "none";
+		}
 	});
 
 
@@ -80,6 +89,10 @@ $(document).ready(function(){
 
 		    document.getElementById("wow_title").style.fontSize = "20px";
 		    document.getElementById("about").style.fontSize = "15px";
+
+		    document.getElementById("about").style.height = "15px";
+
+
 		    document.getElementById("signIn").style.fontSize = "15px";
 		    document.getElementById("signUp").style.fontSize = "15px";
 
