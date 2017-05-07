@@ -4,17 +4,21 @@ var id = $("#objectID").attr('data-id');
 highlight(id);
 
 function highlight(id) {
-	// This function should retrieve all people, places, and time values from the database and highlight them in the provenance lists
-	$.get("/mark/all/" + id, function(result) {
-		var resultObjects = JSON.parse(result);
-		console.log(resultObjects);
-/*		for (var key in resultObjects) {
-			if (resultObjects.hasOwnProperty(key)) {
-      			var obj = resultObjects[key];
-				console.log(JSON.stringify(obj));
-				mark(result, $("#artifact_provenance"));
+	console.log("highlight");
+	$.get("/mark/person/" + id, function(result) {
+		if (result.length = 0) {
+			console.log("nothing to highlight");
+		} else {
+			var resultObjects = JSON.parse(result);
+//			console.log(resultObjects);
+			for (var key in resultObjects) {
+				if (resultObjects.hasOwnProperty(key)) {
+					var obj = resultObjects[key];
+//					console.log(JSON.stringify(obj.name));
+					mark(obj.name, $("#artifact_provenance"));
+				}
 			}
-		}*/
+		}
 	});
 }
 
