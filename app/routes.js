@@ -194,11 +194,11 @@ app.post('/mark/person/:object/:person', function(req, res) {
 				objectDB.createPerson(person, object, function(data) {
 					res.send(data);
 				});
-				
+
 				/*objectDB.addPersonToObject(object, person, function(data) {
 					res.send(data);
 				});*/
-				
+
 				console.log("Updating all associated object records...");
 				objectDB.updatePersonsInObjects(person, function (data) {
 					console.log(data);
@@ -209,6 +209,31 @@ app.post('/mark/person/:object/:person', function(req, res) {
 	} else {
 		res.send("Invalid query");
 	}
+});
+
+/************************/
+/*		Artifact editing 	*/
+/************************/
+app.post('/deleteartifact/:artifactid', isLoggedIn, function(req, res) {
+	var artifactid = req.params.artifactid;
+	objectDB.findObjectWithID(artifactid, function(artifact) {
+		if (artifact) {
+			/*console.log("artifact.userId: " + artifact.userId);
+			console.log("req.user._id: " + req.user._id);
+			console.log(artifact.userId === req.user._id);
+			console.log(JSON.stringify(artifact.userId) === req.user._id);
+			console.log(artifact.userId === JSON.stringify(req.user._id));
+			console.log(JSON.stringify(artifact.userId) === JSON.stringify(req.user._id));*/
+			if (JSON.stringify(artifact.userId) === JSON.stringify(req.user._id)) {
+				objectDB.removeObject(artifactid);
+				res.redirect('/profile');
+			} else {
+				res.status(403).send("Error: You do not have permission to edit that object");
+			}
+		} else {
+			res.status(404).send("Error: that object does not exist");
+		}
+	});
 });
 
 /************************/

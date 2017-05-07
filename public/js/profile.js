@@ -56,8 +56,10 @@ $(document).ready(function(){
 	/* opens object modal */
 	$(document).on('click', ".search_result", function(event) {
 
+		console.log("DOCUMENT CLICK: id is " + $(this).attr("data-id"));
+
 		var obj = {
-			_id : $(this).attr("_id"),
+			id : $(this).attr("data-id"),
 			affiliation: $(this).attr("data-affiliation"),
 			name : $(this).attr("data-name"),
 			Provenance : $(this).attr("data-provenance")

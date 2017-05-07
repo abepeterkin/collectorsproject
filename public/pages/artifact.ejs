@@ -1,16 +1,19 @@
-<div id="objectID" data-id='<%= _id %>'></div>
-<script src="js/artifact.js"></script>
-<script>
+<div id="objectID" data-id='<%= id %>'></div>
+
+<!--<script>
 	var affiliation = "<%= affiliation %>";
-	var id = "<%= _id %>";
+	var id = "<%= id %>";
 	var provenance = "<%= Provenance %>";
-</script>
+</script>-->
+<script src="js/artifact.js"></script>
 <div class="artifact-modal">
 	<table id="artifact_table" border="1">
 		<tr>
+
 		<div id="toolbar">
 			<td><image src="images/pencil.png" height="20px" onclick="getSelectionText();">
 			<image src="images/flag.png" height="20px" onclick="flag();"/></td>
+
 		</div></tr>
 		<tr>
 			<td>
@@ -33,4 +36,5 @@
 			</td>
 		</tr>
 	</table>
+	<button id="delete_artifact">Delete artifact</button>
 </div>

@@ -200,7 +200,7 @@ var addPersonToObject = function(object, person, callback) {
     db.collection('object').findOneAndUpdate(
 	{ _id : object },
 	{ $push: { Persons: person } },
-	{ "new": true }, 
+	{ "new": true },
 	function(err, doc) {
 //		assert.equal(err, null);
 		console.log("Added person " + person + " to object " + object);
@@ -239,7 +239,7 @@ var searchOnPerson = function(query, callback) {
 var searchObjectOfPerson = function(object, callback) {
 	MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
-    var results = db.collection('person').find( 
+    var results = db.collection('person').find(
 		{ Objects : object },
 		{ score : { $meta : "textScore" } }).sort(
 		{ score : { $meta : "textScore" } }).toArray(
@@ -325,7 +325,7 @@ function updatePersonsInObjects(value, callback) {
 function removeObject(obid) {
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
-    db.collection('object').deleteOne({ _id: obid }, function(err) {
+    db.collection('object').deleteOne({ _id: new require('mongodb').ObjectID(obid) }, function(err) {
       assert.equal(err, null);
       console.log("Removed Object with Id " + obid);
     });
@@ -350,6 +350,17 @@ function searchForUserObjects(userId, query, callback) {
         }
         callback(toReturn);
       });
+    db.close();
+  });
+}
+
+function findObjectWithID(id, callback) {
+	MongoClient.connect(url, function(err, db) {
+		assert.equal(null, err);
+		db.collection('object').findOne({ _id : new require('mongodb').ObjectID(id) }, function(err, doc) {
+		  assert.equal(err, null);
+			callback(doc);
+		});
     db.close();
   });
 }
@@ -381,4 +392,4 @@ module.exports.getUsersObjects = getUsersObjects;
 module.exports.updatePersonsInObjects = updatePersonsInObjects;
 module.exports.removeObject = removeObject;
 
-
+module.exports.findObjectWithID = findObjectWithID;

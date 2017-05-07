@@ -7,7 +7,6 @@ window.onload = function() {
 
 var searchbar = $("#search");
 
-
 $(document).ready(function(){
 
 	var span = document.getElementsByClassName("close")[0];
@@ -37,7 +36,7 @@ $(document).ready(function(){
 	    $("#uploadModal")[0].style.display = "flex";
 		$("#uploadModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
-	
+
 	$("#about").click(function() {
 	    $("#aboutModal")[0].style.display = "flex";
 		$("#aboutModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
@@ -68,7 +67,7 @@ $(document).ready(function(){
 		if (event.target == $("#uploadModal")[0]) {
 			$("#uploadModal")[0].style.display = "none";
 		}
-		
+
 		if (event.target == $("#aboutModal")[0]) {
 			$("#aboutModal")[0].style.display = "none";
 		}
@@ -77,7 +76,7 @@ $(document).ready(function(){
 
 	/* on search */
 	$("#search").on("change", function(event){
-
+		console.log("this happens");
 		/* this block of code is for hiding and shifting elements on the main page */
 			$("#top").hide();
 
@@ -140,6 +139,7 @@ $(document).ready(function(){
 
 		var modalHTML = new EJS({url: '../pages/artifact.ejs'}).render(obj);
 		$("#object_body").html(modalHTML);
+		$("#delete_artifact").hide();
 		$("#object_map").hide();
 
 		$("#objectModal")[0].style.display = "flex";

@@ -1,5 +1,6 @@
 var text = "";
 var id = $("#objectID").attr('data-id');
+console.log("ARTIFACT.JS: id is " + id);
 
 highlight(id);
 
@@ -53,11 +54,11 @@ function mark(word, element) {
 	});
 };
 
-$(document).bind("mousedown", function (e) {
+/*$(document).bind("mousedown", function (e) {
 	if (!$(e.target).parents(".custom-menu").length > 0) {
 		$(".custom-menu").hide(100);
     }
-});
+});*/
 
 $(".custom-menu li").click(function(){
 	switch($(this).attr("data-action")) {
@@ -75,4 +76,11 @@ $(".custom-menu li").click(function(){
 			break;
     }
 	$(".custom-menu").hide(100);
+});
+
+$("#delete_artifact").on("click", function(event) {
+	console.log("ID " + id);
+	$.post("/deleteartifact/" + id, function(result) {
+		window.location = "/profile";
+	});
 });
