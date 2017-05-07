@@ -450,6 +450,7 @@ table {
 	width: 150px;
 	height: 50px;
 	margin-top: 40px;
+	border-radius: 10px;
 }
 
 #upload_form {
@@ -587,7 +588,7 @@ table {
     position: absolute;
     z-index: 1;
     bottom: -130%;
-    left: 20%;
+    left: 35%;
     margin-left: -60px;
     opacity: 0;
     transition: opacity 1s;
