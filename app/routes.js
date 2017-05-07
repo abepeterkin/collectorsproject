@@ -167,11 +167,15 @@ app.post('/search/:query/:userid', function(req, res) {
 app.get('/mark/all/:query', function(req, res) {
 	var query = req.params.query;
 	console.log(query);
-	objectDB.searchOnPerson(query, function(result) { // This will need to search through documents of people, locations and objects -->
+	objectDB.searchOnObject(query, function(result) {
+		var resultJSON = JSON.stringify(result);
+		res.send(resultJSON);
+	});
+/*	objectDB.searchOnPerson(query, function(result) { <!-- This will need to search through documents of people, locations and objects -->
 		var resultJSON = JSON.stringify(result);
 	//	res.send(resultJSON);
 		console.log(resultJSON);
-	});
+	});*/
 });
 
 app.post('/mark/person/:object/:person', function(req, res) {
@@ -183,7 +187,11 @@ app.post('/mark/person/:object/:person', function(req, res) {
 				console.log(person + " already in collection");
 			} else {
 				objectDB.createPerson(person, object, function(data) {
-					res.send(result);
+					res.send(data);
+				});
+				
+				objectDB.addPersonToObject(object, person, function(data) {
+					res.send(data);
 				});
 			}
 		});
