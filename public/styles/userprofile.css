@@ -141,7 +141,7 @@ body {
 .editInfoModalContent {
     margin: 20% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px hidden;
 	  height: 1px;
     width: 1px;
 	  border-radius: 25px;
@@ -187,7 +187,7 @@ body {
 .passwordModalContent {
     margin: 20% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px hidden;
     height: 1px;
     width: 1px;
     border-radius: 25px;
@@ -233,7 +233,7 @@ body {
 /*    background-color: hsla(0,0%,0%,0.7);*/
     margin: 20% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px hidden;
     height: 1px;
     width: 1px;
   border-radius: 25px;
@@ -295,7 +295,7 @@ body {
 .objectModalContent {
     margin: 20% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px hidden;
     height: 1px;
     width: 1px;
     border-radius: 25px;

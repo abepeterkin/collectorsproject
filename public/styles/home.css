@@ -112,6 +112,11 @@ body {
 	margin-top:100px;
 }
 
+#about_text {
+	padding: 50px;
+	font-family: "nhd-lt"
+}
+
 #body_words h1 {
 	font-family: "nhd-lt";
 }
@@ -135,7 +140,7 @@ body {
 .signUpModalContent {
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px hidden;
     width: 1px;
     height: 1px;
 	border-radius: 25px;
@@ -144,16 +149,16 @@ body {
 .signInModalContent {
     margin: 20% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px hidden;
 	height: 1px;
     width: 1px;
-	border-radius: 25px;
+	border-radius: 1px;
 }
 
 .uploadModalContent {
     margin: 20% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px hidden;
 	height: 1px;
     width: 1px;
 	border-radius: 25px;
@@ -162,7 +167,7 @@ body {
 .objectModalContent {
     margin: 20% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px hidden;
 	height: 1px;
     width: 1px;
 	border-radius: 25px;
@@ -172,7 +177,7 @@ body {
     background-color: white;
     margin: 20% auto;
 /*    padding: 20px;*/
-    border: 1px solid #888;
+    border: 1px solid hidden;
 	height: 1px;
     width: 1px;
 	border-radius: 25px;
@@ -301,7 +306,8 @@ table {
  	flex-direction: column;
  	justify-content: center;
  	align-items: center;
-	color:hsla(0,0%,100%,1);
+	/*color:hsla(0,0%,100%,1);*/
+	color: black;
 	background-color: white;
 }
 
@@ -644,44 +650,14 @@ table {
 /************************************/
 
 
-@media only screen and (max-width: 2500px) {
+@media only screen and (max-width: 1500px) {
    	#top {
    		font-size: 50px;
    		font-family: "nhd-regular";
    	}
-
-  /* 	#header {
-   		height: 50px;
-   	}
-
-   	#wow_title {
-   		font-size: 20px;
-   	}
-
-   	#about {
-   		font-size: 2px;
-   	}
-
-   	#signIn {
-   		font-size: 15px;
-   	}
-
-   	#signUp {
-   		font-size: 15px;
-   	}
-
-   	#dropbtn {
-   		font-size: 15px;
-   	}
-
-   	#nav_bar {
-   		font-size: 10px;
-   		color: pink;
-   	}*/
-
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 700px) {
    	#search::-webkit-input-placeholder  {
    		visibility: hidden;
    		font-family:"nhd-thin";
@@ -704,6 +680,11 @@ table {
 	#title {
 		width: 1px
 	}
+
+	#search {
+   		width: 200px;
+   		border-style:none;
+   	}
 }
 
 @media only screen and (max-height: 500px) {
@@ -713,8 +694,8 @@ table {
    		height: 1px;
    	}
 
-   	#search {
-   		width: 20%
+   #search {
+   		width: 400px%
    		border-style:none;
    	}
 }
