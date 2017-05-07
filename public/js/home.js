@@ -80,6 +80,10 @@ $(document).ready(function(){
 
 		    document.getElementById("wow_title").style.fontSize = "20px";
 		    document.getElementById("about").style.fontSize = "15px";
+
+		    document.getElementById("about").style.height = "15px";
+
+
 		    document.getElementById("signIn").style.fontSize = "15px";
 		    document.getElementById("signUp").style.fontSize = "15px";
 

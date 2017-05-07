@@ -78,6 +78,7 @@ body {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     margin-left:-20px;
+    border-radius: 15px;
 }
 
 .dropdown-content a {
@@ -531,6 +532,59 @@ td {
 /************************************/
 
 
+@media only screen and (max-height: 500px) {
+    #top {
+      font-size: 50px;
+      font-family: "akzidenz-regular";
+    }
+
+    #header {
+      height: 50px;
+    }
+
+    #wow_title h1 {
+      font-size: 20px;
+    }
+
+    #user_info {
+      top: 50px;
+    }
+
+    #name {
+      visibility: hidden;
+      font-size: 1px;
+    }
+
+    #institution {
+      /*height: 1px;*/
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    #contact {
+      /*height: 1px;
+      background-color: blue;*/
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    #user_info {
+      height: 100%;
+      align-items: center;
+      /*border-right: hidden;*/
+
+    }
+
+    #edit_profile {
+      top: 10px;
+      width: 60px;
+      padding: 20px;
+      font-family: "akzidenz-medium"
+      color: white;
+      border-style: solid grey 1px;
+    }
+}
+
 @media only screen and (max-width: 1500px) {
     #top {
       font-size: 50px;
@@ -564,6 +618,11 @@ td {
 
     #title {
       width: 1px
+    }
+
+        #name {
+      visibility: hidden;
+      font-size: 1px;
     }
 }
 
