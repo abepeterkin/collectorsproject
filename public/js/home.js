@@ -68,6 +68,10 @@ $(document).ready(function(){
 		if (event.target == $("#uploadModal")[0]) {
 			$("#uploadModal")[0].style.display = "none";
 		}
+		
+		if (event.target == $("#aboutModal")[0]) {
+			$("#aboutModal")[0].style.display = "none";
+		}
 	});
 
 
