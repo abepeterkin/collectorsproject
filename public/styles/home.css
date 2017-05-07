@@ -48,7 +48,7 @@ body {
 }
 
 #nav_bar a:hover {
-	background-color: hsla(48,100%,50%,0.5);
+	background-color: hsla(229,45%,93%,0.3);
 	border-radius: 15px;
 }
 
@@ -109,6 +109,10 @@ body {
 #about {
 	margin-right:10px;
 	margin-top:100px;
+}
+
+#body_words h1 {
+	font-family: "nhd-lt";
 }
 
 /************************************/
@@ -290,7 +294,7 @@ div.tab button.active {
 }
 
 #signUpBody p {
-	font-family: "nhd-light";
+	font-family: "nhd-lt";
 	font-size:12pt;
 	margin-bottom:30px;
 }
@@ -300,7 +304,7 @@ div.tab button.active {
  	justify-content: center;
  	align-items: center;
 	font-size: 20px;
-	font-family: "nhd-light";
+	font-family: "nhd-lt";
 	color: grey;
 }
 
@@ -386,7 +390,7 @@ table {
 	margin-bottom: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
-	font-family: "nhd-light";
+	font-family: "nhd-lt";
 	font-size: 20px;
 }
 
@@ -397,7 +401,7 @@ table {
 	margin-bottom: 40px;
 	padding-left: 10px;
 	padding-right: 10px;
-	font-family: "nhd-light";
+	font-family: "nhd-lt";
 	font-size: 20px;
 }
 
@@ -433,7 +437,7 @@ table {
  	align-items: center;
 	color: black;
 	background-color: white;
-	font-family: "nhd-light";
+	font-family: "nhd-lt";
 }
 
 #upload_body h1 {
@@ -487,7 +491,7 @@ table {
  	align-items: center;
 	color: black;
 	background-color: white;
-	font-family: "nhd-light";
+	font-family: "nhd-lt";
 
 	padding: 40px;
 }
@@ -509,7 +513,7 @@ table {
  	align-items: center;
 	color: black;
 	background-color: white;
-	font-family: "nhd-light";
+	font-family: "nhd-lt";
 	padding: 40px;
 }
 
@@ -545,7 +549,7 @@ table {
 
 #top {
 	color: white;
-	font-family:"nhd-light";
+	font-family:"nhd-lt";
 	font-size: 80px;
 	margin: 25px;
 }
@@ -558,7 +562,7 @@ table {
 	height: 20px;
 	width: 200px;
 	font-size: 18px;
-	font-family: "nhd-light";
+	font-family: "nhd-lt";
 }
 
 .tooltip {
@@ -574,7 +578,7 @@ table {
     z-index: 1;
     text-align: center;
     font-size: 20px;
-    font-family: "nhd-light"
+    font-family: "nhd-lt"
 }
 
 .tooltip .tooltiptext {
@@ -608,7 +612,7 @@ table {
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
-    font-family: "nhd-light";
+    font-family: "nhd-lt";
     padding:10px;
     font-size: 10pt;
     width:350px;
@@ -645,7 +649,7 @@ table {
 .search_result {
 	color: black;
 	font-size: 12px;
-	font-family: "nhd-light";
+	font-family: "nhd-lt";
 	display:inline-block;
 	margin:20px;
 	padding: 10px;
@@ -686,7 +690,7 @@ table {
 }
 
 #profileModal {
-	font-family:"nhd-light";
+	font-family:"nhd-lt";
 }
 
 
@@ -713,6 +717,7 @@ table {
 @media only screen and (max-width: 750px) {
    	#search::-webkit-input-placeholder  {
    		visibility: hidden;
+   		font-family:"nhd-thin";
    	}
 
    	#search {
@@ -750,7 +755,7 @@ table {
 /************************************/
 /*				FONTS				*/
 /************************************/
-
+/*
 @font-face {
 	font-family:"nhd-bold";
 	src:url("akzidenz/akzidenz_bold.otf") format("opentype");
@@ -767,9 +772,9 @@ table {
 }
 
 @font-face {
-	font-family:"nhd-light";
+	font-family:"nhd-lt";
 	src:url("akzidenz/akzidenz_light.otf") format("opentype");
-}
+}*/
 
 /*NEUE HAAS GROTESK*/
 

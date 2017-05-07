@@ -10,7 +10,7 @@ body {
 #header {
 	display: flex;
 	flex-direction:row;
-	font-family:"akzidenz-bold";
+	font-family:"nhd-bold";
 	margin:0;
 	padding:0;
 	justify-content:space-between;
@@ -30,7 +30,7 @@ body {
 /*			NAVIGATION MENU			*/
 /************************************/
 #nav_bar {
-	font-family:"akzidenz-regular";
+	font-family:"nhd-regular";
 	float:right;
 	margin-right: 40px;
 }
@@ -40,7 +40,7 @@ body {
 	color: white;
 	padding:15px;
 	font-size: 20px;
-	font-family:"akzidenz-medium";
+	font-family:"nhd-medium";
 }
 
 #nav_bar a:hover {
@@ -70,7 +70,7 @@ body {
 
   	overflow-y: auto;
 
-  	font-family: "akzidenz-light";
+  	font-family: "nhd-lt";
 
   	display: flex;
   	flex-direction: column;
@@ -82,12 +82,12 @@ body {
 
 #upload_body h1 {
 	color: black;
-	font-family: "akzidenz-bold";
+	font-family: "nhd-bold";
 }
 
 #submit_button {
 	color: white;
-	font-family: "akzidenz-medium";
+	font-family: "nhd-medium";
 	background-color: #4f65d3;
 	border-style: none;
 	font-size: 20px;
@@ -180,22 +180,134 @@ body {
 /*				FONTS				*/
 /************************************/
 
-@font-face {
-	font-family:"akzidenz-bold";
+/*@font-face {
+	font-family:"nhd-bold";
 	src:url("akzidenz/akzidenz_bold.otf") format("opentype");
 }
 
 @font-face {
-	font-family:"akzidenz-regular";
+	font-family:"nhd-regular";
 	src:url("akzidenz/akzidenz_regular.otf") format("opentype");
 }
 
 @font-face {
-	font-family:"akzidenz-medium";
+	font-family:"nhd-medium";
 	src:url("akzidenz/akzidenz_medium.otf") format("opentype");
 }
 
 @font-face {
-	font-family:"akzidenz-light";
+	font-family:"nhd-lt";
 	src:url("akzidenz/akzidenz_light.otf") format("opentype");
+}*/
+
+@font-face {
+	font-family:"nhd-ult-thin";
+	src:url("NeueHaas/nhdultrathin.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-ult-thin-italic";
+	src:url("NeueHaas/nhdultraitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-thin";
+	src:url("NeueHaas/nhdthin.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-thin-italic";
+	src:url("NeueHaas/nhdthinitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-x-lt";
+	src:url("NeueHaas/nhdxllt.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-x-lt-italic";
+	src:url("NeueHaas/nhdxlltitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-lt";
+	src:url("NeueHaas/nhdlt.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-lt-italic";
+	src:url("NeueHaas/nhdltitalic.otf") format("opentype");
+}
+
+
+@font-face {
+	font-family:"nhd-regular";
+	src:url("NeueHaas/nhdreg.otf") format("opentype");
+}
+
+
+@font-face {
+	font-family:"nhd-regular-italic";
+	src:url("NeueHaas/nhdregitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-medium";
+	src:url("NeueHaas/nhdmedium.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-medium-italic";
+	src:url("NeueHaas/nhdmediumitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-bold";
+	src:url("NeueHaas/nhdbold.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-bold-italic";
+	src:url("NeueHaas/nhdbolditalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-black";
+	src:url("NeueHaas/nhdblk.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nhd-black-italic";
+	src:url("NeueHaas/nhdblkitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-regular";
+	src:url("NeueHaas/nhtreg.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-regular-italic";
+	src:url("NeueHaas/nhtregitalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-medium";
+	src:url("NeueHaas/nhtmed.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-medium-italic";
+	src:url("NeueHaas/nhtmeditalic.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-bold";
+	src:url("NeueHaas/nhtbold.otf") format("opentype");
+}
+
+@font-face {
+	font-family:"nht-bold-italic";
+	src:url("NeueHaas/nhtbolditalic.otf") format("opentype");
 }
