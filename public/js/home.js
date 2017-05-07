@@ -37,6 +37,11 @@ $(document).ready(function(){
 	    $("#uploadModal")[0].style.display = "flex";
 		$("#uploadModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
+	
+	$("#about").click(function() {
+	    $("#aboutModal")[0].style.display = "flex";
+		$("#aboutModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
+	});
 
 	/* redirects to signin modal */
 	$("#signin_redirect").click(function() {
@@ -62,6 +67,10 @@ $(document).ready(function(){
 
 		if (event.target == $("#uploadModal")[0]) {
 			$("#uploadModal")[0].style.display = "none";
+		}
+		
+		if (event.target == $("#aboutModal")[0]) {
+			$("#aboutModal")[0].style.display = "none";
 		}
 	});
 
