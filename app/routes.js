@@ -164,9 +164,32 @@ app.post('/search/:query/:userid', function(req, res) {
 	}
 });
 
-app.get('/mark/:id', function(req, res) {
-	var id = req.params.id;
-	// Search through lists of people, places, times for object id and return associated search terms to mark in the text for the user
+app.get('/mark/all/:query', function(req, res) {
+	var query = req.params.query;
+	console.log(query);
+	objectDB.searchOnPerson(query, function(result) { // This will need to search through documents of people, locations and objects -->
+		var resultJSON = JSON.stringify(result);
+	//	res.send(resultJSON);
+		console.log(resultJSON);
+	});
+});
+
+app.post('/mark/person/:object/:person', function(req, res) {
+	var object = req.params.object;
+	var person = req.params.person;
+	if (person !== "") {
+		objectDB.searchOnPerson(person, function(result) {
+			if (result.length !== 0) {
+				console.log(person + " already in collection");
+			} else {
+				objectDB.createPerson(person, object, function(data) {
+					res.send(result);
+				});
+			}
+		});
+	} else {
+		res.send("Invalid query");
+	}
 });
 
 /************************/

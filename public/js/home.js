@@ -254,7 +254,7 @@ function setTabs() {
 	$(document).on('click', ".search_result", function(event) {
 
 		var obj = {
-			_id : $(this).attr("_id"),
+			_id : $(this).attr("data-id"),
 			affiliation: $(this).attr("data-affiliation"),
 			name : $(this).attr("data-name"),
 			Provenance : $(this).attr("data-provenance")
@@ -262,6 +262,7 @@ function setTabs() {
 
 		var modalHTML = new EJS({url: '../pages/artifact.ejs'}).render(obj);
 		$("#object_body").html(modalHTML);
+		$("#object_map").hide();
 
 		$("#objectModal")[0].style.display = "flex";
 		$("#objectModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
