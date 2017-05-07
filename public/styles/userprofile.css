@@ -170,7 +170,7 @@ body {
     text-align: center;
 }
 
-#save_button {
+#profile_save_button {
     margin-top: 30px;
 }
 
@@ -272,6 +272,7 @@ body {
   width: 150px;
   height: 50px;
   margin-top: 40px;
+  border-radius: 10px;
 }
 
 #upload_form {
@@ -346,7 +347,6 @@ body {
   top: 100px;
   bottom: 0;
   width: 25%;
-  /*height: 100%;*/
 
   margin-top: 0;
   padding-top: 0;
@@ -513,6 +513,13 @@ td {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    overflow: scroll;
+    height: 100%;
+}
+
+
+#Uploads {
+  height: 70%;
 }
 
 #profile_search_results {

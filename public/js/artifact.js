@@ -1,18 +1,27 @@
 var text = "";
+var id = $("#objectID").attr('data-id');
 
-highlight();
+highlight(id);
 
-function highlight() {
+function highlight(id) {
 	// This function should retrieve all people, places, and time values from the database and highlight them in the provenance lists
-	$.get("/mark/" + id, function() {
-//		mark();
+	$.get("/mark/all/" + id, function(result) {
+		var resultObjects = JSON.parse(result);
+		console.log(resultObjects);
+/*		for (var key in resultObjects) {
+			if (resultObjects.hasOwnProperty(key)) {
+      			var obj = resultObjects[key];
+				console.log(JSON.stringify(obj));
+				mark(result, $("#artifact_provenance"));
+			}
+		}*/
 	});
 }
 
 function flag() {
-	
+
 }
-	
+
 function getSelectionText() {
 	if (window.getSelection) {
 		text = window.getSelection().toString();
@@ -48,13 +57,16 @@ $(document).bind("mousedown", function (e) {
 
 $(".custom-menu li").click(function(){
 	switch($(this).attr("data-action")) {
-		case "first": 
+		case "first":
+			$.post("/mark/person/" + id + "/" + text, function(result){
+				console.log(result);
+			});
 			// Add word to person database; update search results
 			break;
-		case "second": 
+		case "second":
 			// Add word to time database; update search results
 			break;
-		case "third": 
+		case "third":
 			// Add word to place database; update search results
 			break;
     }

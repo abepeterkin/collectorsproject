@@ -450,6 +450,7 @@ table {
 	width: 150px;
 	height: 50px;
 	margin-top: 40px;
+	border-radius: 10px;
 }
 
 #upload_form {
@@ -488,6 +489,27 @@ table {
 	background-color: white;
 	font-family: "akzidenz-light";
 
+	padding: 40px;
+}
+
+#object_map {
+ 	position: absolute;
+  	margin: auto;
+  	top: 30%;
+  	right: 0;
+  	bottom: 0;
+  	left: 80%;
+  	width: 150px;
+  	height: 300px;
+	border: 1px solid;
+ 	border-radius: 20px;
+ 	display: flex;
+ 	flex-direction: column;
+ 	justify-content: center;
+ 	align-items: center;
+	color: black;
+	background-color: white;
+	font-family: "akzidenz-light";
 	padding: 40px;
 }
 

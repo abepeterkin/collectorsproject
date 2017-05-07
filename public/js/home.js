@@ -45,15 +45,6 @@ $(document).ready(function(){
 		$("#signInModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
 	});
 
-/*	$("#profile").click(function() {
-		setTabs();
-		loadProfileData();
-	    $("#profileModal")[0].style.display = "flex";
-		$("#profileModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
-	    $("#accountInfo")[0].style.display = "block";
-
-	});*/
-
 
 	/* close modals */
 	$(document).click(function(event) {
@@ -74,132 +65,6 @@ $(document).ready(function(){
 		}
 	});
 
-
-
-
-/*	$(document).click(function(event) {
-    	if (event.target == $("#profileModal")[0]) {
-			$("#profileModal")[0].style.display = "none";
-		}
-	});
-
-	$("#accountInfoBtn").click(function(event) {
-		setTabs();
-	    $("#accountInfo")[0].style.display = "block";
-		event.currentTarget.className += " active";
-	});
-
-	$("#uploadInfoBtn").click(function(event) {
-			setTabs();
-	    $.post("search/" + affiliation, function(result){
-				//$("#uploadList").html(result);// Will need to show data by museumID: where museumID == affiliation and just return object name (the registration number);
-				$("#uploadList").html("");
-				var resultObjects = JSON.parse(result);
-				for (var key in resultObjects) {
-					if (resultObjects.hasOwnProperty(key)) {
-      				var obj = resultObjects[key];
-						console.log(JSON.stringify(obj));
-						var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
-						$("#uploadList").append(resultHTML);
-					}
-				}
-		});
-		$("#uploadInfo")[0].style.display = "block";
-		event.currentTarget.className += " active";
-	});
-
-	$("#objectInfoBtn").click(function(event) {
-		setTabs();
-	    $("#objectInfo")[0].style.display = "block";
-		event.currentTarget.className += " active";
-	});
-
-	function loadProfileData() {
-		// will need to refresh the variables in the template so that new data will be shown if changed in profile
-	}
-
-	$("#editEmail").on('change', function() {
-		console.log("mail");
-		$.post("edit/email/" + user_id + "/" + $("#editEmail").val(), function(result){
-			console.log(result);
-		});
-	});
-
-	$("#editFirstName").on('change', function() {
-		console.log("first name");
-		$.post("edit/firstname/" + user_id + "/" + $("#editFirstName").val(), function(result){
-			console.log(result);
-		});
-	});
-
-	$("#editLastName").on('change', function() {
-		console.log("last name");
-		$.post("edit/lastname/" + user_id + "/" + $("#editLastName").val(), function(result){
-			console.log(result);
-		});
-	});
-
-		$("#searchSmall").on('change', function() {
-			$("#profile_search_results").html("");
-			$.post("search/" + $("#searchSmall").val() + "/" + user_id, function(result){
-				var resultObjects = JSON.parse(result);
-				for (var key in resultObjects) {
-					if (resultObjects.hasOwnProperty(key)) {
-      				var obj = resultObjects[key];
-						console.log(JSON.stringify(obj));
-						var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
-						$("#profile_search_results").append(resultHTML);
-					}
-				}
-			});
-		});
-
-			$(document).on('click', ".search_result", function(event) {
-				console.log("RESULT CLICKED");
-
-				var obj = {
-					_id : $(this).attr("_id"),
-					affiliation: $(this).attr("data-affiliation"),
-					name : $(this).attr("data-name"),
-					Provenance : $(this).attr("data-provenance")
-				}
-
-				var modalHTML = new EJS({url: '../pages/artifact.ejs'}).render(obj);
-				$("#object_body").html(modalHTML);
-
-				$("#objectModal")[0].style.display = "flex";
-				$("#objectModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";
-
-				var table_height = $("#artifact_table").height();
-				$("#object_body").height(table_height);
-			});
-
-			$(document).on('mouseover', ".search_result", function(event) {
-				$('body').css('cursor','pointer');
-			});
-
-			$(document).on('mouseleave', ".search_result", function(event) {
-				$('body').css('cursor','default');
-			});
-
-			$(document).click(function(event) {
-					if (event.target == $("#objectModal")[0]) {
-					$("#objectModal")[0].style.display = "none";
-				}
-			});
-
-
-function setTabs() {
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-}
-*/
 
 	/* on search */
 	$("#search").on("change", function(event){
@@ -254,7 +119,7 @@ function setTabs() {
 	$(document).on('click', ".search_result", function(event) {
 
 		var obj = {
-			_id : $(this).attr("_id"),
+			_id : $(this).attr("data-id"),
 			affiliation: $(this).attr("data-affiliation"),
 			name : $(this).attr("data-name"),
 			Provenance : $(this).attr("data-provenance")
@@ -262,6 +127,7 @@ function setTabs() {
 
 		var modalHTML = new EJS({url: '../pages/artifact.ejs'}).render(obj);
 		$("#object_body").html(modalHTML);
+		$("#object_map").hide();
 
 		$("#objectModal")[0].style.display = "flex";
 		$("#objectModal")[0].style.backgroundColor = "hsla(0,0%,0%,0.5)";

@@ -1,5 +1,5 @@
 var objectDB = require("./objectdatabase.js");
-var user = require('../app/models/user');
+var user_model = require('../app/models/user');
 var XLSX = require('xlsx');
 
 module.exports = function(app, passport) {
@@ -164,32 +164,103 @@ app.post('/search/:query/:userid', function(req, res) {
 	}
 });
 
-app.get('/mark/:id', function(req, res) {
-	var id = req.params.id;
-	// Search through lists of people, places, times for object id and return associated search terms to mark in the text for the user
+app.get('/mark/all/:query', function(req, res) {
+	var query = req.params.query;
+	console.log(query);
+	objectDB.searchOnPerson(query, function(result) { // This will need to search through documents of people, locations and objects -->
+		var resultJSON = JSON.stringify(result);
+	//	res.send(resultJSON);
+		console.log(resultJSON);
+	});
 });
 
-app.post('/edit/:query/:userid/:value',isLoggedIn, function(req, res) {
-	var query = req.params.query;
-	var userid = req.params.userid;
-	var value = req.params.value;
-	if (query == "email") {
-		user.update({
-			_id: req.session.passport.user.id}, {
-				email: req.params.value
-			}, function(err, numberAffected, rawResponse) {
-				console.log('new profile update error');
-	    });
-	} else if (query == "firstname") {
-		//update first name
-			console.log(query + "/" + userid + "/" + value);
-	} else if (query == "lastname") {
-		//update last name
-			console.log(query + "/" + userid + "/" + value);
+app.post('/mark/person/:object/:person', function(req, res) {
+	var object = req.params.object;
+	var person = req.params.person;
+	if (person !== "") {
+		objectDB.searchOnPerson(person, function(result) {
+			if (result.length !== 0) {
+				console.log(person + " already in collection");
+			} else {
+				objectDB.createPerson(person, object, function(data) {
+					res.send(result);
+				});
+			}
+		});
 	} else {
-		//return error
-			console.log(query + "/" + userid + "/" + value);
+		res.send("Invalid query");
 	}
+});
+
+/************************/
+/*		Profile editing 	*/
+/************************/
+
+app.post('/editprofile',isLoggedIn, function(req, res) {
+	user_model.findOne({ 'local.email' :  req.user.local.email }, function(err, user) {
+		console.log("findOne... ");
+			// if there are any errors, return the error
+			if (err) {
+				console.log("Profile update error: " + err);
+				return;
+			}
+
+			// check to see if theres already a user with that email
+			if (user) {
+				console.log("firstname: " + req.body.firstname);
+				user.local.email = req.body.email;
+				user.firstname   = req.body.firstname;
+				user.lastname   = req.body.lastname;
+				user.affiliation   = req.body.affiliation;
+				user.city   = req.body.city;
+				user.country   = req.body.country;
+				user.save(function(err) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log("User " +  req.user.local.email + " profile updated");
+					}
+					res.redirect('/profile');
+				});
+			} else {
+					console.log("User " +  req.user.local.email + " not found");
+					res.redirect('/profile');
+			}
+		});
+});
+
+app.post('/editpassword',isLoggedIn, function(req, res) {
+	user_model.findOne({ 'local.email' :  req.user.local.email }, function(err, user) {
+		console.log("findOne... ");
+			// if there are any errors, return the error
+			if (err) {
+				console.log("Profile update error: " + err);
+				res.send("Something went wrong. Try again later.");
+				return;
+			}
+
+			// check to see if theres already a user with that email
+			if (user) {
+
+				if (req.body.newpassword !== req.body.confirmpassword) {
+					console.log("Passwords do not match");
+					res.send("Passwords do not match");
+					return;
+				}
+				user.setPassword(req.body.newpassword, function(err) {
+					if (err) {
+						console.log(err);
+						res.send("Something went wrong. Try again later.");
+					} else {
+						console.log("User " +  req.user.local.email + " profile updated");
+						res.send("Password change successful!");
+					}
+				});
+			} else {
+				console.log("User " +  req.user.local.email + " not found");
+				res.send("User " +  req.user.local.email + " not found");
+			}
+		});
 });
 
 /************************/
@@ -229,8 +300,8 @@ function insertObjects(req) {
     var object = {
       userId: req.user._id,
       museumId : req.user.affiliation,
-      name : name,
-      Provenance : provenance,
+      name : escapeHtml(name),
+      Provenance : escapeHtml(provenance),
       Persons : [],
       Locations : []
     }
@@ -238,4 +309,17 @@ function insertObjects(req) {
   }
   objectDB.insertMany(objectArray);
 }
+}
+
+var entityMap = {
+  '<': '',
+  '>': '',
+	"'": '',
+  '"': '',
+};
+
+function escapeHtml (string) {
+  return String(string).replace(/[<>"']/g, function (s) {
+    return entityMap[s];
+  });
 }
