@@ -2,6 +2,10 @@ var text = "";
 var id = $("#objectID").attr('data-id');
 console.log("ARTIFACT.JS: id is " + id);
 
+$('.artifact-modal').bind('contextmenu', function(e) {
+    return false;
+}); 
+
 highlight(id);
 
 function highlight(id) {
@@ -13,8 +17,9 @@ function highlight(id) {
 			for (var key in resultObjects) {
 				if (resultObjects.hasOwnProperty(key)) {
 					var obj = resultObjects[key];
-					for (var i = 0; i < obj.Persons.length; i++) {
-						mark(obj.Persons[i], $("#artifact_provenance"));
+					var objPersons = $.unique(obj.Persons)
+					for (var i = 0; i < objPersons.length; i++) {
+						mark(objPersons[i], $("#artifact_provenance"));
 					}
 				}
 			}
