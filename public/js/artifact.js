@@ -28,10 +28,12 @@ function flag() {
 
 function getSelectionText() {
 	if (window.getSelection) {
-		text = window.getSelection().toString();
-		mark(window.getSelection(), $("#artifact_provenance"));
-	} else if (document.selection && document.selection.type != "Control") {
-		text = document.selection.createRange().text;
+		if (window.getSelection() != "") {
+			text = window.getSelection().toString();
+			mark(window.getSelection(), $("#artifact_provenance"));
+		} else if (document.selection && document.selection.type != "Control") {
+			text = document.selection.createRange().text;
+		}
 	}
 }
 
@@ -67,7 +69,9 @@ $(".custom-menu li").click(function(){
 			});
 			break;
 		case "second":
-			// Add word to location database; update search results
+/*			$.post("/mark/location/" + id + "/" + text, function(result){
+				console.log("Got it back here.");
+			});*/
 			break;
     }
 	$(".custom-menu").hide(100);
