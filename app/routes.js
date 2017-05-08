@@ -170,6 +170,7 @@ app.get('/mark/person/:object', function(req, res) {
 	// Search Objects arrays in person collection
 	objectDB.searchObjectOfPerson(object, function(result) {
 		var resultJSON = JSON.stringify(result);
+		console.log(resultJSON);
 		res.send(resultJSON);
 	//	console.log(result);
 	});
@@ -187,7 +188,7 @@ app.post('/mark/person/:object/:person', function(req, res) {
 				});*/
 				console.log("Updating all associated object records...");
 				objectDB.updatePersonsInObjects(person, function (data) {
-					console.log(data);
+					console.log(data.result.nModified);
 					res.send(data);
 				});
 			} else {

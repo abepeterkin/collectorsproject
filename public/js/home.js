@@ -2,7 +2,7 @@
 window.onload = function() {
 	var numImages = 4;
     var randomNumber = Math.floor(Math.random() * numImages) + 1;
-	$("#backgroundImageID").css("background-image", "url(images/background_" + randomNumber + ".jpg");
+	$("#backgroundImageID").css("background-image", "url(images/background_" + randomNumber + ".jpg");	
 }
 
 var searchbar = $("#search");
@@ -10,6 +10,8 @@ var searchbar = $("#search");
 $(document).ready(function(){
 
 	var span = document.getElementsByClassName("close")[0];
+
+	$("#search_results").hide();
 
 	if (email !== "undefined") {
 		$("#dropbtn").html(firstname);
@@ -76,20 +78,81 @@ $(document).ready(function(){
 
 	/* on search */
 	$("#search").on("change", function(event){
-		console.log("this happens");
-		/* this block of code is for hiding and shifting elements on the main page */
+
+		/* First get search results */
+		if ($("#search").val() !== "") {
+			$.post("search/" + $("#search").val(), function(result){
+				var resultObjects = JSON.parse(result);
+				if (resultObjects.length !== 0) {
+					$("#search_results").html("");
+					for (var key in resultObjects) {
+						if (resultObjects.hasOwnProperty(key)) {
+							var obj = resultObjects[key];
+								var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
+								$("#search_results").append(resultHTML);
+						}
+					}
+					render();
+				} else {
+					$("#search_results").html("");
+					unrender();
+				}
+			});
+		}	
+		
+		function render() {		
+		
+			// Render results	
 			$("#top").hide();
+			$("#body_text").animate({top: "75px"});
+			$("#header").animate({height: "50px"});
+			$("#wow_title").animate({fontSize: "20px"});
+			$("#about").animate({fontSize: "15px"});
+			$("#signIn").animate({fontSize: "15px"});
+			$("#signUp").animate({fontSize: "15px"});
+			$("#dropbtn").animate({fontSize: "15px"});
+			$("#upload").animate({fontSize: "15px"});
+			$("#profile").animate({fontSize: "15px"});
+			$("#signOut").animate({fontSize: "15px"});
+			$("#body_text").css('display', 'block');
+			$("#search_results").animate({
+				width: "90%",
+				height: "100%"
+			});
+			$("#search_results").fadeIn();
+		}
+		
+		function unrender() {
+			$("#top").show();
+			$("#header").animate({height: "100px"});
+			$("#wow_title").animate({fontSize: "22px"});
+			$("#about").animate({fontSize: "20px"});
+			$("#signIn").animate({fontSize: "20px"});
+			$("#signUp").animate({fontSize: "20px"});
+			$("#dropbtn").animate({fontSize: "20px"});
+			$("#upload").animate({fontSize: "20px"});
+			$("#profile").animate({fontSize: "20px"});
+			$("#signOut").animate({fontSize: "20px"});
+			$("#body_text").animate({bottom: "20%", top: "40%"});
+			$("#search_results").animate({
+				width: "0px",
+				height: "0px"
+			});
+			$("#search_results").fadeOut();
+//			$("#body_text").css('display', 'none');
+		}
+/*		$("#about").animate({height: "5px"});
+			
+//		    document.getElementById("body_text").style.top="75px";
 
-	    	document.getElementById("body_text").display="block";
-		    document.getElementById("body_text").style.top="75px";
-
-		    document.getElementById("header").style.height = "50px";
+//		    document.getElementById("header").style.height = "50px";
 
 
-		    document.getElementById("wow_title").style.fontSize = "20px";
-		    document.getElementById("about").style.fontSize = "15px";
 
-		    document.getElementById("about").style.height = "5px";
+//		    document.getElementById("wow_title").style.fontSize = "20px";
+//		    document.getElementById("about").style.fontSize = "15px";
+
+//		    document.getElementById("about").style.height = "5px";
 
 
 		    document.getElementById("signIn").style.fontSize = "15px";
@@ -99,31 +162,18 @@ $(document).ready(function(){
 
 		    document.getElementById("upload").style.fontSize = "15px";
 		    document.getElementById("profile").style.fontSize = "15px";
-		    document.getElementById("signOut").style.fontSize = "15px";
+		    document.getElementById("signOut").style.fontSize = "15px";*/
 
-		    document.getElementById("search_results").style.visibility="visible";
-		    document.getElementById("search_results").style.top="20px";
-		    document.getElementById("search_results").style.height="600px";
+//		    document.getElementById("search_results").style.visibility="visible";
+
+//		    document.getElementById("search_results").style.top="20px";
+//		    document.getElementById("search_results").style.height="600px";
 
 		/******/
 
 
-		/* get search results */
-		$("#search_results").html("");
-		if ($("#search").val() !== "") {
 
-			$.post("search/" + $("#search").val(), function(result){
-				var resultObjects = JSON.parse(result);
-				for (var key in resultObjects) {
-					if (resultObjects.hasOwnProperty(key)) {
-      					var obj = resultObjects[key];
-							console.log(JSON.stringify(obj));
-							var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
-							$("#search_results").append(resultHTML);
-					}
-				}
-			});
-		}
+		
 	});
 
 
