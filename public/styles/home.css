@@ -591,7 +591,7 @@ table {
 	flex-direction: row;
 	flex-wrap: wrap;
 	align-content: flex-start;
-	background-color: white;
+	background-color: hsla(0,0%,0%,0.5);
 /*	overflow: scroll;
 */	visibility: hidden;
 	border-radius:20px;
@@ -837,4 +837,3 @@ table {
 	font-family:"nht-bold-italic";
 	src:url("NeueHaas/nhtbolditalic.otf") format("opentype");
 }
-

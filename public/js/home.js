@@ -131,7 +131,7 @@ $(document).ready(function(){
 	$(document).on('click', ".search_result", function(event) {
 
 		var obj = {
-			_id : $(this).attr("data-id"),
+			id : $(this).attr("data-id"),
 			affiliation: $(this).attr("data-affiliation"),
 			name : $(this).attr("data-name"),
 			Provenance : $(this).attr("data-provenance")
