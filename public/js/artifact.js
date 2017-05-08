@@ -7,6 +7,7 @@ highlight(id);
 function highlight(id) {
 	console.log("highlight");
 	$.get("/mark/person/" + id, function(result) {
+		console.log("Out here");
 		if (result.length = 0) {
 			console.log("Nothing to highlight");
 		} else {
@@ -64,7 +65,7 @@ $(".custom-menu li").click(function(){
 	switch($(this).attr("data-action")) {
 		case "first":
 			$.post("/mark/person/" + id + "/" + text, function(result){
-				console.log(result);
+				console.log("Got it back here.");
 			});
 			// Add word to person database; update search results
 			break;

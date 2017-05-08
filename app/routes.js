@@ -177,33 +177,41 @@ app.get('/mark/person/:object', function(req, res) {
 });
 
 app.post('/mark/person/:object/:person', function(req, res) {
+	console.log("In here1222222222222");
 	var object = req.params.object;
 	var person = req.params.person;
 	if (person !== "") {
+		console.log("In here2");
 		objectDB.searchOnPerson(person, function(result) {
 			if (result.length !== 0) {
 				console.log(person + " is already in the collection; adding '" + object + "' to existing record for: " + person);
 /*				objectDB.addPersonToObject(object, person, function(data) {
 					res.send(data);
 				});*/
-				console.log("Updating all associated object records...");
+				console.log("Updating all associated object records	q...");
 				objectDB.updatePersonsInObjects(person, function (data) {
-					console.log(data.result.nModified);
+					console.log("Data");
+					//console.log(data);
 					res.send(data);
 				});
 			} else {
+				console.log("In here3");
 				objectDB.createPerson(person, object, function(data) {
+					console.log("In here4");
 					res.send(data);
 				});
 
+				console.log("Down here?");
 				/*objectDB.addPersonToObject(object, person, function(data) {
 					res.send(data);
 				});*/
 
-				console.log("Updating all associated object records...");
+				console.log("Updating all associated object records1...");
 				objectDB.updatePersonsInObjects(person, function (data) {
-					console.log(data);
-					res.send(data);
+					var resultJSON = JSON.stringify(data);
+					console.log("Inside here");
+					//console.log(resultJSON);
+					res.send(resultJSON);
 				});
 			}
 		});

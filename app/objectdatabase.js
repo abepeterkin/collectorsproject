@@ -238,6 +238,8 @@ var searchOnPerson = function(query, callback) {
 
 var searchObjectOfPerson = function(object, callback) {
 	MongoClient.connect(url, function(err, db) {
+    console.log("Object");
+    console.log(object);
     assert.equal(null, err);
     var results = db.collection('person').find(
 		{ Objects : object },
@@ -314,11 +316,19 @@ function updatePersonsInObjects(value, callback) {
 			{ $text: { $search : value } },
 			{ $push: { "Persons" : value } },
 			{ new: true, multi: true },
-			function(err, doc) {
-		        assert.equal(err, null);
-				callback(doc);
+			function(err) {
+		  assert.equal(err, null);
+      console.log("Inside the first");
+      db.collection('object').find({$text : {$search : value}})
+        .toArray(function(err, documents) {
+          assert.equal(err, null);
+          console.log("Inside the second");
+          console.log("Documents");
+          // console.log(documents);
+          callback(documents);
+        });
 			});
-    	db.close();
+    	// db.close();
   	});
 }
 
