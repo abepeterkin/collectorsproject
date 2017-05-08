@@ -5,19 +5,17 @@ console.log("ARTIFACT.JS: id is " + id);
 highlight(id);
 
 function highlight(id) {
-	console.log("highlight");
 	$.get("/mark/person/" + id, function(result) {
-		console.log("Out here");
 		if (result.length = 0) {
 			console.log("Nothing to highlight");
 		} else {
 			var resultObjects = JSON.parse(result);
-//			console.log(resultObjects);
 			for (var key in resultObjects) {
 				if (resultObjects.hasOwnProperty(key)) {
 					var obj = resultObjects[key];
-//					console.log(JSON.stringify(obj.name));
-					mark(obj.name, $("#artifact_provenance"));
+					for (var i = 0; i < obj.Persons.length; i++) {
+						mark(obj.Persons[i], $("#artifact_provenance"));
+					}
 				}
 			}
 		}
@@ -67,7 +65,6 @@ $(".custom-menu li").click(function(){
 			$.post("/mark/person/" + id + "/" + text, function(result){
 				console.log("Got it back here.");
 			});
-			// Add word to person database; update search results
 			break;
 		case "second":
 			// Add word to location database; update search results

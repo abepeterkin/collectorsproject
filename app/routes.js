@@ -188,7 +188,7 @@ app.post('/mark/person/:object/:person', function(req, res) {
 /*				objectDB.addPersonToObject(object, person, function(data) {
 					res.send(data);
 				});*/
-				console.log("Updating all associated object records	q...");
+				console.log("Updating all associated object records...");
 				objectDB.updatePersonsInObjects(person, function (data) {
 					console.log("Data");
 					//console.log(data);
@@ -206,7 +206,7 @@ app.post('/mark/person/:object/:person', function(req, res) {
 					res.send(data);
 				});*/
 
-				console.log("Updating all associated object records1...");
+				console.log("Updating all associated object records...");
 				objectDB.updatePersonsInObjects(person, function (data) {
 					var resultJSON = JSON.stringify(data);
 					console.log("Inside here");

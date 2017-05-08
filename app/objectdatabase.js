@@ -238,16 +238,15 @@ var searchOnPerson = function(query, callback) {
 
 var searchObjectOfPerson = function(object, callback) {
 	MongoClient.connect(url, function(err, db) {
-    console.log("Object");
-    console.log(object);
+    console.log("Looking for object: " + object);
     assert.equal(null, err);
-    var results = db.collection('person').find(
-		{ Objects : object },
+    var results = db.collection('object').find(
+		{ _id : ObjectId(object) },
 		{ score : { $meta : "textScore" } }).sort(
 		{ score : { $meta : "textScore" } }).toArray(
-			function(err, documents) {
+			function(err, doc) {
 				assert.equal(err, null);
-				callback(documents);
+				callback(doc);
 			});
 			db.close();
 		}
