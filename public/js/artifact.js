@@ -8,7 +8,7 @@ function highlight(id) {
 	console.log("highlight");
 	$.get("/mark/person/" + id, function(result) {
 		if (result.length = 0) {
-			console.log("nothing to highlight");
+			console.log("Nothing to highlight");
 		} else {
 			var resultObjects = JSON.parse(result);
 //			console.log(resultObjects);
@@ -69,10 +69,7 @@ $(".custom-menu li").click(function(){
 			// Add word to person database; update search results
 			break;
 		case "second":
-			// Add word to time database; update search results
-			break;
-		case "third":
-			// Add word to place database; update search results
+			// Add word to location database; update search results
 			break;
     }
 	$(".custom-menu").hide(100);
