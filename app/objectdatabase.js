@@ -253,6 +253,23 @@ var searchObjectOfPerson = function(object, callback) {
 	);
 }
 
+var searchObjectOfLocation = function(object, callback) {
+  MongoClient.connect(url, function(err, db) {
+    console.log("Looking for object: " + object);
+    assert.equal(null, err);
+    var results = db.collection('object').find(
+    { _id : ObjectId(object) },
+    { score : { $meta : "textScore" } }).sort(
+    { score : { $meta : "textScore" } }).toArray(
+      function(err, doc) {
+        assert.equal(err, null);
+        callback(doc);
+      });
+      db.close();
+    }
+  );
+}
+
 var searchOnLocation = function(query, callback) {
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
@@ -331,6 +348,29 @@ function updatePersonsInObjects(value, callback) {
   	});
 }
 
+function updateLocationsInObjects(value, callback) {
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+    db.collection('object').update(
+      { $text: { $search : value } },
+      { $push: { "Locations" : value } },
+      { new: true, multi: true },
+      function(err) {
+      assert.equal(err, null);
+      console.log("Inside the first");
+      db.collection('object').find({$text : {$search : value}})
+        .toArray(function(err, documents) {
+          assert.equal(err, null);
+          console.log("Inside the second");
+          console.log("Documents");
+          // console.log(documents);
+          callback(documents);
+        });
+      });
+      // db.close();
+    });
+}
+
 function removeObject(obid) {
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
@@ -396,9 +436,11 @@ module.exports.searchOnObject = searchOnObject;
 module.exports.searchOnPerson = searchOnPerson;
 module.exports.searchOnLocation = searchOnLocation;
 module.exports.searchObjectOfPerson = searchObjectOfPerson;
+module.exports.searchObjectOfLocation = searchObjectOfLocation;
 
 module.exports.getUsersObjects = getUsersObjects;
 module.exports.updatePersonsInObjects = updatePersonsInObjects;
+module.exports.updateLocationsInObjects = updateLocationsInObjects;
 module.exports.removeObject = removeObject;
 
 module.exports.findObjectWithID = findObjectWithID;

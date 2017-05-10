@@ -176,6 +176,18 @@ app.get('/mark/person/:object', function(req, res) {
 	});
 });
 
+app.get('/mark/location/:object', function(req, res) {
+	var object = req.params.object;
+
+	// Search Objects arrays in person collection
+	objectDB.searchObjectOfLocation(object, function(result) {
+		var resultJSON = JSON.stringify(result);
+		console.log(resultJSON);
+		res.send(resultJSON);
+	//	console.log(result);
+	});
+});
+
 app.post('/mark/person/:object/:person', function(req, res) {
 	console.log("In here1222222222222");
 	var object = req.params.object;
@@ -219,6 +231,51 @@ app.post('/mark/person/:object/:person', function(req, res) {
 		res.send("Invalid query");
 	}
 });
+
+app.post('/mark/location/:object/:location', function(req, res) {
+	console.log("In here1222222222222");
+	var object = req.params.object;
+	var location = req.params.location;
+	if (location !== "") {
+		console.log("In here2");
+		objectDB.searchOnLocation(location, function(result) {
+			if (result.length !== 0) {
+				console.log(location + " is already in the collection; adding '" + object + "' to existing record for: " + location);
+/*				objectDB.addPersonToObject(object, person, function(data) {
+					res.send(data);
+				});*/
+				console.log("Updating all associated object records...");
+				objectDB.updateLocationsInObjects(location, function (data) {
+					console.log("Data");
+					//console.log(data);
+					res.send(data);
+				});
+			} else {
+				console.log("In here3");
+				objectDB.createLocation(location, object, function(data) {
+					console.log("In here4");
+					res.send(data);
+				});
+
+				console.log("Down here?");
+				/*objectDB.addPersonToObject(object, person, function(data) {
+					res.send(data);
+				});*/
+
+				console.log("Updating all associated object records...");
+				objectDB.updateLocationsInObjects(person, function (data) {
+					var resultJSON = JSON.stringify(data);
+					console.log("Inside here");
+					//console.log(resultJSON);
+					res.send(resultJSON);
+				});
+			}
+		});
+	} else {
+		res.send("Invalid query");
+	}
+});
+
 
 /************************/
 /*		Artifact editing 	*/

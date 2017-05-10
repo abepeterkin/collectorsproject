@@ -25,6 +25,22 @@ function highlight(id) {
 			}
 		}
 	});
+	$.get("/mark/location/" + id, function(result) {
+		if (result.length = 0) {
+			console.log("Nothing to highlight");
+		} else {
+			var resultObjects = JSON.parse(result);
+			for (var key in resultObjects) {
+				if (resultObjects.hasOwnProperty(key)) {
+					var obj = resultObjects[key];
+					var objPersons = $.unique(obj.Locations)
+					for (var i = 0; i < objPersons.length; i++) {
+						mark(objPersons[i], $("#artifact_provenance"));
+					}
+				}
+			}
+		}
+	});
 }
 
 function flag() {
@@ -74,9 +90,9 @@ $(".custom-menu li").click(function(){
 			});
 			break;
 		case "second":
-/*			$.post("/mark/location/" + id + "/" + text, function(result){
-				console.log("Got it back here.");
-			});*/
+			$.post("/mark/location/" + id + "/" + text, function(result){
+				console.log("Got it back here2.");
+			});
 			break;
     }
 	$(".custom-menu").hide(100);
