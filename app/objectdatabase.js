@@ -10,14 +10,6 @@ var datab = [];
 MongoClient.connect(url, function(err, db) {
   assert.equal(null, err);
   console.log("Connected correctly to server.");
-  db.collection('person').remove({});
-  /*dropAll(db);
-  objectIndexing(db);
-  console.log("Indexed objects");
-  personIndexing(db);
-  console.log("Indexed persons");
-  locationIndexing(db);
-  console.log("Indexed locations");*/
   db.close();
 });
 
@@ -35,13 +27,6 @@ function insertMany(objects) {
 		console.log("Closed");
 	});
 	console.log("Gets after connect");
-}
-
-var dropAll = function(db) {
-  db.collection('object').remove({});
-  db.collection('person').remove({});
-  db.collection('location').remove({});
-  console.log("Dropped all");
 }
 
 var objectIndexing = function(db) {
@@ -97,7 +82,7 @@ var addLocationToObject = function(artifactId, location) {
     assert.equal(null, err);
     db.collection('object').findAndModify(
       { _id: artifactId },
-     { $push: { Locations: location} },
+     { $addToSet: { Locations: location} },
      function(err, object) {
       assert.equal(err, null);
       console.log("Updated " + artifactId + " with new location id");
@@ -143,18 +128,18 @@ var findObjects = function(db, callback) {
 };
 
 //do the same for location
-var createLocationHelper = function(location) {
+var createLocationHelper = function(location, object) {
   var createdLocation = {
     "name" : location.name,
-    "Objects": [],
+    "Objects": [object],
     "Persons" : []
   }
   return createdLocation;
 }
 
 //have person be
-var createLocation = function(location, callback) {
-  var createdLocation = createLocationHelper(location);
+var createLocation = function(location, object, callback) {
+  var createdLocation = createLocationHelper(location, object);
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
     db.collection('location').insert( createdLocation,
@@ -172,7 +157,7 @@ var addObjectToLocation = function(location, object) {
   MongoClient.connect(url, function(err, db) {
     db.collection('location').findAndModify(
       { _id: location._id },
-     { $push: { Objects: object } },
+     { $addToSet: { Objects: object } },
      function(err, result) {
       assert.equal(err, null);
       console.log("Updated " + location._id + " with new object");
@@ -186,7 +171,7 @@ var addPersonToLocation = function(location, person) {
     assert.equal(err, null);
     db.collection('location').findAndModify(
       { _id: location._id },
-     { $push: { Persons: person } },
+     { $addToSet: { Persons: person } },
      function(err, result) {
       assert.equal(err, null);
       console.log("Updated " + location._id + " with new person");
@@ -199,7 +184,7 @@ var addPersonToObject = function(object, person, callback) {
   MongoClient.connect(url, function(err, db) {
     db.collection('object').findOneAndUpdate(
 	{ _id : object },
-	{ $push: { Persons: person } },
+	{ $addToSet: { Persons: person } },
 	{ "new": true },
 	function(err, doc) {
 //		assert.equal(err, null);
@@ -210,27 +195,35 @@ var addPersonToObject = function(object, person, callback) {
   });
 }
 
-var searchOnObject = function(query, callback) {
+var searchOnObject = function(query, after, callback) {
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
     var results = db.collection('object').find({$text : {$search : query}}, {
       score : {$meta : "textScore"}}).sort(
       {score: {$meta : "textScore"}}).toArray(function(err, documents) {
         assert.equal(err, null);
-        callback(documents);
+        var toReturn = [];
+        for(var i = after; i < after + 21 && i < documents.length; i++) {
+          toReturn.push(documents[i]);
+        }
+        callback(toReturn);
       });
     db.close();
   });
 }
 
-var searchOnPerson = function(query, callback) {
+var searchOnPerson = function(query, after, callback) {
     MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
     var results = db.collection('person').find({$text : {$search : query}}, {
       score : {$meta : "textScore"}}).sort(
       {score: {$meta : "textScore"}}).toArray(function(err, documents) {
 		  assert.equal(err, null);
-		  callback(documents);
+		  var toReturn = [];
+        for(var i = after; i < after + 21 && i < documents.length; i++) {
+          toReturn.push(documents[i]);
+        }
+        callback(toReturn);
       });
     db.close();
   });
@@ -270,13 +263,17 @@ var searchObjectOfLocation = function(object, callback) {
   );
 }
 
-var searchOnLocation = function(query, callback) {
+var searchOnLocation = function(query, after, callback) {
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
     var results = db.collection('location').find({$text : {$search : query}}, {
       score : {$meta : "textScore"}}).sort(
       {score: {$meta : "textScore"}});
-    callback(results);
+    var toReturn = [];
+      for(var i = after; i < after + 21 && i < results.length; i++) {
+        toReturn.push(results[i]);
+      }
+      callback(toReturn);
     db.close();
   });
 }
@@ -289,7 +286,7 @@ var addObjectToPerson = function(person, object) {
 		{
 //			_id: person._id
 		}, {
-			$push: {
+			$addToSet: {
 				Objects: object
 				}
 		}, function(err, result) {
@@ -304,7 +301,7 @@ var addLocationToPerson = function(person, location) {
 	MongoClient.connect(url, function(err, db) {
 		db.collection('person').findAndModify(
 		{ _id: person._id },
-		{ $push: { Locations: location }, },
+		{ $addToSet: { Locations: location }, },
 		function(err, result) {
 			assert.equal(err, null);
 			console.log("Updated " + person._id + " with new location id " + locationId);
@@ -330,7 +327,7 @@ function updatePersonsInObjects(value, callback) {
 		assert.equal(null, err);
 		db.collection('object').update(
 			{ $text: { $search : value } },
-			{ $push: { "Persons" : value } },
+			{ $addToSet: { "Persons" : value } },
 			{ new: true, multi: true },
 			function(err) {
 		  assert.equal(err, null);
@@ -353,7 +350,7 @@ function updateLocationsInObjects(value, callback) {
     assert.equal(null, err);
     db.collection('object').update(
       { $text: { $search : value } },
-      { $push: { "Locations" : value } },
+      { $addToSet: { "Locations" : value } },
       { new: true, multi: true },
       function(err) {
       assert.equal(err, null);

@@ -140,8 +140,9 @@ app.get('/search', function(req, res) {
 app.post('/search/:query', function(req, res) {
 	var query = req.params.query;
 	console.log("QUERY: [" + [query] + "]");
+	var after = 0;
 	if (query !== "") {
-		objectDB.searchOnObject(query, function(result) {
+		objectDB.searchOnObject(query, after, function(result) {
 			var resultJSON = JSON.stringify(result);
 			res.send(resultJSON);
 			console.log(resultJSON);
@@ -192,10 +193,11 @@ app.post('/mark/person/:object/:person', function(req, res) {
 	console.log("In here1222222222222");
 	var object = req.params.object;
 	var person = req.params.person;
+	var after = 0;
 	if (person !== "") {
 		console.log("In here2");
-		objectDB.searchOnPerson(person, function(result) {
-			if (result.length !== 0) {
+		objectDB.searchOnPerson(person, after, function(result) {
+			if (result.length !== 0) { 
 				console.log(person + " is already in the collection; adding '" + object + "' to existing record for: " + person);
 /*				objectDB.addPersonToObject(object, person, function(data) {
 					res.send(data);
@@ -236,9 +238,10 @@ app.post('/mark/location/:object/:location', function(req, res) {
 	console.log("In here1222222222222");
 	var object = req.params.object;
 	var location = req.params.location;
+	var after = 0;
 	if (location !== "") {
 		console.log("In here2");
-		objectDB.searchOnLocation(location, function(result) {
+		objectDB.searchOnLocation(location, after, function(result) {
 			if (result.length !== 0) {
 				console.log(location + " is already in the collection; adding '" + object + "' to existing record for: " + location);
 /*				objectDB.addPersonToObject(object, person, function(data) {
@@ -263,7 +266,7 @@ app.post('/mark/location/:object/:location', function(req, res) {
 				});*/
 
 				console.log("Updating all associated object records...");
-				objectDB.updateLocationsInObjects(person, function (data) {
+				objectDB.updateLocationsInObjects(location, function (data) {
 					var resultJSON = JSON.stringify(data);
 					console.log("Inside here");
 					//console.log(resultJSON);
