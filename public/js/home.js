@@ -139,41 +139,7 @@ $(document).ready(function(){
 				height: "0px"
 			});
 			$("#search_results").fadeOut();
-//			$("#body_text").css('display', 'none');
 		}
-/*		$("#about").animate({height: "5px"});
-			
-//		    document.getElementById("body_text").style.top="75px";
-
-//		    document.getElementById("header").style.height = "50px";
-
-
-
-//		    document.getElementById("wow_title").style.fontSize = "20px";
-//		    document.getElementById("about").style.fontSize = "15px";
-
-//		    document.getElementById("about").style.height = "5px";
-
-
-		    document.getElementById("signIn").style.fontSize = "15px";
-		    document.getElementById("signUp").style.fontSize = "15px";
-
-		    document.getElementById("dropbtn").style.fontSize = "15px";
-
-		    document.getElementById("upload").style.fontSize = "15px";
-		    document.getElementById("profile").style.fontSize = "15px";
-		    document.getElementById("signOut").style.fontSize = "15px";*/
-
-//		    document.getElementById("search_results").style.visibility="visible";
-
-//		    document.getElementById("search_results").style.top="20px";
-//		    document.getElementById("search_results").style.height="600px";
-
-		/******/
-
-
-
-		
 	});
 
 

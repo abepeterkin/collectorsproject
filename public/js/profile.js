@@ -1,7 +1,6 @@
 $(document).ready(function(){
 	var span = document.getElementsByClassName("close")[0];
 
-
 	/* inserting user info */
 	$("#dropbtn").html(firstname);
 	$("#name").html(firstname+" "+lastname);
@@ -9,18 +8,16 @@ $(document).ready(function(){
 	$("#institution_name").html(affiliation);
 	$("#user_location").html(city + ", " + country);
 
-
-
 	/* opening first tab by default, load user's objects */
 	document.getElementById("defaultOpen").click();
 
 	$.post("search/" + affiliation, function(result){
 		$("#uploadList").html("");
 		var resultObjects = JSON.parse(result);
+//		$("#pageNumber").html("Showing < " + resultObjects.length + " > results");
 		for (var key in resultObjects) {
 			if (resultObjects.hasOwnProperty(key)) {
    				var obj = resultObjects[key];
-
 				var resultHTML = new EJS({url: '../pages/searchresult.ejs'}).render(obj);
 				$("#uploadList").append(resultHTML);
 			}
@@ -102,6 +99,10 @@ $(document).ready(function(){
 	    $.post("search/" + affiliation, function(result){
 			$("#uploadList").html("");
 			var resultObjects = JSON.parse(result);
+			if (resultObjects.length < 20) {
+				$("#pageNumber").html("< 1 >");
+				// show first twenty
+			}
 			for (var key in resultObjects) {
 				if (resultObjects.hasOwnProperty(key)) {
       				var obj = resultObjects[key];

@@ -187,7 +187,19 @@ body {
 	border-radius: 5px;
 }
 
+.highlightedPerson {
+	background-color: hsla(293,87%,62%,0.5);
+	border-radius: 5px;
+}
+
+.highlightedLocation {
+	background-color: hsla(114,72%,55%,0.5);
+	border-radius: 5px;
+}
+
 .custom-menu {
+	top: 0px;
+	left: 0px;
     display: none;
     z-index: 1000;
     position: absolute;

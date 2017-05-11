@@ -1,20 +1,55 @@
-IMPLEMENTED: User accounts, Object uploading
+﻿IMPLEMENTED: 
+- User accounts
+- Searching through objects with thumbnail view
 
-PARTIALLY IMPLEMENTED: User profile page
+PARTIALLY IMPLEMENTED: 
+- Uploading of files (XLSX only)
+- User profile page
+- searching and highlighting of provenancing data
 
-NOT IMPLEMENTED: Searching through objects, a better explanation for how object uploading works
+NOT IMPLEMENTED: 
+- Tooltips for various tools
+- Internationalization
+- HTTPS
+- Uploading and attaching images, to user profiles and uploaded objects
+- Checks and failsafes while marking provenancing data
+- Graphic/map output of matching records with Leaflet
+- Import media (sound clips, video clips, and 3D models)
+- Mouse and keyboard shortcuts
+- Screen reader compatible
+- Control the app by voice
 
-Code Structure:
-We use Node.js, and server.js is the main file you should run to start the server.
+CHANGES TO ORIGINAL PLAN:
+We initially decided to use SQLite to store our data. Due to the variety within the datasets and the utility of indexing text, we decided MongoDB would be a better choice. Although we did not implement many of the features initially envisioned, we managed to put down a solid foundation for a system that is easily extendable.
 
-The public folder contains all of our ejs templates, CSS, images, and front-end Javascript.
+CODE STRUCTURE:
+Our system is built around Node.js with Passport.js and MongoDB. We decided to use Javascript Templates for flexibility. After installing our package.json, the system is run with "node server.js".
 
-The app and config folders contain some important back-end javascript files, such as routes.js (our ajax routes), passport.js (passport user authentication helper functions), and objectdatabase.js (helper functions for querying and inserting objects into the database)
+FOLDER STRUCTURE:
+The public folder contains a number of folders with our ejs templates, CSS files, images, and front-end Javascript.
 
-Routes:
-GET request to / will load the home page
-GET request to /upload will load the object uploading page
-POST request to /upload will upload a file containing object data
-POST request to /login will log the user in
-POST request to /signup will create a user account
-GET request to /userprofile will load a user’s profile page (profile pages still in progress)
+NOTES:
+The app and config folders contain some important back-end javascript files, such as routes.js (our ajax routes), passport.js (passport user authentication helper functions), and objectdatabase.js (helper functions for querying and inserting objects into the database). We decided to mainly use modal boxes for ease of user interaction.
+
+ROUTES:
+GET request to / 		will load the home page
+
+GET request to /upload 		will load the object uploading page
+GET request to /userprofile 	will load a user’s profile page (profile pages still in progress)
+GET request to /signup		will load the signup page
+GET request to /signin		will load the signin page (in case of error)
+GET request to /logout		will log out the user
+
+GET request to /search		will load search template
+GET request to /mark		will get marked persons or locations from the object collections
+
+POST request to /upload 	will upload a file containing object data
+POST request to /login		will log the user in
+POST request to /signup 	will create a user account
+POST request to /editprofile	will process changed profile data
+POST request to /signin 	will sign user in
+
+POST request to /search 	will perform search query on database
+POST request to /mark		will add a person or location to their collections
+
+POST request to /deleteartifact	will remove an artifact from the appropriate collection

@@ -1,6 +1,6 @@
-// =========================================================
-// MONGODB
-
+/********************************/
+/*			MongoDB				*/
+/********************************/
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
@@ -13,22 +13,9 @@ MongoClient.connect(url, function(err, db) {
   db.close();
 });
 
-function insertMany(objects) {
-	console.log("Adding to Stuff");
-	MongoClient.connect(url, function(err, db) {
-		assert.equal(null, err);
-		console.log("Connected to DB");
-		db.collection('object').insertMany(objects, function(err, records) {
-			assert.equal(err, null);
-			console.log("Inserted " + records.insertedCount + " into the object collection.");
-		});
-		console.log("Closing");
-		db.close();
-		console.log("Closed");
-	});
-	console.log("Gets after connect");
-}
-
+/********************************/
+/*			Indexing			*/
+/********************************/
 var objectIndexing = function(db) {
   db.collection('object').createIndex({
     "userId": "text",
@@ -77,31 +64,24 @@ var locationIndexing = function(db) {
   });
 }
 
-var addLocationToObject = function(artifactId, location) {
-  MongoClient.connect(url, function(err, db) {
-    assert.equal(null, err);
-    db.collection('object').findAndModify(
-      { _id: artifactId },
-     { $addToSet: { Locations: location} },
-     function(err, object) {
-      assert.equal(err, null);
-      console.log("Updated " + artifactId + " with new location id");
-    });
-    db.close();
-  });
-}
-//do the same for location
-var createPersonHelper = function(person, object) {
-  var createdPerson = {
-    "name" : person,
-    "Objects": [],
-    "Locations" : []
-  }
-  createdPerson.Objects.push(object);
-  return createdPerson;
+/********************************/
+/*		Insert Excel objects	*/
+/********************************/
+function insertMany(objects) {
+	MongoClient.connect(url, function(err, db) {
+		assert.equal(null, err);
+		console.log("Connected to DB");
+		db.collection('object').insertMany(objects, function(err, records) {
+			assert.equal(err, null);
+			console.log("Inserted " + records.insertedCount + " into the object collection.");
+		});
+		db.close();
+	});
 }
 
-//have person be
+/********************************/
+/*		Create new person		*/
+/********************************/
 var createPerson = function(person, object, callback) {
   var createdPerson = createPersonHelper(person, object);
   MongoClient.connect(url, function(err, db) {
@@ -115,29 +95,19 @@ var createPerson = function(person, object, callback) {
   callback(createdPerson);
 }
 
-var findObjects = function(db, callback) {
-   var cursor = db.collection('object').find( );
-   cursor.each(function(err, doc) {
-      assert.equal(err, null);
-      if (doc != null) {
-         console.dir(doc);
-      } else {
-         callback();
-      }
-   });
-};
-
-//do the same for location
-var createLocationHelper = function(location, object) {
-  var createdLocation = {
-    "name" : location.name,
-    "Objects": [object],
-    "Persons" : []
+var createPersonHelper = function(person, object) {
+  var createdPerson = {
+    "name" : person,
+    "Objects": [],
+    "Locations" : []
   }
-  return createdLocation;
+  createdPerson.Objects.push(object);
+  return createdPerson;
 }
 
-//have person be
+/********************************/
+/*		Create new location		*/
+/********************************/
 var createLocation = function(location, object, callback) {
   var createdLocation = createLocationHelper(location, object);
   MongoClient.connect(url, function(err, db) {
@@ -150,36 +120,21 @@ var createLocation = function(location, object, callback) {
      });
     db.close();
   });
-  callback(createdLocation); //callback returns the id for object and location
+  callback(createdLocation);
 }
 
-var addObjectToLocation = function(location, object) {
-  MongoClient.connect(url, function(err, db) {
-    db.collection('location').findAndModify(
-      { _id: location._id },
-     { $addToSet: { Objects: object } },
-     function(err, result) {
-      assert.equal(err, null);
-      console.log("Updated " + location._id + " with new object");
-    });
-    db.close();
-  });
+var createLocationHelper = function(location, object) {
+  var createdLocation = {
+    "name" : location.name,
+    "Objects": [object],
+    "Persons" : []
+  }
+  return createdLocation;
 }
 
-var addPersonToLocation = function(location, person) {
-  MongoClient.connect(url, function(err, db) {
-    assert.equal(err, null);
-    db.collection('location').findAndModify(
-      { _id: location._id },
-     { $addToSet: { Persons: person } },
-     function(err, result) {
-      assert.equal(err, null);
-      console.log("Updated " + location._id + " with new person");
-    });
-    db.close();
-  });
-}
-
+/********************************/
+/*			Add to Objects 		*/
+/********************************/
 var addPersonToObject = function(object, person, callback) {
   MongoClient.connect(url, function(err, db) {
     db.collection('object').findOneAndUpdate(
@@ -187,7 +142,6 @@ var addPersonToObject = function(object, person, callback) {
 	{ $addToSet: { Persons: person } },
 	{ "new": true },
 	function(err, doc) {
-//		assert.equal(err, null);
 		console.log("Added person " + person + " to object " + object);
 		callback(doc);
     });
@@ -195,6 +149,23 @@ var addPersonToObject = function(object, person, callback) {
   });
 }
 
+var addLocationToObject = function(artifactId, location) {
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+    db.collection('object').findAndModify(
+      { _id: artifactId },
+     { $addToSet: { Locations: location} },
+     function(err, object) {
+      assert.equal(err, null);
+      console.log("Updated " + artifactId + " with new location id");
+    });
+    db.close();
+  });
+}
+
+/********************************/
+/*		Search Functions 		*/
+/********************************/
 var searchOnObject = function(query, after, callback) {
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
@@ -225,6 +196,21 @@ var searchOnPerson = function(query, after, callback) {
         }
         callback(toReturn);
       });
+    db.close();
+  });
+}
+
+var searchOnLocation = function(query, after, callback) {
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+    var results = db.collection('location').find({$text : {$search : query}}, {
+      score : {$meta : "textScore"}}).sort(
+      {score: {$meta : "textScore"}});
+    var toReturn = [];
+      for(var i = after; i < after + 21 && i < results.length; i++) {
+        toReturn.push(results[i]);
+      }
+      callback(toReturn);
     db.close();
   });
 }
@@ -263,17 +249,140 @@ var searchObjectOfLocation = function(object, callback) {
   );
 }
 
-var searchOnLocation = function(query, after, callback) {
+function searchForUserObjects(userId, query, callback) {
   MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
-    var results = db.collection('location').find({$text : {$search : query}}, {
+    var results = db.collection('object').find({$text : {$search : query}}, {
       score : {$meta : "textScore"}}).sort(
-      {score: {$meta : "textScore"}});
-    var toReturn = [];
-      for(var i = after; i < after + 21 && i < results.length; i++) {
-        toReturn.push(results[i]);
+      {score: {$meta : "textScore"}}).toArray(function(err, documents) {
+        assert.equal(err, null);
+        var toReturn = [];
+        for(var i = 0; i < documents.length; i++) {
+          var str = String(documents[i].userId);
+          if(str === userId) {
+            toReturn.push(documents[i]);
+          }
+        }
+        callback(toReturn);
+      });
+    db.close();
+  });
+}
+
+/********************************/
+/*		Update Functions 		*/
+/********************************/
+function updatePersonsInObjects(value, callback) {
+	MongoClient.connect(url, function(err, db) {
+		assert.equal(null, err);
+		db.collection('object').update(
+			{ $text: { $search : value } },
+			{ $addToSet: { "Persons" : value } },
+			{ new: true, multi: true },
+			function(err) {
+		  assert.equal(err, null);
+      db.collection('object').find({$text : {$search : value}})
+        .toArray(function(err, documents) {
+          assert.equal(err, null);
+          callback(documents);
+        });
+			});
+  	});
+}
+
+function updateLocationsInObjects(value, callback) {
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+    db.collection('object').update(
+      { $text: { $search : value } },
+      { $addToSet: { "Locations" : value } },
+      { new: true, multi: true },
+      function(err) {
+      assert.equal(err, null);
+      db.collection('object').find({$text : {$search : value}})
+        .toArray(function(err, documents) {
+          assert.equal(err, null);
+          callback(documents);
+        });
+      });
+    });
+}
+
+/********************************/
+/*		Remove Functions 		*/
+/********************************/
+function removeObject(obid) {
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(null, err);
+    db.collection('object').deleteOne({ _id: new require('mongodb').ObjectID(obid) }, function(err) {
+      assert.equal(err, null);
+      console.log("Removed Object with Id " + obid);
+    });
+    db.close();
+    console.log("Closed the db after removing");
+  });
+}
+
+/********************************/
+/*	Module export functions 	*/
+/********************************/
+module.exports.insertMany = insertMany;
+module.exports.createPerson = createPerson;
+module.exports.createLocation = createLocation;
+module.exports.addPersonToObject = addPersonToObject;
+module.exports.addLocationToObject = addLocationToObject;
+module.exports.searchForUserObjects = searchForUserObjects;
+module.exports.searchOnObject = searchOnObject;
+module.exports.searchOnPerson = searchOnPerson;
+module.exports.searchOnLocation = searchOnLocation;
+module.exports.searchObjectOfPerson = searchObjectOfPerson;
+module.exports.searchObjectOfLocation = searchObjectOfLocation;
+module.exports.updatePersonsInObjects = updatePersonsInObjects;
+module.exports.updateLocationsInObjects = updateLocationsInObjects;
+module.exports.removeObject = removeObject;
+
+
+
+
+/********************************/
+/*		Future development		*/
+/********************************/
+/*
+var findObjects = function(db, callback) {
+   var cursor = db.collection('object').find( );
+   cursor.each(function(err, doc) {
+      assert.equal(err, null);
+      if (doc != null) {
+         console.dir(doc);
+      } else {
+         callback();
       }
-      callback(toReturn);
+   });
+};
+
+var addObjectToLocation = function(location, object) {
+  MongoClient.connect(url, function(err, db) {
+    db.collection('location').findAndModify(
+      { _id: location._id },
+     { $addToSet: { Objects: object } },
+     function(err, result) {
+      assert.equal(err, null);
+      console.log("Updated " + location._id + " with new object");
+    });
+    db.close();
+  });
+}
+
+var addPersonToLocation = function(location, person) {
+  MongoClient.connect(url, function(err, db) {
+    assert.equal(err, null);
+    db.collection('location').findAndModify(
+      { _id: location._id },
+     { $addToSet: { Persons: person } },
+     function(err, result) {
+      assert.equal(err, null);
+      console.log("Updated " + location._id + " with new person");
+    });
     db.close();
   });
 }
@@ -322,84 +431,6 @@ function getUsersObjects(userId, callback) {
   });
 }
 
-function updatePersonsInObjects(value, callback) {
-	MongoClient.connect(url, function(err, db) {
-		assert.equal(null, err);
-		db.collection('object').update(
-			{ $text: { $search : value } },
-			{ $addToSet: { "Persons" : value } },
-			{ new: true, multi: true },
-			function(err) {
-		  assert.equal(err, null);
-      console.log("Inside the first");
-      db.collection('object').find({$text : {$search : value}})
-        .toArray(function(err, documents) {
-          assert.equal(err, null);
-          console.log("Inside the second");
-          console.log("Documents");
-          // console.log(documents);
-          callback(documents);
-        });
-			});
-    	// db.close();
-  	});
-}
-
-function updateLocationsInObjects(value, callback) {
-  MongoClient.connect(url, function(err, db) {
-    assert.equal(null, err);
-    db.collection('object').update(
-      { $text: { $search : value } },
-      { $addToSet: { "Locations" : value } },
-      { new: true, multi: true },
-      function(err) {
-      assert.equal(err, null);
-      console.log("Inside the first");
-      db.collection('object').find({$text : {$search : value}})
-        .toArray(function(err, documents) {
-          assert.equal(err, null);
-          console.log("Inside the second");
-          console.log("Documents");
-          // console.log(documents);
-          callback(documents);
-        });
-      });
-      // db.close();
-    });
-}
-
-function removeObject(obid) {
-  MongoClient.connect(url, function(err, db) {
-    assert.equal(null, err);
-    db.collection('object').deleteOne({ _id: new require('mongodb').ObjectID(obid) }, function(err) {
-      assert.equal(err, null);
-      console.log("Removed Object with Id " + obid);
-    });
-    db.close();
-    console.log("Closed the db after removing");
-  });
-}
-
-function searchForUserObjects(userId, query, callback) {
-  MongoClient.connect(url, function(err, db) {
-    assert.equal(null, err);
-    var results = db.collection('object').find({$text : {$search : query}}, {
-      score : {$meta : "textScore"}}).sort(
-      {score: {$meta : "textScore"}}).toArray(function(err, documents) {
-        assert.equal(err, null);
-        var toReturn = [];
-        for(var i = 0; i < documents.length; i++) {
-          var str = String(documents[i].userId);
-          if(str === userId) {
-            toReturn.push(documents[i]);
-          }
-        }
-        callback(toReturn);
-      });
-    db.close();
-  });
-}
-
 function findObjectWithID(id, callback) {
 	MongoClient.connect(url, function(err, db) {
 		assert.equal(null, err);
@@ -411,33 +442,10 @@ function findObjectWithID(id, callback) {
   });
 }
 
-//adding date to insert
-//getting object id for any object on the screen to remove or update
-
-module.exports.insertMany = insertMany;
-
-module.exports.createPerson = createPerson;
-module.exports.createLocation = createLocation;
-
-module.exports.findObjects = findObjects;
-
 module.exports.addLocationToPerson = addLocationToPerson;
-module.exports.addLocationToObject = addLocationToObject;
 module.exports.addObjectToLocation = addObjectToLocation;
 module.exports.addObjectToPerson = addObjectToPerson;
 module.exports.addPersonToLocation = addPersonToLocation;
-module.exports.addPersonToObject = addPersonToObject;
-
-module.exports.searchForUserObjects = searchForUserObjects;
-module.exports.searchOnObject = searchOnObject;
-module.exports.searchOnPerson = searchOnPerson;
-module.exports.searchOnLocation = searchOnLocation;
-module.exports.searchObjectOfPerson = searchObjectOfPerson;
-module.exports.searchObjectOfLocation = searchObjectOfLocation;
-
+module.exports.findObjects = findObjects;
 module.exports.getUsersObjects = getUsersObjects;
-module.exports.updatePersonsInObjects = updatePersonsInObjects;
-module.exports.updateLocationsInObjects = updateLocationsInObjects;
-module.exports.removeObject = removeObject;
-
-module.exports.findObjectWithID = findObjectWithID;
+module.exports.findObjectWithID = findObjectWithID;*/

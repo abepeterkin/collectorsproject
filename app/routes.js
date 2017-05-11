@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
 			city         : req.user.city,
 			country      : req.user.country
 		});
-		console.log("User " + req.user + " logged in");
+		console.log("User " + req.user + " logged on");
 	} else {
 		res.render('home.ejs', {
 			userid		 : undefined,
@@ -67,12 +67,6 @@ app.post('/signin', passport.authenticate('local-login', {
 /************************/
 /*		User profiles	*/
 /************************/
-/*app.get('/profile', isLoggedIn, function(req, res) {
-	res.render('profile.ejs', {
-		user: req.user // get the user out of session and pass to template
-	});
-});*/
-
 app.get('/profile', isLoggedIn, function(req, res) {
 	res.render('profile.ejs', {
 		userid		 : req.user._id,
@@ -86,16 +80,8 @@ app.get('/profile', isLoggedIn, function(req, res) {
 });
 
 /************************/
-/*		Search process	*/
+/*		Uploading data	*/
 /************************/
-/*app.post('/uploadfile', function(req, res) {
-	var spreadsheet = req.files.spreadsheet;
-	console.log('- Received file submission: ' + spreadsheet.name);
-	workbook = XLSX.read(spreadsheet.data);
-	xlsx = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
-	res.send(objectDB.insertArtifact(xlsx));
-});*/
-
 app.get('/upload', isLoggedIn, function(req, res) {
 	res.render('upload.ejs', {
 		user: req.user
@@ -103,11 +89,6 @@ app.get('/upload', isLoggedIn, function(req, res) {
 });
 
 app.post('/upload', isLoggedIn, function(req, res) {
-//	console.log(req.body);
-	console.log(req.files);
-//	console.log(req.body.provenancecolumn);
-//	console.log(req.body.namecolumn);
-//	console.log(req.body.ignoreheader);
 	if (!req.body.provenancecolumn || !req.body.namecolumn || !req.files || !req.body.ignoreheader) {
 		res.render('uploadresult.ejs', {
 			result: "Invalid request",
@@ -145,12 +126,10 @@ app.post('/search/:query', function(req, res) {
 		objectDB.searchOnObject(query, after, function(result) {
 			var resultJSON = JSON.stringify(result);
 			res.send(resultJSON);
-			console.log(resultJSON);
 		});
 	}
 });
 
-//post to this with search small//
 app.post('/search/:query/:userid', function(req, res) {
 	var query = req.params.query;
 	var userid = req.params.userid;
@@ -160,71 +139,46 @@ app.post('/search/:query/:userid', function(req, res) {
 		objectDB.searchForUserObjects(userid, query, function(result) {
 			var resultJSON = JSON.stringify(result);
 			res.send(resultJSON);
-			console.log(resultJSON);
 		});
 	}
 });
 
 app.get('/mark/person/:object', function(req, res) {
 	var object = req.params.object;
-
-	// Search Objects arrays in person collection
 	objectDB.searchObjectOfPerson(object, function(result) {
 		var resultJSON = JSON.stringify(result);
-		console.log(resultJSON);
 		res.send(resultJSON);
-	//	console.log(result);
 	});
 });
 
 app.get('/mark/location/:object', function(req, res) {
 	var object = req.params.object;
-
-	// Search Objects arrays in person collection
 	objectDB.searchObjectOfLocation(object, function(result) {
 		var resultJSON = JSON.stringify(result);
-		console.log(resultJSON);
 		res.send(resultJSON);
-	//	console.log(result);
 	});
 });
 
 app.post('/mark/person/:object/:person', function(req, res) {
-	console.log("In here1222222222222");
 	var object = req.params.object;
 	var person = req.params.person;
 	var after = 0;
 	if (person !== "") {
-		console.log("In here2");
 		objectDB.searchOnPerson(person, after, function(result) {
 			if (result.length !== 0) { 
 				console.log(person + " is already in the collection; adding '" + object + "' to existing record for: " + person);
-/*				objectDB.addPersonToObject(object, person, function(data) {
-					res.send(data);
-				});*/
 				console.log("Updating all associated object records...");
 				objectDB.updatePersonsInObjects(person, function (data) {
-					console.log("Data");
-					//console.log(data);
 					res.send(data);
 				});
 			} else {
-				console.log("In here3");
 				objectDB.createPerson(person, object, function(data) {
-					console.log("In here4");
 					res.send(data);
 				});
-
-				console.log("Down here?");
-				/*objectDB.addPersonToObject(object, person, function(data) {
-					res.send(data);
-				});*/
 
 				console.log("Updating all associated object records...");
 				objectDB.updatePersonsInObjects(person, function (data) {
 					var resultJSON = JSON.stringify(data);
-					console.log("Inside here");
-					//console.log(resultJSON);
 					res.send(resultJSON);
 				});
 			}
@@ -235,41 +189,25 @@ app.post('/mark/person/:object/:person', function(req, res) {
 });
 
 app.post('/mark/location/:object/:location', function(req, res) {
-	console.log("In here1222222222222");
 	var object = req.params.object;
 	var location = req.params.location;
 	var after = 0;
 	if (location !== "") {
-		console.log("In here2");
 		objectDB.searchOnLocation(location, after, function(result) {
 			if (result.length !== 0) {
 				console.log(location + " is already in the collection; adding '" + object + "' to existing record for: " + location);
-/*				objectDB.addPersonToObject(object, person, function(data) {
-					res.send(data);
-				});*/
 				console.log("Updating all associated object records...");
 				objectDB.updateLocationsInObjects(location, function (data) {
-					console.log("Data");
-					//console.log(data);
 					res.send(data);
 				});
 			} else {
-				console.log("In here3");
 				objectDB.createLocation(location, object, function(data) {
-					console.log("In here4");
 					res.send(data);
 				});
-
-				console.log("Down here?");
-				/*objectDB.addPersonToObject(object, person, function(data) {
-					res.send(data);
-				});*/
 
 				console.log("Updating all associated object records...");
 				objectDB.updateLocationsInObjects(location, function (data) {
 					var resultJSON = JSON.stringify(data);
-					console.log("Inside here");
-					//console.log(resultJSON);
 					res.send(resultJSON);
 				});
 			}
@@ -281,18 +219,12 @@ app.post('/mark/location/:object/:location', function(req, res) {
 
 
 /************************/
-/*		Artifact editing 	*/
+/*	Artifact editing 	*/
 /************************/
 app.post('/deleteartifact/:artifactid', isLoggedIn, function(req, res) {
 	var artifactid = req.params.artifactid;
 	objectDB.findObjectWithID(artifactid, function(artifact) {
 		if (artifact) {
-			/*console.log("artifact.userId: " + artifact.userId);
-			console.log("req.user._id: " + req.user._id);
-			console.log(artifact.userId === req.user._id);
-			console.log(JSON.stringify(artifact.userId) === req.user._id);
-			console.log(artifact.userId === JSON.stringify(req.user._id));
-			console.log(JSON.stringify(artifact.userId) === JSON.stringify(req.user._id));*/
 			if (JSON.stringify(artifact.userId) === JSON.stringify(req.user._id)) {
 				objectDB.removeObject(artifactid);
 				res.redirect('/profile');
@@ -306,19 +238,16 @@ app.post('/deleteartifact/:artifactid', isLoggedIn, function(req, res) {
 });
 
 /************************/
-/*		Profile editing 	*/
+/*		Profile editing */
 /************************/
-
 app.post('/editprofile',isLoggedIn, function(req, res) {
 	user_model.findOne({ 'local.email' :  req.user.local.email }, function(err, user) {
 		console.log("findOne... ");
-			// if there are any errors, return the error
 			if (err) {
 				console.log("Profile update error: " + err);
 				return;
 			}
 
-			// check to see if theres already a user with that email
 			if (user) {
 				console.log("firstname: " + req.body.firstname);
 				user.local.email = req.body.email;
@@ -338,40 +267,6 @@ app.post('/editprofile',isLoggedIn, function(req, res) {
 			} else {
 					console.log("User " +  req.user.local.email + " not found");
 					res.redirect('/profile');
-			}
-		});
-});
-
-app.post('/editpassword',isLoggedIn, function(req, res) {
-	user_model.findOne({ 'local.email' :  req.user.local.email }, function(err, user) {
-		console.log("findOne... ");
-			// if there are any errors, return the error
-			if (err) {
-				console.log("Profile update error: " + err);
-				res.send("Something went wrong. Try again later.");
-				return;
-			}
-
-			// check to see if theres already a user with that email
-			if (user) {
-
-				if (req.body.newpassword !== req.body.confirmpassword) {
-					console.log("Passwords do not match");
-					res.send("Passwords do not match");
-					return;
-				}
-				user.setPassword(req.body.newpassword, function(err) {
-					if (err) {
-						console.log(err);
-						res.send("Something went wrong. Try again later.");
-					} else {
-						console.log("User " +  req.user.local.email + " profile updated");
-						res.send("Password change successful!");
-					}
-				});
-			} else {
-				console.log("User " +  req.user.local.email + " not found");
-				res.send("User " +  req.user.local.email + " not found");
 			}
 		});
 });
@@ -436,3 +331,41 @@ function escapeHtml (string) {
     return entityMap[s];
   });
 }
+
+/********************************/
+/*		Future development		*/
+/********************************/
+/*
+app.post('/editpassword',isLoggedIn, function(req, res) {
+	user_model.findOne({ 'local.email' :  req.user.local.email }, function(err, user) {
+		console.log("findOne... ");
+			// if there are any errors, return the error
+			if (err) {
+				console.log("Profile update error: " + err);
+				res.send("Something went wrong. Try again later.");
+				return;
+			}
+
+			// check to see if theres already a user with that email
+			if (user) {
+
+				if (req.body.newpassword !== req.body.confirmpassword) {
+					console.log("Passwords do not match");
+					res.send("Passwords do not match");
+					return;
+				}
+				user.setPassword(req.body.newpassword, function(err) {
+					if (err) {
+						console.log(err);
+						res.send("Something went wrong. Try again later.");
+					} else {
+						console.log("User " +  req.user.local.email + " profile updated");
+						res.send("Password change successful!");
+					}
+				});
+			} else {
+				console.log("User " +  req.user.local.email + " not found");
+				res.send("User " +  req.user.local.email + " not found");
+			}
+		});
+});*/
